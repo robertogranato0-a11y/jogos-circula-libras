@@ -96,10 +96,10 @@ footer a { color: var(--roxo); }
   </header>
 
   <section id="telaInicio" class="cartao">
-    <p class="msg">São 20 perguntas em duas fases. No fim, você vê o seu resultado de cada fase.</p>
+    <p class="msg">São 30 perguntas em duas fases. No fim, você vê o seu resultado de cada fase.</p>
     <div class="fases">
-      <div class="fase"><span class="bola">1</span><b>Pode ou não pode?</b><small>10 perguntas</small></div>
-      <div class="fase"><span class="bola am">2</span><b>História da Libras</b><small>10 perguntas</small></div>
+      <div class="fase"><span class="bola">1</span><b>Pode ou não pode?</b><small>15 perguntas</small></div>
+      <div class="fase"><span class="bola am">2</span><b>História da Libras</b><small>15 perguntas</small></div>
     </div>
     <button class="acao centro" id="comecar" type="button">Começar o quiz →</button>
   </section>
@@ -169,7 +169,12 @@ const FASE1 = [
   { termo: "Surdinho ou mudinho", pode: false, exp: "O diminutivo infantiliza e desrespeita a pessoa surda. Diga simplesmente surdo." },
   { termo: "A expressão facial faz parte da Libras", pode: true, exp: "As expressões faciais e corporais fazem parte da gramática da Libras." },
   { termo: "A Libras é universal", pode: false, exp: "Cada país tem a sua língua de sinais. A Libras é a língua de sinais do Brasil." },
-  { termo: "A Libras é a língua dos surdos brasileiros", pode: true, exp: "A Libras é usada pelas comunidades surdas do Brasil e é reconhecida por lei desde 2002." }
+  { termo: "A Libras é a língua dos surdos brasileiros", pode: true, exp: "A Libras é usada pelas comunidades surdas do Brasil e é reconhecida por lei desde 2002." },
+  { termo: "Todo surdo faz leitura labial", pode: false, exp: "Nem todo surdo faz leitura labial. Ela é difícil e depende de cada pessoa. A Libras é o caminho da comunicação." },
+  { termo: "Falar mais alto para o surdo entender", pode: false, exp: "Gritar não ajuda. Fale de frente, com calma, use a escrita ou chame um intérprete." },
+  { termo: "Tocar de leve no ombro para chamar a atenção de um surdo", pode: true, exp: "Um toque leve no ombro ou um aceno no campo de visão são formas respeitosas de chamar a atenção." },
+  { termo: "A Libras tem sinais que mudam de uma região para outra", pode: true, exp: "Como toda língua, a Libras tem variações regionais: alguns sinais mudam de uma região para outra." },
+  { termo: "O intérprete decide o que o surdo vai dizer", pode: false, exp: "O intérprete traduz entre a Libras e o português com fidelidade. Quem decide o que dizer é a própria pessoa surda." }
 ];
 // Fase 2: múltipla escolha; a primeira opção é a correta (as opções são embaralhadas na tela)
 const FASE2 = [
@@ -182,7 +187,12 @@ const FASE2 = [
   { q: "O que o Congresso de Milão decidiu em 1880?", ops: ["Priorizar a oralização e afastar as línguas de sinais das escolas", "Criar uma língua de sinais universal", "Reconhecer a Libras como língua", "Fundar escolas bilíngues no mundo todo"], exp: "Depois de Milão, as línguas de sinais passaram décadas proibidas em muitas escolas." },
   { q: "Qual lei reconheceu a Libras em 2002?", ops: ["Lei nº 10.436", "Lei nº 12.319", "Decreto nº 5.626", "Lei nº 9.394"], exp: "A Lei nº 10.436/2002 reconhece a Libras como meio legal de comunicação e expressão." },
   { q: "O que o Decreto nº 5.626, de 2005, garantiu?", ops: ["A Libras como disciplina na formação de professores", "A criação do INES", "O fim das escolas de surdos", "Uma língua de sinais igual para todos os países"], exp: "O decreto regulamenta a Lei 10.436 e inclui a Libras na formação de professores." },
-  { q: "O que a Lei nº 12.319, de 2010, regulamentou?", ops: ["A profissão de tradutor e intérprete de Libras", "O Dia Nacional do Surdo", "O alfabeto manual", "O ensino de Libras nas escolas particulares"], exp: "A Lei nº 12.319/2010 regulamenta a profissão de tradutor e intérprete de Libras." }
+  { q: "O que a Lei nº 12.319, de 2010, regulamentou?", ops: ["A profissão de tradutor e intérprete de Libras", "O Dia Nacional do Surdo", "O alfabeto manual", "O ensino de Libras nas escolas particulares"], exp: "A Lei nº 12.319/2010 regulamenta a profissão de tradutor e intérprete de Libras." },
+  { q: "Em que data foi sancionada a Lei nº 10.436, que reconhece a Libras?", ops: ["24 de abril de 2002", "26 de setembro de 1857", "22 de dezembro de 2005", "1º de setembro de 2010"], exp: "A Lei nº 10.436 é de 24 de abril de 2002." },
+  { q: "Em que cidade fica o INES?", ops: ["Rio de Janeiro", "São Paulo", "Brasília", "Salvador"], exp: "O INES fica no Rio de Janeiro, onde foi fundado em 1857." },
+  { q: "O que a Lei nº 14.191, de 2021, incluiu na LDB?", ops: ["A educação bilíngue de surdos: Libras como primeira língua e português escrito como segunda", "A profissão de intérprete de Libras", "O Dia Nacional do Surdo", "O alfabeto manual nas escolas"], exp: "A Lei nº 14.191/2021 incluiu a educação bilíngue de surdos na Lei de Diretrizes e Bases da Educação." },
+  { q: "O que o Decreto nº 9.656, de 2018, passou a exigir dos órgãos públicos?", ops: ["Atendimento em Libras, com servidores capacitados ou intérpretes", "A criação de uma escola de surdos em cada cidade", "O reconhecimento da Libras como língua", "O fim das escolas bilíngues"], exp: "O decreto alterou o Decreto nº 5.626 para garantir o atendimento das pessoas surdas em Libras nos serviços públicos." },
+  { q: "Qual lei ficou conhecida como Lei Brasileira de Inclusão (LBI)?", ops: ["Lei nº 13.146/2015", "Lei nº 10.436/2002", "Lei nº 12.319/2010", "Lei nº 9.394/1996"], exp: "A Lei nº 13.146/2015 é a Lei Brasileira de Inclusão da Pessoa com Deficiência." }
 ];
 const TOTAL = FASE1.length + FASE2.length;
 let fase = 1, i = 0, ac1 = 0, ac2 = 0, respostas = [], ordem1 = [], ordem2 = [];
@@ -193,7 +203,7 @@ const lista = () => fase === 1 ? ordem1 : ordem2;
 
 function cabecalho() {
   const n = (fase === 1 ? 0 : FASE1.length) + i;
-  $("num").textContent = `Fase ${fase} · Pergunta ${i + 1} de 10`;
+  $("num").textContent = `Fase ${fase} · Pergunta ${i + 1} de ${lista().length}`;
   const a = ac1 + ac2;
   $("acertos").textContent = `${a} ${a === 1 ? "acerto" : "acertos"}`;
   $("barra").style.width = (n / TOTAL * 100) + "%";
@@ -228,7 +238,7 @@ function feedback(ok, certa, exp) {
   $("feedback").className = "feedback " + (ok ? "ok" : "nao");
   $("feedback").innerHTML = `<b>${ok ? "Acertou!" : "Não foi dessa vez. Resposta: " + certa + "."}</b><span></span>`;
   $("feedback").lastChild.textContent = exp;
-  const ultima = i === 9;
+  const ultima = i === lista().length - 1;
   $("proxima").textContent = ultima ? (fase === 1 ? "Terminar a fase 1 →" : "Ver resultado →") : "Próxima →";
   $("proxima").hidden = false; $("proxima").focus();
   cabecalho();
@@ -258,10 +268,10 @@ function responder2(v) {
 
 function proxima() {
   i++;
-  if (i < 10) return mostrar();
+  if (i < lista().length) return mostrar();
   if (fase === 1) {
     $("telaQuiz").hidden = true; $("telaMeio").hidden = false;
-    $("placar1").textContent = `${ac1} de 10`; $("irFase2").focus();
+    $("placar1").textContent = `${ac1} de ${FASE1.length}`; $("irFase2").focus();
   } else fim();
 }
 
@@ -270,9 +280,9 @@ function fim() {
   $("telaQuiz").hidden = true; $("telaFim").hidden = false;
   $("placar").textContent = `${t} de ${TOTAL}`;
   $("msg").textContent = t === TOTAL ? "Perfeito! Você acertou todas. Agora ensine para alguém o que aprendeu."
-    : t >= 15 ? "Muito bem! Revise as que errou e tente chegar a 20 de 20."
+    : t >= Math.round(TOTAL * .75) ? "Muito bem! Revise as que errou e tente acertar todas."
     : "Continue praticando. Releia a apostila da Aula 01 e tente de novo.";
-  [["g1", "n1", ac1, 10], ["g2", "n2", ac2, 10], ["gT", "nT", t, TOTAL]].forEach(([g, n, a, max]) => {
+  [["g1", "n1", ac1, FASE1.length], ["g2", "n2", ac2, FASE2.length], ["gT", "nT", t, TOTAL]].forEach(([g, n, a, max]) => {
     $(g).style.width = (a / max * 100) + "%"; $(n).textContent = `${a}/${max}`;
   });
   const linhas = [];
