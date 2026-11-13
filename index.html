@@ -3,771 +3,610 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jogos de Libras | Instituto Circula Libras</title>
-<meta name="description" content="Jogos para praticar Libras: sinais, alfabeto manual e vocabulário. Curso de Libras do Instituto Circula Libras.">
-<meta name="theme-color" content="#662D91">
-<meta property="og:title" content="Jogos de Libras | Instituto Circula Libras">
-<meta property="og:description" content="Pratique Libras jogando, no celular ou no computador.">
-<meta property="og:image" content="https://circulalibras.online/assets/logo-circula.png">
+<title>Instituto Circula Libras | Arte, educação e acessibilidade em Libras</title>
+<meta name="description" content="O Instituto Circula Libras é uma organização sem fins lucrativos de Ribeirão das Neves (MG) que promove acessibilidade cultural e o ensino de Libras, com arte, audiovisual e formação.">
+<meta property="og:title" content="Instituto Circula Libras">
+<meta property="og:description" content="Arte, educação e acessibilidade em Libras. Ribeirão das Neves, MG.">
+<meta property="og:image" content="assets/fotos/hero-conubes-palco.jpg">
 <link rel="icon" href="assets/mao-circula.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Cabin+Condensed:wght@600;700&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <style>
-:root {
-  color-scheme: light;
-  --roxo: #662D91;
-  --lilas: #8752B5;
-  --amarelo: #FFCC33;
-  --amarelo-escuro: #F2B90F;
-  --cinza: #848688;
-  --branco: #FFFFFF;
-  --creme: #FFF8E7;
-  --grafite: #1A1A1A;
-  --cinza-texto: #5C5E60;
-  --linha: #ECE6F2;
-  --sombra: 0 8px 24px rgba(102, 45, 145, 0.12);
-  --sombra-forte: 0 18px 40px rgba(102, 45, 145, 0.18);
-  --fonte: "Cabin", "Segoe UI", system-ui, sans-serif;
-  --r-botao: 12px;
-  --r-cartao: 16px;
+:root{
+  --roxo:#662D91; --lilas:#8752B5; --amarelo:#FFCC33; --amarelo-escuro:#F2B90F;
+  --cinza:#848688; --branco:#FFFFFF; --creme:#FFF8E7; --grafite:#1C1A1F; --grafite-2:#2A2630;
+  --cinza-texto:#5C5E60; --linha:#ECE6F2;
+  --sombra:0 8px 24px rgba(102,45,145,.12);
+  --fonte:"Cabin","Segoe UI",system-ui,sans-serif;
+  --display:"Cabin Condensed","Cabin","Segoe UI",sans-serif;
+  --r-botao:12px; --r-cartao:16px;
+  --max:1200px;
 }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--fonte);font-size:18px;line-height:1.6;color:var(--grafite);background:var(--branco);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--roxo)}
+a:hover{color:var(--lilas)}
+:focus-visible{outline:3px solid var(--roxo);outline-offset:3px;border-radius:4px}
+.escuro :focus-visible,.topo:not(.solido) :focus-visible{outline-color:var(--amarelo)}
+.container{width:min(100% - 32px,var(--max));margin-inline:auto}
+.pular{position:absolute;left:-999px;top:8px;background:var(--amarelo);color:var(--grafite);padding:10px 16px;border-radius:var(--r-botao);z-index:100;font-weight:700}
+.pular:focus{left:16px}
+h1,h2,h3{line-height:1.08;margin:0 0 .4em}
+h2{font-family:var(--display);font-size:clamp(36px,6vw,64px);letter-spacing:-.01em}
+h3{font-size:clamp(22px,2.4vw,26px)}
+.sobretitulo{font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--lilas);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sobretitulo img{width:22px;height:auto}
+.escuro{background:var(--grafite);color:#F4F1F7}
+.escuro h2{color:var(--branco)}
+.escuro .sobretitulo{color:var(--amarelo)}
+.escuro a{color:var(--amarelo)}
+section{position:relative}
+.secao{padding:clamp(64px,10vw,120px) 0}
 
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-tap-highlight-color: rgba(102, 45, 145, 0.15); }
-a, button { touch-action: manipulation; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body {
-  margin: 0;
-  background: var(--branco);
-  color: var(--grafite);
-  font-family: var(--fonte);
-  font-size: 18px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+/* botões */
+.botao{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:var(--r-botao);font-weight:700;font-size:17px;text-decoration:none;border:0;cursor:pointer;transition:background .2s,transform .2s}
+.botao:hover{transform:translateY(-2px)}
+.botao.principal{background:var(--roxo);color:var(--branco)}
+.botao.principal:hover{background:var(--lilas);color:var(--branco)}
+.botao.amarelo{background:var(--amarelo);color:var(--grafite)}
+.botao.amarelo:hover{background:var(--amarelo-escuro);color:var(--grafite)}
+.botao.contorno{background:transparent;color:var(--branco);box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
+.botao.contorno:hover{box-shadow:inset 0 0 0 2px var(--amarelo);color:var(--amarelo)}
+
+/* topo: logo branco que ganha cor */
+.topo{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .35s,box-shadow .35s}
+.topo .container{display:flex;align-items:center;justify-content:space-between;gap:24px;height:84px}
+.topo.solido{background:rgba(255,255,255,.97);box-shadow:0 2px 18px rgba(28,26,31,.08)}
+.marca{position:relative;display:block;width:150px;height:77px;flex:none}
+.marca img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .45s}
+.marca .cor{opacity:0}
+.topo.solido .marca .cor{opacity:1}
+.topo.solido .marca .branca{opacity:0}
+.menu{display:flex;align-items:center;gap:6px}
+.menu a{color:var(--branco);text-decoration:none;font-weight:600;font-size:16px;padding:10px 12px;border-radius:8px;position:relative}
+.menu a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:3px;background:var(--amarelo);border-radius:2px;transform:scaleX(0);transition:transform .25s;transform-origin:left}
+.menu a:hover::after,.menu a[aria-current]::after{transform:scaleX(1)}
+.topo.solido .menu a{color:var(--grafite)}
+.menu .botao{margin-left:8px;color:var(--grafite)}
+.menu .botao::after{display:none}
+.abre-menu{display:none;background:none;border:0;color:var(--branco);font-size:30px;width:48px;height:48px;cursor:pointer}
+.topo.solido .abre-menu{color:var(--grafite)}
+
+/* abertura */
+.abertura{min-height:100svh;display:grid;align-items:end;padding:140px 0 72px;overflow:hidden;isolation:isolate}
+.abertura .foto{position:absolute;inset:0;z-index:-2}
+.abertura .foto img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(1) contrast(1.05);transition:filter 1.6s ease}
+.abertura.colorida .foto img{filter:grayscale(0)}
+.abertura::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(28,26,31,.55) 0%,rgba(28,26,31,.25) 40%,rgba(28,26,31,.92) 100%)}
+.abertura h1{font-family:var(--display);font-size:clamp(48px,9vw,120px);color:var(--branco);max-width:12ch;letter-spacing:-.02em;margin-bottom:24px}
+.abertura h1 em{font-style:normal;color:var(--amarelo)}
+.abertura p{color:#EDE8F2;font-size:clamp(18px,2vw,22px);max-width:46ch;margin:0 0 32px}
+.abertura .acoes{display:flex;flex-wrap:wrap;gap:12px}
+/* símbolos gráficos sobre a foto */
+.grafismo{position:absolute;pointer-events:none;z-index:0}
+.g-circulo{width:min(42vw,520px);aspect-ratio:1;border:3px solid var(--amarelo);border-radius:50%;right:-8vw;top:14vh;opacity:.85}
+.g-bloco{width:min(22vw,260px);height:min(14vw,160px);background:var(--roxo);right:6vw;bottom:-40px;mix-blend-mode:multiply}
+.g-pontos{right:24vw;top:22vh;width:120px;height:120px;background-image:radial-gradient(var(--amarelo) 2.5px,transparent 3px);background-size:20px 20px;opacity:.9}
+/* mãos que giram com a rolagem (no lugar das estrelinhas) */
+.mao-gira{position:absolute;pointer-events:none;width:var(--t,64px);height:auto;transform:rotate(calc(var(--giro,0deg) * var(--v,1)));will-change:transform}
+
+/* faixa de números */
+.numeros{background:var(--amarelo);color:var(--roxo);padding:56px 0;overflow:hidden}
+.numeros ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.numeros strong{display:block;font-family:var(--display);font-size:clamp(44px,6vw,76px);line-height:1}
+.numeros span{font-weight:600;font-size:17px;color:var(--grafite)}
+
+/* quem somos */
+.quem .grade{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,6vw,88px);align-items:end}
+.certificado{margin:16px 0 0;max-width:520px;border-radius:var(--r-cartao);overflow:hidden;box-shadow:var(--sombra);border:1px solid var(--linha)}
+.certificado img{width:100%;height:auto}
+.composicao{margin:0 0 8px}
+.composicao figcaption{position:relative;margin-top:14px;font-size:15px;color:var(--cinza-texto)}
+.quem .texto p{max-width:58ch}
+.composicao{position:relative;padding:0 0 48px 48px}
+.composicao .bloco-amarelo{position:absolute;left:0;bottom:0;width:62%;height:70%;background:var(--amarelo);border-radius:var(--r-cartao)}
+.composicao .f1{position:relative;border-radius:var(--r-cartao);aspect-ratio:4/3;object-fit:cover;width:100%;height:auto}
+.composicao .selo-mao{position:absolute;left:8px;top:-36px;width:76px;transform:rotate(-12deg)}
+.selo{display:flex;align-items:center;gap:16px;margin-top:28px;padding:16px 18px;background:var(--creme);border-radius:var(--r-cartao);max-width:520px}
+.selo i{font-size:34px;color:var(--roxo)}
+.selo p{margin:0;font-size:16px;line-height:1.45}
+.missao{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.missao div{border-top:3px solid var(--amarelo);padding-top:12px}
+.missao b{display:block;color:var(--roxo);font-size:15px;text-transform:uppercase;letter-spacing:.1em}
+.missao p{margin:4px 0 0;font-size:16px;line-height:1.5}
+
+/* fotos que descolorem */
+.pb img{filter:grayscale(1);transition:filter .6s ease,transform .8s ease}
+.pb:hover img,.pb:focus-within img,.pb.em-vista img{filter:grayscale(0)}
+.pb:hover img{transform:scale(1.04)}
+
+/* frentes */
+.frentes .cab{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.frentes .cab p{max-width:44ch;margin:0;color:#CFC8D8}
+.lista-frentes{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.frente{position:relative;border-radius:var(--r-cartao);overflow:hidden;min-height:360px;display:flex;align-items:end;color:var(--branco);text-decoration:none;grid-column:span 2;isolation:isolate}
+.frente:nth-child(1),.frente:nth-child(2){grid-column:span 3;min-height:420px}
+.frente img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.frente::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(28,26,31,0) 30%,rgba(28,26,31,.9) 100%)}
+.frente .info{padding:24px}
+.frente .num{font-family:var(--display);color:var(--amarelo);font-size:20px}
+.frente h3{color:var(--branco);margin:4px 0 6px}
+.frente p{margin:0;font-size:16px;color:#E6E0EC;line-height:1.5;max-width:40ch}
+.frente .marcador{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;background:var(--amarelo);display:grid;place-items:center;color:var(--grafite);font-size:22px;transform:scale(0);transition:transform .35s}
+.frente:hover .marcador{transform:scale(1)}
+
+/* jogos */
+.jogos{background:var(--roxo);color:var(--branco);overflow:hidden}
+.jogos .grade{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.jogos h2{color:var(--branco)}
+.jogos h2 em{font-style:normal;color:var(--amarelo)}
+.jogos p{color:#EADFF5;max-width:48ch}
+.jogos .mini{display:flex;gap:28px;flex-wrap:wrap;margin:24px 0 32px}
+.jogos .mini b{display:block;font-family:var(--display);font-size:44px;color:var(--amarelo);line-height:1}
+.jogos .mini span{font-size:15px;color:#EADFF5}
+.cartas{position:relative;height:420px}
+.carta{position:absolute;width:220px;padding:22px;border-radius:20px;background:var(--branco);color:var(--grafite);box-shadow:0 24px 50px rgba(0,0,0,.25);transition:transform .5s}
+.carta i{font-size:34px;color:var(--roxo)}
+.carta b{display:block;font-size:20px;margin-top:8px}
+.carta small{color:var(--cinza-texto);font-size:14px}
+.carta.c1{left:4%;top:30px;transform:rotate(-8deg)}
+.carta.c2{left:42%;top:150px;transform:rotate(5deg);background:var(--amarelo)}
+.carta.c3{left:16%;top:230px;transform:rotate(-3deg)}
+.jogos .grade:hover .c1{transform:rotate(-12deg) translate(-10px,-8px)}
+.jogos .grade:hover .c2{transform:rotate(9deg) translate(10px,-6px)}
+
+/* trajetória */
+.trajetoria{background:var(--creme)}
+.linha-tempo{position:relative;margin-top:56px;padding-left:72px}
+.linha-tempo::before{content:"";position:absolute;left:31px;top:0;bottom:0;width:4px;background:var(--linha);border-radius:2px}
+.linha-tempo .progresso{position:absolute;left:31px;top:0;width:4px;height:var(--p,0%);background:var(--roxo);border-radius:2px}
+.linha-tempo .mao-marcador{position:absolute;left:6px;top:calc(var(--p,0%) - 26px);width:56px;transition:top .1s linear}
+.marco{position:relative;display:grid;grid-template-columns:150px 1fr;gap:24px;padding:0 0 48px;opacity:.35;transition:opacity .5s}
+.marco.ativo{opacity:1}
+.marco::before{content:"";position:absolute;left:-49px;top:14px;width:16px;height:16px;border-radius:50%;background:var(--branco);border:4px solid var(--cinza);transition:.3s}
+.marco.ativo::before{border-color:var(--roxo);background:var(--amarelo)}
+.marco .ano{font-family:var(--display);font-size:clamp(40px,5vw,56px);color:var(--roxo);line-height:1}
+.marco h3{margin-bottom:6px}
+.marco p{margin:0;max-width:60ch;color:#3C3A40}
+
+/* projetos */
+.projetos .cab{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.lista-proj{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.proj{text-decoration:none;color:inherit;display:block}
+.proj .moldura{border-radius:var(--r-cartao);overflow:hidden;aspect-ratio:4/3;position:relative}
+.proj .moldura img{width:100%;height:100%;object-fit:cover}
+.proj .tag{position:absolute;left:14px;top:14px;background:var(--amarelo);color:var(--grafite);font-size:13px;font-weight:700;padding:5px 10px;border-radius:999px}
+.proj h3{margin:16px 0 6px;color:var(--grafite)}
+.proj p{margin:0;font-size:16px;color:var(--cinza-texto);line-height:1.5}
+.proj:hover h3{color:var(--roxo)}
+
+/* apoie */
+.apoie{overflow:hidden}
+.apoie .grade{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+.apoie .intro p{color:#D9D2E2;max-width:46ch}
+.formas{display:grid;gap:16px}
+.forma{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:24px;border-radius:var(--r-cartao);background:var(--grafite-2);border:1px solid rgba(255,255,255,.06);transition:border-color .3s,transform .3s}
+.forma:hover{border-color:var(--amarelo);transform:translateX(6px)}
+.forma > i{font-size:30px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--amarelo);color:var(--grafite)}
+.forma h3{color:var(--branco);margin:4px 0 6px;font-size:22px}
+.forma p{margin:0 0 10px;font-size:16px;color:#CFC8D8;line-height:1.5}
+.forma a{font-weight:700;text-decoration:none}
+.forma a:hover{text-decoration:underline}
+
+/* transparência */
+.transp .grade{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.dados{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 24px;font-size:17px}
+.dados dt{font-weight:700;color:var(--roxo)}
+.dados dd{margin:0}
+.parceiros{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:16px 0 0}
+.parceiros li{padding:8px 14px;border-radius:999px;background:var(--creme);font-size:15px;font-weight:600;color:#3C3A40}
+
+/* rodapé */
+.rodape{padding:64px 0 32px}
+.rodape .grade{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+.rodape img.logo{width:180px;height:auto}
+.rodape h3{font-size:16px;text-transform:uppercase;letter-spacing:.12em;color:var(--amarelo)}
+.rodape ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.rodape a{color:#EDE8F2;text-decoration:none}
+.rodape a:hover{color:var(--amarelo)}
+.rodape p{color:#CFC8D8;font-size:16px}
+.rodape .base{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:24px;font-size:14px;color:#A49DAD;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* surgir ao rolar */
+.surge{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.surge.visivel{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .menu{position:fixed;inset:84px 0 auto 0;background:var(--branco);flex-direction:column;align-items:stretch;padding:16px;gap:4px;box-shadow:0 20px 30px rgba(0,0,0,.12);display:none}
+  .menu.aberto{display:flex}
+  .menu a{color:var(--grafite)}
+  .menu .botao{margin:8px 0 0;justify-content:center}
+  .abre-menu{display:block}
+  .quem .grade,.jogos .grade,.apoie .grade,.transp .grade{grid-template-columns:1fr}
+  .lista-frentes{grid-template-columns:1fr 1fr}
+  .frente,.frente:nth-child(1),.frente:nth-child(2){grid-column:span 1;min-height:320px}
+  .lista-proj{grid-template-columns:1fr 1fr}
+  .numeros ul{grid-template-columns:1fr 1fr}
+  .rodape .grade{grid-template-columns:1fr 1fr}
+  .cartas{height:340px}
 }
-img { max-width: 100%; display: block; }
-a { color: var(--roxo); }
-a:hover { color: var(--lilas); }
-:focus-visible { outline: 3px solid var(--roxo); outline-offset: 3px; border-radius: 6px; }
-.escuro :focus-visible { outline-color: var(--amarelo); }
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding-inline: 20px; }
-
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.pular {
-  position: absolute; left: 16px; top: -60px; z-index: 30;
-  background: var(--amarelo); color: var(--grafite); padding: 10px 16px;
-  border-radius: var(--r-botao); font-weight: 700; text-decoration: none;
+@media (max-width:620px){
+  .lista-frentes,.lista-proj,.missao{grid-template-columns:1fr}
+  .marco{grid-template-columns:1fr;gap:4px}
+  .linha-tempo{padding-left:56px}
+  .linha-tempo::before,.linha-tempo .progresso{left:19px}
+  .linha-tempo .mao-marcador{left:0;width:44px}
+  .marco::before{left:-45px}
+  .g-circulo{width:70vw;right:-30vw}
+  .g-pontos{display:none}
+  .rodape .grade{grid-template-columns:1fr}
+  .carta{width:180px}
+  .composicao{padding:0 0 40px 24px}
 }
-.pular:focus { top: 12px; }
-
-/* Faixa superior */
-.faixa { background: var(--roxo); color: var(--branco); font-size: 14px; }
-.faixa .container { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 40px; }
-.faixa a { color: var(--branco); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-.faixa a:hover { color: var(--amarelo); }
-.faixa i { font-size: 18px; }
-
-/* Menu */
-.topo { position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha); }
-.topo .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
-.topo .logo img { height: 46px; width: auto; }
-.menu { display: flex; align-items: center; gap: 28px; }
-.menu a:not(.botao) { color: var(--grafite); text-decoration: none; font-weight: 600; font-size: 16px; padding-block: 6px; border-bottom: 3px solid transparent; }
-.menu a:not(.botao):hover { color: var(--roxo); border-bottom-color: var(--amarelo); }
-
-/* Botões */
-.botao {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 48px; padding: 12px 22px; border-radius: var(--r-botao);
-  font-family: inherit; font-weight: 700; font-size: 17px; text-decoration: none; white-space: nowrap;
-  transition: transform .2s cubic-bezier(.16,1,.3,1), background-color .2s, box-shadow .2s;
-}
-.botao:active { transform: translateY(1px) scale(0.98); }
-.botao-roxo { background: var(--roxo); color: var(--branco); }
-.botao-roxo:hover { background: var(--lilas); color: var(--branco); }
-.botao-amarelo { background: var(--amarelo); color: var(--roxo); }
-.botao-amarelo:hover { background: var(--amarelo-escuro); color: var(--roxo); }
-.link-seta { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; text-decoration: none; }
-.link-seta i { transition: transform .2s; }
-.link-seta:hover i { transform: translateX(3px); }
-
-/* Abertura */
-.abertura { position: relative; background: var(--creme); overflow: hidden; }
-.abertura .container { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 32px; padding-block: 64px 140px; }
-.abertura h1 {
-  font-size: clamp(40px, 6vw, 64px); line-height: 1.05; letter-spacing: -0.02em;
-  color: var(--roxo); margin: 0 0 20px; text-wrap: balance;
-}
-.abertura h1 span { position: relative; white-space: nowrap; }
-.abertura h1 span::after {
-  content: ""; position: absolute; left: -2px; right: -2px; bottom: 0.06em; height: 0.28em;
-  background: var(--amarelo); z-index: -1; border-radius: 4px;
-}
-.abertura h1 span { z-index: 0; isolation: isolate; }
-.abertura p { font-size: 20px; color: var(--grafite); max-width: 32ch; margin: 0 0 32px; }
-.acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
-
-.ilustracao { position: relative; aspect-ratio: 479 / 485; width: 100%; max-width: 520px; justify-self: end; }
-.mapa { width: 100%; height: 100%; overflow: visible; }
-.mapa .pontos circle { fill: var(--lilas); opacity: .4; }
-.mapa .rede line { stroke: var(--roxo); stroke-width: 1.2; opacity: .45; }
-.mapa .nos circle { fill: var(--amarelo); stroke: var(--roxo); stroke-width: 2; transform-box: fill-box; transform-origin: center; }
-.mao {
-  position: absolute; left: -6%; bottom: -4%; width: 38%; height: auto;
-  filter: drop-shadow(0 10px 18px rgba(102, 45, 145, 0.18));
-}
-
-/* Painel "como funciona" (sobreposto à abertura) */
-.painel-wrap { position: relative; margin-top: -88px; z-index: 2; }
-.painel {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  background: var(--branco); border-radius: var(--r-cartao); box-shadow: var(--sombra-forte);
-}
-.passo { padding: 32px 28px; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-items: start; }
-.passo + .passo { border-left: 1px solid var(--linha); }
-.passo .icone {
-  grid-row: span 2; width: 52px; height: 52px; border-radius: 14px;
-  background: var(--amarelo); color: var(--roxo); display: grid; place-items: center; font-size: 28px;
-}
-.passo h3 { margin: 0; font-size: 20px; line-height: 1.3; color: var(--grafite); }
-.passo p { margin: 0; font-size: 16px; color: var(--cinza-texto); line-height: 1.5; }
-
-/* Jogos */
-.jogos { padding-block: 96px 96px; }
-.titulo-secao { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 40px; }
-.titulo-secao > div { max-width: 640px; }
-.titulo-secao img { width: 140px; height: auto; margin-bottom: -8px; }
-.titulo-secao h2 { font-size: clamp(30px, 4vw, 42px); line-height: 1.15; color: var(--roxo); margin: 0 0 12px; letter-spacing: -0.01em; text-wrap: balance; }
-.titulo-secao p { margin: 0; color: var(--cinza-texto); }
-
-
-.cartoes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.aula-tag { font-size: 14px; font-weight: 700; color: var(--lilas); margin-top: 6px; }
-.cartao-mais { background: var(--roxo); border-color: var(--roxo); color: var(--branco); justify-content: center; }
-.cartao-mais:hover { border-color: var(--roxo); color: var(--branco); }
-.cartao-mais .icone { background: var(--amarelo); }
-.cartao-mais .desc { color: #EDE3F5; }
-.cartao-mais .jogar { color: var(--amarelo); }
-.cartao {
-  position: relative; display: flex; flex-direction: column; gap: 10px;
-  padding: 22px 22px 20px; border-radius: var(--r-cartao);
-  background: var(--branco); border: 1.5px solid var(--linha);
-  color: var(--grafite); text-decoration: none;
-  transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s, border-color .25s;
-}
-.cartao:hover { transform: translateY(-3px); box-shadow: var(--sombra); border-color: var(--lilas); color: var(--grafite); }
-.cartao:active { transform: translateY(-1px) scale(0.99); }
-.cartao .icone { width: 44px; height: 44px; border-radius: 12px; background: var(--creme); color: var(--roxo); display: grid; place-items: center; font-size: 24px; }
-.cartao strong { font-size: 19px; line-height: 1.3; }
-.cartao .desc { font-size: 16px; color: var(--cinza-texto); line-height: 1.45; flex: 1; }
-.cartao .jogar { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--roxo); font-size: 16px; margin-top: 4px; }
-.cartao .jogar i { transition: transform .2s; }
-.cartao:hover .jogar i { transform: translateX(4px); }
-
-/* Números */
-.numeros { position: relative; background: var(--roxo); color: var(--branco); overflow: hidden; }
-.digital { position: absolute; right: -80px; top: 50%; width: 420px; height: auto; transform: translateY(-50%); opacity: .22; pointer-events: none; }
-.digital ellipse { fill: none; stroke: var(--lilas); stroke-width: 6; stroke-linecap: round; }
-.numeros .container { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-block: 56px; }
-.numero strong { display: block; font-size: clamp(40px, 5vw, 56px); line-height: 1; color: var(--amarelo); font-variant-numeric: tabular-nums; }
-.numero span { display: block; margin-top: 8px; font-size: 17px; }
-
-/* Instituto */
-.instituto { background: var(--creme); padding-block: 96px; }
-.instituto .container { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; }
-.bloco-mao { position: relative; aspect-ratio: 4 / 4.2; max-width: 440px; }
-.bloco-mao::before { content: ""; position: absolute; inset: 12% 22% 0 0; background: var(--amarelo); border-radius: var(--r-cartao); }
-.bloco-mao img { position: relative; height: 112%; width: auto; margin: -10% 0 0 8%; }
-.instituto h2 { font-size: clamp(30px, 4vw, 42px); line-height: 1.15; color: var(--roxo); margin: 0 0 20px; letter-spacing: -0.01em; text-wrap: balance; }
-.instituto p { margin: 0 0 16px; max-width: 54ch; }
-.instituto .link-seta { margin-top: 12px; font-size: 18px; }
-
-/* Rodapé */
-.rodape { background: var(--grafite); color: #D9D9D9; padding-block: 48px 40px; font-size: 16px; }
-.rodape .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
-.rodape img { height: 52px; width: auto; }
-.rodape a { color: var(--amarelo); }
-.rodape a:hover { color: var(--branco); }
-.rodape p { margin: 0; }
-
-/* Movimento */
-@media (prefers-reduced-motion: no-preference) {
-  .entra { animation: entra .8s cubic-bezier(.16,1,.3,1) both; animation-delay: var(--atraso, 0s); }
-  @keyframes entra { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  .mapa .nos circle { animation: pulsa 3.2s ease-in-out infinite; animation-delay: var(--d, 0s); }
-  @keyframes pulsa { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }
-}
-
-
-/* Celular e tablet */
-@media (max-width: 960px) {
-  .abertura .container { grid-template-columns: 1fr; padding-block: 48px 128px; }
-  .ilustracao { justify-self: center; max-width: 420px; }
-  .painel { grid-template-columns: 1fr; }
-  .passo + .passo { border-left: 0; border-top: 1px solid var(--linha); }
-
-  .cartoes { grid-template-columns: repeat(2, 1fr); }
-  .numeros .container { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
-  .instituto .container { grid-template-columns: 1fr; gap: 40px; }
-  .bloco-mao { max-width: 320px; }
-}
-@media (max-width: 720px) {
-  .menu a:not(.botao) { display: none; }
-  .faixa .container { justify-content: center; }
-  .faixa .rede-social { display: none; }
-  .topo .logo img { height: 40px; }
-  .botao { padding-inline: 18px; }
-  .abertura p { font-size: 18px; }
-  .ilustracao { max-width: 320px; }
-  .mao { left: 0; }
-  .acoes .botao { width: 100%; }
-  .passo { padding: 24px 20px; }
-  .jogos, .instituto { padding-block: 72px; }
-  .cartoes { grid-template-columns: 1fr; }
-  .titulo-secao img { width: 84px; }
-  .digital { width: 300px; right: -120px; }
-  .rodape .container { flex-direction: column; align-items: flex-start; }
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  .surge{opacity:1;transform:none}
+  .mao-gira{transform:none!important}
 }
 </style>
 </head>
 <body>
-<a class="pular" href="#jogos">Pular para os jogos</a>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-<div class="faixa escuro">
+<header class="topo" id="topo">
   <div class="container">
-    <span>Curso de Libras · Módulo I</span>
-    <a class="rede-social" href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i>@circulalibras</a>
-  </div>
-</div>
-
-<header class="topo">
-  <div class="container">
-    <a class="logo" href="./" aria-label="Instituto Circula Libras, página inicial">
-      <img src="assets/logo-circula.png" alt="Instituto Circula Libras" width="480" height="246" fetchpriority="high">
+    <a class="marca" href="./" aria-label="Instituto Circula Libras, página inicial">
+      <img class="branca" src="assets/logo-branca-amarela.png" alt="" width="1079" height="554">
+      <img class="cor" src="assets/logo-circula.png" alt="" width="480" height="246">
     </a>
-    <nav class="menu" aria-label="Principal">
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#jogos">Jogos</a>
-      <a href="#instituto">O Instituto</a>
-      <a class="botao botao-amarelo" href="#jogos">Jogar agora</a>
+    <button class="abre-menu" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><i class="ph ph-list" aria-hidden="true"></i></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#quem-somos">Quem somos</a>
+      <a href="#o-que-fazemos">O que fazemos</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#projetos">Projetos</a>
+      <a href="jogos/">Jogos de Libras</a>
+      <a href="#transparencia">Transparência</a>
+      <a class="botao amarelo" href="#apoie">Apoie</a>
     </nav>
   </div>
 </header>
 
-<main>
-  <section class="abertura" aria-labelledby="titulo">
+<main id="conteudo">
+
+  <section class="abertura escuro" id="abertura" aria-labelledby="t-abertura">
+    <div class="foto"><img src="assets/fotos/hero-conubes-palco.jpg" alt="Intérprete do Circula Libras, de costas, com a camiseta do Instituto, sinalizando para um ginásio lotado de estudantes" width="1600" height="1200" fetchpriority="high"></div>
+    <span class="grafismo g-circulo" aria-hidden="true"></span>
+    <span class="grafismo g-pontos" aria-hidden="true"></span>
+    <span class="grafismo g-bloco" aria-hidden="true"></span>
+    <img class="mao-gira" src="assets/mao-amarela.png" alt="" aria-hidden="true" style="--t:88px;right:12vw;top:18vh;--v:1">
+    <img class="mao-gira" src="assets/mao-branca.png" alt="" aria-hidden="true" style="--t:44px;right:4vw;bottom:22vh;--v:-1.4">
     <div class="container">
-      <div>
-        <h1 id="titulo" class="entra">Pratique Libras <span>jogando.</span></h1>
-        <p class="entra" style="--atraso:.12s">Jogos do curso de Libras para treinar sinais, alfabeto manual e vocabulário. No celular ou no computador.</p>
-        <div class="acoes entra" style="--atraso:.24s">
-          <a class="botao botao-roxo" href="#jogos">Jogar agora <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-          <a class="link-seta" href="#como-funciona">Como funciona <i class="ph ph-arrow-down" aria-hidden="true"></i></a>
-        </div>
-      </div>
-      <div class="ilustracao entra" style="--atraso:.2s">
-<svg class="mapa" viewBox="0 0 479 485" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-<g class="pontos"><circle cx="152.5" cy="18.6" r="2.6"/><circle cx="164.7" cy="18.6" r="2.6"/><circle cx="121.9" cy="31.2" r="2.6"/><circle cx="134.2" cy="31.2" r="2.6"/><circle cx="146.4" cy="31.2" r="2.6"/><circle cx="158.6" cy="31.2" r="2.6"/><circle cx="268.6" cy="31.2" r="2.6"/><circle cx="140.3" cy="43.8" r="2.6"/><circle cx="152.5" cy="43.8" r="2.6"/><circle cx="164.7" cy="43.8" r="2.6"/><circle cx="225.8" cy="43.8" r="2.6"/><circle cx="262.5" cy="43.8" r="2.6"/><circle cx="274.7" cy="43.8" r="2.6"/><circle cx="60.8" cy="56.4" r="2.6"/><circle cx="73.0" cy="56.4" r="2.6"/><circle cx="85.3" cy="56.4" r="2.6"/><circle cx="109.7" cy="56.4" r="2.6"/><circle cx="121.9" cy="56.4" r="2.6"/><circle cx="134.2" cy="56.4" r="2.6"/><circle cx="146.4" cy="56.4" r="2.6"/><circle cx="158.6" cy="56.4" r="2.6"/><circle cx="170.8" cy="56.4" r="2.6"/><circle cx="183.0" cy="56.4" r="2.6"/><circle cx="195.3" cy="56.4" r="2.6"/><circle cx="207.5" cy="56.4" r="2.6"/><circle cx="219.7" cy="56.4" r="2.6"/><circle cx="231.9" cy="56.4" r="2.6"/><circle cx="244.1" cy="56.4" r="2.6"/><circle cx="256.4" cy="56.4" r="2.6"/><circle cx="268.6" cy="56.4" r="2.6"/><circle cx="280.8" cy="56.4" r="2.6"/><circle cx="54.7" cy="69.0" r="2.6"/><circle cx="66.9" cy="69.0" r="2.6"/><circle cx="79.2" cy="69.0" r="2.6"/><circle cx="91.4" cy="69.0" r="2.6"/><circle cx="103.6" cy="69.0" r="2.6"/><circle cx="115.8" cy="69.0" r="2.6"/><circle cx="128.0" cy="69.0" r="2.6"/><circle cx="140.3" cy="69.0" r="2.6"/><circle cx="152.5" cy="69.0" r="2.6"/><circle cx="164.7" cy="69.0" r="2.6"/><circle cx="176.9" cy="69.0" r="2.6"/><circle cx="189.1" cy="69.0" r="2.6"/><circle cx="201.4" cy="69.0" r="2.6"/><circle cx="213.6" cy="69.0" r="2.6"/><circle cx="225.8" cy="69.0" r="2.6"/><circle cx="238.0" cy="69.0" r="2.6"/><circle cx="250.3" cy="69.0" r="2.6"/><circle cx="262.5" cy="69.0" r="2.6"/><circle cx="274.7" cy="69.0" r="2.6"/><circle cx="60.8" cy="81.6" r="2.6"/><circle cx="73.0" cy="81.6" r="2.6"/><circle cx="85.3" cy="81.6" r="2.6"/><circle cx="97.5" cy="81.6" r="2.6"/><circle cx="109.7" cy="81.6" r="2.6"/><circle cx="121.9" cy="81.6" r="2.6"/><circle cx="134.2" cy="81.6" r="2.6"/><circle cx="146.4" cy="81.6" r="2.6"/><circle cx="158.6" cy="81.6" r="2.6"/><circle cx="170.8" cy="81.6" r="2.6"/><circle cx="183.0" cy="81.6" r="2.6"/><circle cx="195.3" cy="81.6" r="2.6"/><circle cx="207.5" cy="81.6" r="2.6"/><circle cx="219.7" cy="81.6" r="2.6"/><circle cx="231.9" cy="81.6" r="2.6"/><circle cx="244.1" cy="81.6" r="2.6"/><circle cx="256.4" cy="81.6" r="2.6"/><circle cx="268.6" cy="81.6" r="2.6"/><circle cx="280.8" cy="81.6" r="2.6"/><circle cx="293.0" cy="81.6" r="2.6"/><circle cx="305.3" cy="81.6" r="2.6"/><circle cx="317.5" cy="81.6" r="2.6"/><circle cx="66.9" cy="94.2" r="2.6"/><circle cx="79.2" cy="94.2" r="2.6"/><circle cx="91.4" cy="94.2" r="2.6"/><circle cx="103.6" cy="94.2" r="2.6"/><circle cx="115.8" cy="94.2" r="2.6"/><circle cx="128.0" cy="94.2" r="2.6"/><circle cx="140.3" cy="94.2" r="2.6"/><circle cx="152.5" cy="94.2" r="2.6"/><circle cx="164.7" cy="94.2" r="2.6"/><circle cx="176.9" cy="94.2" r="2.6"/><circle cx="189.1" cy="94.2" r="2.6"/><circle cx="201.4" cy="94.2" r="2.6"/><circle cx="213.6" cy="94.2" r="2.6"/><circle cx="225.8" cy="94.2" r="2.6"/><circle cx="238.0" cy="94.2" r="2.6"/><circle cx="250.3" cy="94.2" r="2.6"/><circle cx="262.5" cy="94.2" r="2.6"/><circle cx="274.7" cy="94.2" r="2.6"/><circle cx="286.9" cy="94.2" r="2.6"/><circle cx="299.1" cy="94.2" r="2.6"/><circle cx="311.4" cy="94.2" r="2.6"/><circle cx="323.6" cy="94.2" r="2.6"/><circle cx="335.8" cy="94.2" r="2.6"/><circle cx="348.0" cy="94.2" r="2.6"/><circle cx="60.8" cy="106.8" r="2.6"/><circle cx="73.0" cy="106.8" r="2.6"/><circle cx="85.3" cy="106.8" r="2.6"/><circle cx="97.5" cy="106.8" r="2.6"/><circle cx="109.7" cy="106.8" r="2.6"/><circle cx="121.9" cy="106.8" r="2.6"/><circle cx="134.2" cy="106.8" r="2.6"/><circle cx="146.4" cy="106.8" r="2.6"/><circle cx="158.6" cy="106.8" r="2.6"/><circle cx="170.8" cy="106.8" r="2.6"/><circle cx="183.0" cy="106.8" r="2.6"/><circle cx="195.3" cy="106.8" r="2.6"/><circle cx="207.5" cy="106.8" r="2.6"/><circle cx="219.7" cy="106.8" r="2.6"/><circle cx="231.9" cy="106.8" r="2.6"/><circle cx="244.1" cy="106.8" r="2.6"/><circle cx="256.4" cy="106.8" r="2.6"/><circle cx="268.6" cy="106.8" r="2.6"/><circle cx="280.8" cy="106.8" r="2.6"/><circle cx="293.0" cy="106.8" r="2.6"/><circle cx="305.3" cy="106.8" r="2.6"/><circle cx="317.5" cy="106.8" r="2.6"/><circle cx="329.7" cy="106.8" r="2.6"/><circle cx="341.9" cy="106.8" r="2.6"/><circle cx="354.1" cy="106.8" r="2.6"/><circle cx="366.4" cy="106.8" r="2.6"/><circle cx="378.6" cy="106.8" r="2.6"/><circle cx="390.8" cy="106.8" r="2.6"/><circle cx="403.0" cy="106.8" r="2.6"/><circle cx="54.7" cy="119.4" r="2.6"/><circle cx="66.9" cy="119.4" r="2.6"/><circle cx="79.2" cy="119.4" r="2.6"/><circle cx="91.4" cy="119.4" r="2.6"/><circle cx="103.6" cy="119.4" r="2.6"/><circle cx="115.8" cy="119.4" r="2.6"/><circle cx="128.0" cy="119.4" r="2.6"/><circle cx="140.3" cy="119.4" r="2.6"/><circle cx="152.5" cy="119.4" r="2.6"/><circle cx="164.7" cy="119.4" r="2.6"/><circle cx="176.9" cy="119.4" r="2.6"/><circle cx="189.1" cy="119.4" r="2.6"/><circle cx="201.4" cy="119.4" r="2.6"/><circle cx="213.6" cy="119.4" r="2.6"/><circle cx="225.8" cy="119.4" r="2.6"/><circle cx="238.0" cy="119.4" r="2.6"/><circle cx="250.3" cy="119.4" r="2.6"/><circle cx="262.5" cy="119.4" r="2.6"/><circle cx="274.7" cy="119.4" r="2.6"/><circle cx="286.9" cy="119.4" r="2.6"/><circle cx="299.1" cy="119.4" r="2.6"/><circle cx="311.4" cy="119.4" r="2.6"/><circle cx="323.6" cy="119.4" r="2.6"/><circle cx="335.8" cy="119.4" r="2.6"/><circle cx="348.0" cy="119.4" r="2.6"/><circle cx="360.3" cy="119.4" r="2.6"/><circle cx="372.5" cy="119.4" r="2.6"/><circle cx="384.7" cy="119.4" r="2.6"/><circle cx="396.9" cy="119.4" r="2.6"/><circle cx="409.1" cy="119.4" r="2.6"/><circle cx="421.4" cy="119.4" r="2.6"/><circle cx="24.2" cy="132.0" r="2.6"/><circle cx="36.4" cy="132.0" r="2.6"/><circle cx="48.6" cy="132.0" r="2.6"/><circle cx="60.8" cy="132.0" r="2.6"/><circle cx="73.0" cy="132.0" r="2.6"/><circle cx="85.3" cy="132.0" r="2.6"/><circle cx="97.5" cy="132.0" r="2.6"/><circle cx="109.7" cy="132.0" r="2.6"/><circle cx="121.9" cy="132.0" r="2.6"/><circle cx="134.2" cy="132.0" r="2.6"/><circle cx="146.4" cy="132.0" r="2.6"/><circle cx="158.6" cy="132.0" r="2.6"/><circle cx="170.8" cy="132.0" r="2.6"/><circle cx="183.0" cy="132.0" r="2.6"/><circle cx="195.3" cy="132.0" r="2.6"/><circle cx="207.5" cy="132.0" r="2.6"/><circle cx="219.7" cy="132.0" r="2.6"/><circle cx="231.9" cy="132.0" r="2.6"/><circle cx="244.1" cy="132.0" r="2.6"/><circle cx="256.4" cy="132.0" r="2.6"/><circle cx="268.6" cy="132.0" r="2.6"/><circle cx="280.8" cy="132.0" r="2.6"/><circle cx="293.0" cy="132.0" r="2.6"/><circle cx="305.3" cy="132.0" r="2.6"/><circle cx="317.5" cy="132.0" r="2.6"/><circle cx="329.7" cy="132.0" r="2.6"/><circle cx="341.9" cy="132.0" r="2.6"/><circle cx="354.1" cy="132.0" r="2.6"/><circle cx="366.4" cy="132.0" r="2.6"/><circle cx="378.6" cy="132.0" r="2.6"/><circle cx="390.8" cy="132.0" r="2.6"/><circle cx="403.0" cy="132.0" r="2.6"/><circle cx="415.3" cy="132.0" r="2.6"/><circle cx="427.5" cy="132.0" r="2.6"/><circle cx="439.7" cy="132.0" r="2.6"/><circle cx="451.9" cy="132.0" r="2.6"/><circle cx="18.0" cy="144.6" r="2.6"/><circle cx="30.3" cy="144.6" r="2.6"/><circle cx="42.5" cy="144.6" r="2.6"/><circle cx="54.7" cy="144.6" r="2.6"/><circle cx="66.9" cy="144.6" r="2.6"/><circle cx="79.2" cy="144.6" r="2.6"/><circle cx="91.4" cy="144.6" r="2.6"/><circle cx="103.6" cy="144.6" r="2.6"/><circle cx="115.8" cy="144.6" r="2.6"/><circle cx="128.0" cy="144.6" r="2.6"/><circle cx="140.3" cy="144.6" r="2.6"/><circle cx="152.5" cy="144.6" r="2.6"/><circle cx="164.7" cy="144.6" r="2.6"/><circle cx="176.9" cy="144.6" r="2.6"/><circle cx="189.1" cy="144.6" r="2.6"/><circle cx="201.4" cy="144.6" r="2.6"/><circle cx="213.6" cy="144.6" r="2.6"/><circle cx="225.8" cy="144.6" r="2.6"/><circle cx="238.0" cy="144.6" r="2.6"/><circle cx="250.3" cy="144.6" r="2.6"/><circle cx="262.5" cy="144.6" r="2.6"/><circle cx="274.7" cy="144.6" r="2.6"/><circle cx="286.9" cy="144.6" r="2.6"/><circle cx="299.1" cy="144.6" r="2.6"/><circle cx="311.4" cy="144.6" r="2.6"/><circle cx="323.6" cy="144.6" r="2.6"/><circle cx="335.8" cy="144.6" r="2.6"/><circle cx="348.0" cy="144.6" r="2.6"/><circle cx="360.3" cy="144.6" r="2.6"/><circle cx="372.5" cy="144.6" r="2.6"/><circle cx="384.7" cy="144.6" r="2.6"/><circle cx="396.9" cy="144.6" r="2.6"/><circle cx="409.1" cy="144.6" r="2.6"/><circle cx="421.4" cy="144.6" r="2.6"/><circle cx="433.6" cy="144.6" r="2.6"/><circle cx="445.8" cy="144.6" r="2.6"/><circle cx="458.0" cy="144.6" r="2.6"/><circle cx="11.9" cy="157.2" r="2.6"/><circle cx="24.2" cy="157.2" r="2.6"/><circle cx="36.4" cy="157.2" r="2.6"/><circle cx="48.6" cy="157.2" r="2.6"/><circle cx="60.8" cy="157.2" r="2.6"/><circle cx="73.0" cy="157.2" r="2.6"/><circle cx="85.3" cy="157.2" r="2.6"/><circle cx="97.5" cy="157.2" r="2.6"/><circle cx="109.7" cy="157.2" r="2.6"/><circle cx="121.9" cy="157.2" r="2.6"/><circle cx="134.2" cy="157.2" r="2.6"/><circle cx="146.4" cy="157.2" r="2.6"/><circle cx="158.6" cy="157.2" r="2.6"/><circle cx="170.8" cy="157.2" r="2.6"/><circle cx="183.0" cy="157.2" r="2.6"/><circle cx="195.3" cy="157.2" r="2.6"/><circle cx="207.5" cy="157.2" r="2.6"/><circle cx="219.7" cy="157.2" r="2.6"/><circle cx="231.9" cy="157.2" r="2.6"/><circle cx="244.1" cy="157.2" r="2.6"/><circle cx="256.4" cy="157.2" r="2.6"/><circle cx="268.6" cy="157.2" r="2.6"/><circle cx="280.8" cy="157.2" r="2.6"/><circle cx="293.0" cy="157.2" r="2.6"/><circle cx="305.3" cy="157.2" r="2.6"/><circle cx="317.5" cy="157.2" r="2.6"/><circle cx="329.7" cy="157.2" r="2.6"/><circle cx="341.9" cy="157.2" r="2.6"/><circle cx="354.1" cy="157.2" r="2.6"/><circle cx="366.4" cy="157.2" r="2.6"/><circle cx="378.6" cy="157.2" r="2.6"/><circle cx="390.8" cy="157.2" r="2.6"/><circle cx="403.0" cy="157.2" r="2.6"/><circle cx="415.3" cy="157.2" r="2.6"/><circle cx="427.5" cy="157.2" r="2.6"/><circle cx="439.7" cy="157.2" r="2.6"/><circle cx="451.9" cy="157.2" r="2.6"/><circle cx="18.0" cy="169.8" r="2.6"/><circle cx="30.3" cy="169.8" r="2.6"/><circle cx="42.5" cy="169.8" r="2.6"/><circle cx="54.7" cy="169.8" r="2.6"/><circle cx="66.9" cy="169.8" r="2.6"/><circle cx="79.2" cy="169.8" r="2.6"/><circle cx="91.4" cy="169.8" r="2.6"/><circle cx="103.6" cy="169.8" r="2.6"/><circle cx="115.8" cy="169.8" r="2.6"/><circle cx="128.0" cy="169.8" r="2.6"/><circle cx="140.3" cy="169.8" r="2.6"/><circle cx="152.5" cy="169.8" r="2.6"/><circle cx="164.7" cy="169.8" r="2.6"/><circle cx="176.9" cy="169.8" r="2.6"/><circle cx="189.1" cy="169.8" r="2.6"/><circle cx="201.4" cy="169.8" r="2.6"/><circle cx="213.6" cy="169.8" r="2.6"/><circle cx="225.8" cy="169.8" r="2.6"/><circle cx="238.0" cy="169.8" r="2.6"/><circle cx="250.3" cy="169.8" r="2.6"/><circle cx="262.5" cy="169.8" r="2.6"/><circle cx="274.7" cy="169.8" r="2.6"/><circle cx="286.9" cy="169.8" r="2.6"/><circle cx="299.1" cy="169.8" r="2.6"/><circle cx="311.4" cy="169.8" r="2.6"/><circle cx="323.6" cy="169.8" r="2.6"/><circle cx="335.8" cy="169.8" r="2.6"/><circle cx="348.0" cy="169.8" r="2.6"/><circle cx="360.3" cy="169.8" r="2.6"/><circle cx="372.5" cy="169.8" r="2.6"/><circle cx="384.7" cy="169.8" r="2.6"/><circle cx="396.9" cy="169.8" r="2.6"/><circle cx="409.1" cy="169.8" r="2.6"/><circle cx="421.4" cy="169.8" r="2.6"/><circle cx="433.6" cy="169.8" r="2.6"/><circle cx="445.8" cy="169.8" r="2.6"/><circle cx="458.0" cy="169.8" r="2.6"/><circle cx="24.2" cy="182.4" r="2.6"/><circle cx="36.4" cy="182.4" r="2.6"/><circle cx="48.6" cy="182.4" r="2.6"/><circle cx="60.8" cy="182.4" r="2.6"/><circle cx="73.0" cy="182.4" r="2.6"/><circle cx="85.3" cy="182.4" r="2.6"/><circle cx="97.5" cy="182.4" r="2.6"/><circle cx="109.7" cy="182.4" r="2.6"/><circle cx="121.9" cy="182.4" r="2.6"/><circle cx="134.2" cy="182.4" r="2.6"/><circle cx="146.4" cy="182.4" r="2.6"/><circle cx="158.6" cy="182.4" r="2.6"/><circle cx="170.8" cy="182.4" r="2.6"/><circle cx="183.0" cy="182.4" r="2.6"/><circle cx="195.3" cy="182.4" r="2.6"/><circle cx="207.5" cy="182.4" r="2.6"/><circle cx="219.7" cy="182.4" r="2.6"/><circle cx="231.9" cy="182.4" r="2.6"/><circle cx="244.1" cy="182.4" r="2.6"/><circle cx="256.4" cy="182.4" r="2.6"/><circle cx="268.6" cy="182.4" r="2.6"/><circle cx="280.8" cy="182.4" r="2.6"/><circle cx="293.0" cy="182.4" r="2.6"/><circle cx="305.3" cy="182.4" r="2.6"/><circle cx="317.5" cy="182.4" r="2.6"/><circle cx="329.7" cy="182.4" r="2.6"/><circle cx="341.9" cy="182.4" r="2.6"/><circle cx="354.1" cy="182.4" r="2.6"/><circle cx="366.4" cy="182.4" r="2.6"/><circle cx="378.6" cy="182.4" r="2.6"/><circle cx="390.8" cy="182.4" r="2.6"/><circle cx="403.0" cy="182.4" r="2.6"/><circle cx="415.3" cy="182.4" r="2.6"/><circle cx="427.5" cy="182.4" r="2.6"/><circle cx="439.7" cy="182.4" r="2.6"/><circle cx="451.9" cy="182.4" r="2.6"/><circle cx="54.7" cy="195.0" r="2.6"/><circle cx="66.9" cy="195.0" r="2.6"/><circle cx="79.2" cy="195.0" r="2.6"/><circle cx="115.8" cy="195.0" r="2.6"/><circle cx="128.0" cy="195.0" r="2.6"/><circle cx="140.3" cy="195.0" r="2.6"/><circle cx="152.5" cy="195.0" r="2.6"/><circle cx="164.7" cy="195.0" r="2.6"/><circle cx="176.9" cy="195.0" r="2.6"/><circle cx="189.1" cy="195.0" r="2.6"/><circle cx="201.4" cy="195.0" r="2.6"/><circle cx="213.6" cy="195.0" r="2.6"/><circle cx="225.8" cy="195.0" r="2.6"/><circle cx="238.0" cy="195.0" r="2.6"/><circle cx="250.3" cy="195.0" r="2.6"/><circle cx="262.5" cy="195.0" r="2.6"/><circle cx="274.7" cy="195.0" r="2.6"/><circle cx="286.9" cy="195.0" r="2.6"/><circle cx="299.1" cy="195.0" r="2.6"/><circle cx="311.4" cy="195.0" r="2.6"/><circle cx="323.6" cy="195.0" r="2.6"/><circle cx="335.8" cy="195.0" r="2.6"/><circle cx="348.0" cy="195.0" r="2.6"/><circle cx="360.3" cy="195.0" r="2.6"/><circle cx="372.5" cy="195.0" r="2.6"/><circle cx="384.7" cy="195.0" r="2.6"/><circle cx="396.9" cy="195.0" r="2.6"/><circle cx="409.1" cy="195.0" r="2.6"/><circle cx="421.4" cy="195.0" r="2.6"/><circle cx="433.6" cy="195.0" r="2.6"/><circle cx="109.7" cy="207.6" r="2.6"/><circle cx="121.9" cy="207.6" r="2.6"/><circle cx="134.2" cy="207.6" r="2.6"/><circle cx="146.4" cy="207.6" r="2.6"/><circle cx="158.6" cy="207.6" r="2.6"/><circle cx="170.8" cy="207.6" r="2.6"/><circle cx="183.0" cy="207.6" r="2.6"/><circle cx="195.3" cy="207.6" r="2.6"/><circle cx="207.5" cy="207.6" r="2.6"/><circle cx="219.7" cy="207.6" r="2.6"/><circle cx="231.9" cy="207.6" r="2.6"/><circle cx="244.1" cy="207.6" r="2.6"/><circle cx="256.4" cy="207.6" r="2.6"/><circle cx="268.6" cy="207.6" r="2.6"/><circle cx="280.8" cy="207.6" r="2.6"/><circle cx="293.0" cy="207.6" r="2.6"/><circle cx="305.3" cy="207.6" r="2.6"/><circle cx="317.5" cy="207.6" r="2.6"/><circle cx="329.7" cy="207.6" r="2.6"/><circle cx="341.9" cy="207.6" r="2.6"/><circle cx="354.1" cy="207.6" r="2.6"/><circle cx="366.4" cy="207.6" r="2.6"/><circle cx="378.6" cy="207.6" r="2.6"/><circle cx="390.8" cy="207.6" r="2.6"/><circle cx="403.0" cy="207.6" r="2.6"/><circle cx="415.3" cy="207.6" r="2.6"/><circle cx="427.5" cy="207.6" r="2.6"/><circle cx="128.0" cy="220.2" r="2.6"/><circle cx="140.3" cy="220.2" r="2.6"/><circle cx="152.5" cy="220.2" r="2.6"/><circle cx="164.7" cy="220.2" r="2.6"/><circle cx="176.9" cy="220.2" r="2.6"/><circle cx="189.1" cy="220.2" r="2.6"/><circle cx="201.4" cy="220.2" r="2.6"/><circle cx="213.6" cy="220.2" r="2.6"/><circle cx="225.8" cy="220.2" r="2.6"/><circle cx="238.0" cy="220.2" r="2.6"/><circle cx="250.3" cy="220.2" r="2.6"/><circle cx="262.5" cy="220.2" r="2.6"/><circle cx="274.7" cy="220.2" r="2.6"/><circle cx="286.9" cy="220.2" r="2.6"/><circle cx="299.1" cy="220.2" r="2.6"/><circle cx="311.4" cy="220.2" r="2.6"/><circle cx="323.6" cy="220.2" r="2.6"/><circle cx="335.8" cy="220.2" r="2.6"/><circle cx="348.0" cy="220.2" r="2.6"/><circle cx="360.3" cy="220.2" r="2.6"/><circle cx="372.5" cy="220.2" r="2.6"/><circle cx="384.7" cy="220.2" r="2.6"/><circle cx="396.9" cy="220.2" r="2.6"/><circle cx="409.1" cy="220.2" r="2.6"/><circle cx="421.4" cy="220.2" r="2.6"/><circle cx="170.8" cy="232.8" r="2.6"/><circle cx="183.0" cy="232.8" r="2.6"/><circle cx="195.3" cy="232.8" r="2.6"/><circle cx="207.5" cy="232.8" r="2.6"/><circle cx="219.7" cy="232.8" r="2.6"/><circle cx="231.9" cy="232.8" r="2.6"/><circle cx="244.1" cy="232.8" r="2.6"/><circle cx="256.4" cy="232.8" r="2.6"/><circle cx="268.6" cy="232.8" r="2.6"/><circle cx="280.8" cy="232.8" r="2.6"/><circle cx="293.0" cy="232.8" r="2.6"/><circle cx="305.3" cy="232.8" r="2.6"/><circle cx="317.5" cy="232.8" r="2.6"/><circle cx="329.7" cy="232.8" r="2.6"/><circle cx="341.9" cy="232.8" r="2.6"/><circle cx="354.1" cy="232.8" r="2.6"/><circle cx="366.4" cy="232.8" r="2.6"/><circle cx="378.6" cy="232.8" r="2.6"/><circle cx="390.8" cy="232.8" r="2.6"/><circle cx="403.0" cy="232.8" r="2.6"/><circle cx="176.9" cy="245.4" r="2.6"/><circle cx="189.1" cy="245.4" r="2.6"/><circle cx="201.4" cy="245.4" r="2.6"/><circle cx="213.6" cy="245.4" r="2.6"/><circle cx="225.8" cy="245.4" r="2.6"/><circle cx="238.0" cy="245.4" r="2.6"/><circle cx="250.3" cy="245.4" r="2.6"/><circle cx="262.5" cy="245.4" r="2.6"/><circle cx="274.7" cy="245.4" r="2.6"/><circle cx="286.9" cy="245.4" r="2.6"/><circle cx="299.1" cy="245.4" r="2.6"/><circle cx="311.4" cy="245.4" r="2.6"/><circle cx="323.6" cy="245.4" r="2.6"/><circle cx="335.8" cy="245.4" r="2.6"/><circle cx="348.0" cy="245.4" r="2.6"/><circle cx="360.3" cy="245.4" r="2.6"/><circle cx="372.5" cy="245.4" r="2.6"/><circle cx="384.7" cy="245.4" r="2.6"/><circle cx="396.9" cy="245.4" r="2.6"/><circle cx="409.1" cy="245.4" r="2.6"/><circle cx="170.8" cy="258.0" r="2.6"/><circle cx="183.0" cy="258.0" r="2.6"/><circle cx="195.3" cy="258.0" r="2.6"/><circle cx="207.5" cy="258.0" r="2.6"/><circle cx="219.7" cy="258.0" r="2.6"/><circle cx="231.9" cy="258.0" r="2.6"/><circle cx="244.1" cy="258.0" r="2.6"/><circle cx="256.4" cy="258.0" r="2.6"/><circle cx="268.6" cy="258.0" r="2.6"/><circle cx="280.8" cy="258.0" r="2.6"/><circle cx="293.0" cy="258.0" r="2.6"/><circle cx="305.3" cy="258.0" r="2.6"/><circle cx="317.5" cy="258.0" r="2.6"/><circle cx="329.7" cy="258.0" r="2.6"/><circle cx="341.9" cy="258.0" r="2.6"/><circle cx="354.1" cy="258.0" r="2.6"/><circle cx="366.4" cy="258.0" r="2.6"/><circle cx="378.6" cy="258.0" r="2.6"/><circle cx="390.8" cy="258.0" r="2.6"/><circle cx="403.0" cy="258.0" r="2.6"/><circle cx="189.1" cy="270.6" r="2.6"/><circle cx="201.4" cy="270.6" r="2.6"/><circle cx="213.6" cy="270.6" r="2.6"/><circle cx="225.8" cy="270.6" r="2.6"/><circle cx="238.0" cy="270.6" r="2.6"/><circle cx="250.3" cy="270.6" r="2.6"/><circle cx="262.5" cy="270.6" r="2.6"/><circle cx="274.7" cy="270.6" r="2.6"/><circle cx="286.9" cy="270.6" r="2.6"/><circle cx="299.1" cy="270.6" r="2.6"/><circle cx="311.4" cy="270.6" r="2.6"/><circle cx="323.6" cy="270.6" r="2.6"/><circle cx="335.8" cy="270.6" r="2.6"/><circle cx="348.0" cy="270.6" r="2.6"/><circle cx="360.3" cy="270.6" r="2.6"/><circle cx="372.5" cy="270.6" r="2.6"/><circle cx="384.7" cy="270.6" r="2.6"/><circle cx="396.9" cy="270.6" r="2.6"/><circle cx="409.1" cy="270.6" r="2.6"/><circle cx="207.5" cy="283.2" r="2.6"/><circle cx="219.7" cy="283.2" r="2.6"/><circle cx="231.9" cy="283.2" r="2.6"/><circle cx="244.1" cy="283.2" r="2.6"/><circle cx="256.4" cy="283.2" r="2.6"/><circle cx="268.6" cy="283.2" r="2.6"/><circle cx="280.8" cy="283.2" r="2.6"/><circle cx="293.0" cy="283.2" r="2.6"/><circle cx="305.3" cy="283.2" r="2.6"/><circle cx="317.5" cy="283.2" r="2.6"/><circle cx="329.7" cy="283.2" r="2.6"/><circle cx="341.9" cy="283.2" r="2.6"/><circle cx="354.1" cy="283.2" r="2.6"/><circle cx="366.4" cy="283.2" r="2.6"/><circle cx="378.6" cy="283.2" r="2.6"/><circle cx="390.8" cy="283.2" r="2.6"/><circle cx="403.0" cy="283.2" r="2.6"/><circle cx="201.4" cy="295.8" r="2.6"/><circle cx="213.6" cy="295.8" r="2.6"/><circle cx="225.8" cy="295.8" r="2.6"/><circle cx="238.0" cy="295.8" r="2.6"/><circle cx="250.3" cy="295.8" r="2.6"/><circle cx="262.5" cy="295.8" r="2.6"/><circle cx="274.7" cy="295.8" r="2.6"/><circle cx="286.9" cy="295.8" r="2.6"/><circle cx="299.1" cy="295.8" r="2.6"/><circle cx="311.4" cy="295.8" r="2.6"/><circle cx="323.6" cy="295.8" r="2.6"/><circle cx="335.8" cy="295.8" r="2.6"/><circle cx="348.0" cy="295.8" r="2.6"/><circle cx="360.3" cy="295.8" r="2.6"/><circle cx="372.5" cy="295.8" r="2.6"/><circle cx="384.7" cy="295.8" r="2.6"/><circle cx="396.9" cy="295.8" r="2.6"/><circle cx="195.3" cy="308.4" r="2.6"/><circle cx="207.5" cy="308.4" r="2.6"/><circle cx="219.7" cy="308.4" r="2.6"/><circle cx="231.9" cy="308.4" r="2.6"/><circle cx="244.1" cy="308.4" r="2.6"/><circle cx="256.4" cy="308.4" r="2.6"/><circle cx="268.6" cy="308.4" r="2.6"/><circle cx="280.8" cy="308.4" r="2.6"/><circle cx="293.0" cy="308.4" r="2.6"/><circle cx="305.3" cy="308.4" r="2.6"/><circle cx="317.5" cy="308.4" r="2.6"/><circle cx="329.7" cy="308.4" r="2.6"/><circle cx="341.9" cy="308.4" r="2.6"/><circle cx="354.1" cy="308.4" r="2.6"/><circle cx="366.4" cy="308.4" r="2.6"/><circle cx="378.6" cy="308.4" r="2.6"/><circle cx="390.8" cy="308.4" r="2.6"/><circle cx="201.4" cy="321.0" r="2.6"/><circle cx="213.6" cy="321.0" r="2.6"/><circle cx="225.8" cy="321.0" r="2.6"/><circle cx="238.0" cy="321.0" r="2.6"/><circle cx="250.3" cy="321.0" r="2.6"/><circle cx="262.5" cy="321.0" r="2.6"/><circle cx="274.7" cy="321.0" r="2.6"/><circle cx="286.9" cy="321.0" r="2.6"/><circle cx="299.1" cy="321.0" r="2.6"/><circle cx="311.4" cy="321.0" r="2.6"/><circle cx="323.6" cy="321.0" r="2.6"/><circle cx="335.8" cy="321.0" r="2.6"/><circle cx="348.0" cy="321.0" r="2.6"/><circle cx="360.3" cy="321.0" r="2.6"/><circle cx="372.5" cy="321.0" r="2.6"/><circle cx="384.7" cy="321.0" r="2.6"/><circle cx="195.3" cy="333.6" r="2.6"/><circle cx="207.5" cy="333.6" r="2.6"/><circle cx="219.7" cy="333.6" r="2.6"/><circle cx="231.9" cy="333.6" r="2.6"/><circle cx="244.1" cy="333.6" r="2.6"/><circle cx="256.4" cy="333.6" r="2.6"/><circle cx="268.6" cy="333.6" r="2.6"/><circle cx="280.8" cy="333.6" r="2.6"/><circle cx="293.0" cy="333.6" r="2.6"/><circle cx="305.3" cy="333.6" r="2.6"/><circle cx="317.5" cy="333.6" r="2.6"/><circle cx="329.7" cy="333.6" r="2.6"/><circle cx="341.9" cy="333.6" r="2.6"/><circle cx="354.1" cy="333.6" r="2.6"/><circle cx="366.4" cy="333.6" r="2.6"/><circle cx="378.6" cy="333.6" r="2.6"/><circle cx="225.8" cy="346.2" r="2.6"/><circle cx="238.0" cy="346.2" r="2.6"/><circle cx="250.3" cy="346.2" r="2.6"/><circle cx="262.5" cy="346.2" r="2.6"/><circle cx="274.7" cy="346.2" r="2.6"/><circle cx="286.9" cy="346.2" r="2.6"/><circle cx="299.1" cy="346.2" r="2.6"/><circle cx="311.4" cy="346.2" r="2.6"/><circle cx="323.6" cy="346.2" r="2.6"/><circle cx="335.8" cy="346.2" r="2.6"/><circle cx="348.0" cy="346.2" r="2.6"/><circle cx="360.3" cy="346.2" r="2.6"/><circle cx="244.1" cy="358.8" r="2.6"/><circle cx="256.4" cy="358.8" r="2.6"/><circle cx="268.6" cy="358.8" r="2.6"/><circle cx="280.8" cy="358.8" r="2.6"/><circle cx="293.0" cy="358.8" r="2.6"/><circle cx="305.3" cy="358.8" r="2.6"/><circle cx="317.5" cy="358.8" r="2.6"/><circle cx="238.0" cy="371.4" r="2.6"/><circle cx="250.3" cy="371.4" r="2.6"/><circle cx="262.5" cy="371.4" r="2.6"/><circle cx="274.7" cy="371.4" r="2.6"/><circle cx="286.9" cy="371.4" r="2.6"/><circle cx="299.1" cy="371.4" r="2.6"/><circle cx="244.1" cy="384.0" r="2.6"/><circle cx="256.4" cy="384.0" r="2.6"/><circle cx="268.6" cy="384.0" r="2.6"/><circle cx="280.8" cy="384.0" r="2.6"/><circle cx="293.0" cy="384.0" r="2.6"/><circle cx="238.0" cy="396.6" r="2.6"/><circle cx="250.3" cy="396.6" r="2.6"/><circle cx="262.5" cy="396.6" r="2.6"/><circle cx="274.7" cy="396.6" r="2.6"/><circle cx="286.9" cy="396.6" r="2.6"/><circle cx="299.1" cy="396.6" r="2.6"/><circle cx="219.7" cy="409.2" r="2.6"/><circle cx="231.9" cy="409.2" r="2.6"/><circle cx="244.1" cy="409.2" r="2.6"/><circle cx="256.4" cy="409.2" r="2.6"/><circle cx="268.6" cy="409.2" r="2.6"/><circle cx="280.8" cy="409.2" r="2.6"/><circle cx="293.0" cy="409.2" r="2.6"/><circle cx="213.6" cy="421.8" r="2.6"/><circle cx="225.8" cy="421.8" r="2.6"/><circle cx="238.0" cy="421.8" r="2.6"/><circle cx="250.3" cy="421.8" r="2.6"/><circle cx="262.5" cy="421.8" r="2.6"/><circle cx="274.7" cy="421.8" r="2.6"/><circle cx="286.9" cy="421.8" r="2.6"/><circle cx="219.7" cy="434.4" r="2.6"/><circle cx="231.9" cy="434.4" r="2.6"/><circle cx="244.1" cy="434.4" r="2.6"/><circle cx="256.4" cy="434.4" r="2.6"/><circle cx="268.6" cy="434.4" r="2.6"/><circle cx="280.8" cy="434.4" r="2.6"/><circle cx="238.0" cy="447.0" r="2.6"/><circle cx="250.3" cy="447.0" r="2.6"/><circle cx="262.5" cy="447.0" r="2.6"/><circle cx="256.4" cy="459.6" r="2.6"/></g>
-<g class="rede"><line x1="168.8" y1="106.8" x2="302.6" y2="87.0"/><line x1="168.8" y1="106.8" x2="123.4" y2="174.7"/><line x1="168.8" y1="106.8" x2="161.0" y2="35.8"/><line x1="168.8" y1="106.8" x2="214.2" y2="256.8"/><line x1="168.8" y1="106.8" x2="305.0" y2="192.0"/><line x1="302.6" y1="87.0" x2="272.7" y2="69.2"/><line x1="302.6" y1="87.0" x2="351.5" y2="100.0"/><line x1="302.6" y1="87.0" x2="305.0" y2="192.0"/><line x1="351.5" y1="100.0" x2="369.0" y2="130.7"/><line x1="369.0" y1="130.7" x2="419.0" y2="114.0"/><line x1="419.0" y1="114.0" x2="457.5" y2="139.2"/><line x1="457.5" y1="139.2" x2="459.8" y2="166.2"/><line x1="459.8" y1="166.2" x2="419.0" y2="225.2"/><line x1="369.0" y1="130.7" x2="305.0" y2="192.0"/><line x1="305.0" y1="192.0" x2="309.6" y2="259.2"/><line x1="419.0" y1="225.2" x2="309.6" y2="259.2"/><line x1="419.0" y1="225.2" x2="355.7" y2="308.6"/><line x1="309.6" y1="259.2" x2="355.7" y2="308.6"/><line x1="355.7" y1="308.6" x2="364.3" y2="344.4"/><line x1="364.3" y1="344.4" x2="324.4" y2="352.2"/><line x1="324.4" y1="352.2" x2="309.6" y2="259.2"/><line x1="324.4" y1="352.2" x2="293.7" y2="374.8"/><line x1="293.7" y1="374.8" x2="302.1" y2="400.8"/><line x1="302.1" y1="400.8" x2="271.2" y2="430.0"/><line x1="271.2" y1="430.0" x2="231.6" y2="315.0"/><line x1="293.7" y1="374.8" x2="231.6" y2="315.0"/><line x1="231.6" y1="315.0" x2="214.2" y2="256.8"/><line x1="214.2" y1="256.8" x2="309.6" y2="259.2"/><line x1="214.2" y1="256.8" x2="123.4" y2="174.7"/><line x1="123.4" y1="174.7" x2="78.0" y2="189.2"/><line x1="161.0" y1="35.8" x2="272.7" y2="69.2"/><line x1="305.0" y1="192.0" x2="419.0" y2="225.2"/><line x1="231.6" y1="315.0" x2="324.4" y2="352.2"/><line x1="355.7" y1="308.6" x2="459.8" y2="166.2"/><line x1="214.2" y1="256.8" x2="305.0" y2="192.0"/></g>
-<g class="nos"><circle cx="168.8" cy="106.8" r="5" style="--d:0.7s"/><circle cx="302.6" cy="87.0" r="5" style="--d:1.4s"/><circle cx="419.0" cy="114.0" r="5" style="--d:2.1s"/><circle cx="457.5" cy="139.2" r="5" style="--d:2.8s"/><circle cx="459.8" cy="166.2" r="5" style="--d:0s"/><circle cx="419.0" cy="225.2" r="5" style="--d:0.7s"/><circle cx="309.6" cy="259.2" r="7" style="--d:1.4s"/><circle cx="355.7" cy="308.6" r="7" style="--d:2.1s"/><circle cx="364.3" cy="344.4" r="5" style="--d:2.8s"/><circle cx="324.4" cy="352.2" r="5" style="--d:0s"/><circle cx="293.7" cy="374.8" r="5" style="--d:0.7s"/><circle cx="271.2" cy="430.0" r="5" style="--d:1.4s"/><circle cx="231.6" cy="315.0" r="5" style="--d:2.1s"/><circle cx="214.2" cy="256.8" r="5" style="--d:2.8s"/><circle cx="123.4" cy="174.7" r="5" style="--d:0s"/><circle cx="78.0" cy="189.2" r="5" style="--d:0.7s"/><circle cx="305.0" cy="192.0" r="5" style="--d:1.4s"/><circle cx="369.0" cy="130.7" r="5" style="--d:2.1s"/><circle cx="351.5" cy="100.0" r="5" style="--d:2.8s"/><circle cx="161.0" cy="35.8" r="5" style="--d:0s"/><circle cx="272.7" cy="69.2" r="5" style="--d:0.7s"/><circle cx="302.1" cy="400.8" r="5" style="--d:1.4s"/></g>
-</svg>
-        <img class="mao" src="assets/mao-circula.png" alt="" width="394" height="640">
+      <p class="sobretitulo">Ribeirão das Neves · MG</p>
+      <h1 id="t-abertura">Arte, educação e acessibilidade <em>em Libras.</em></h1>
+      <p>Somos uma organização sem fins lucrativos que leva a Língua Brasileira de Sinais para a cultura, a escola e a comunidade, para que pessoas surdas e com deficiência tenham acesso pleno à arte e à informação.</p>
+      <div class="acoes">
+        <a class="botao amarelo" href="#o-que-fazemos">Conheça nosso trabalho <i class="ph ph-arrow-down" aria-hidden="true"></i></a>
+        <a class="botao contorno" href="#apoie">Apoie a causa</a>
       </div>
     </div>
   </section>
 
-  <div class="container painel-wrap" id="como-funciona">
-    <h2 class="sr-only">Como funciona</h2>
-    <div class="painel">
-      <div class="passo">
-        <span class="icone" aria-hidden="true"><i class="ph ph-books"></i></span>
-        <h3>Escolha a aula</h3>
-        <p>Cada jogo acompanha uma aula do Módulo I.</p>
-      </div>
-      <div class="passo">
-        <span class="icone" aria-hidden="true"><i class="ph ph-device-mobile"></i></span>
-        <h3>Jogue onde estiver</h3>
-        <p>Funciona no celular e no computador, sem instalar nada.</p>
-      </div>
-      <div class="passo">
-        <span class="icone" aria-hidden="true"><i class="ph ph-repeat"></i></span>
-        <h3>Repita à vontade</h3>
-        <p>Treine quantas vezes quiser, até o sinal ficar natural.</p>
-      </div>
-    </div>
-  </div>
-
-  <section class="jogos" id="jogos" aria-labelledby="titulo-jogos">
+  <section class="numeros" aria-label="O Circula Libras em números">
     <div class="container">
-      <div class="titulo-secao">
+      <ul>
+        <li class="surge"><strong data-conta="10" data-prefixo="+">+10</strong><span>anos de atuação, desde 2012</span></li>
+        <li class="surge"><strong data-conta="15000" data-prefixo="+">+15.000</strong><span>pessoas atendidas em nossas ações</span></li>
+        <li class="surge"><strong data-conta="3500" data-prefixo="+">+3.500</strong><span>horas dedicadas a ações de inclusão e acessibilidade</span></li>
+        <li class="surge"><strong data-conta="421">421</strong><span>parcerias e ações de inclusão</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="quem secao" id="quem-somos" aria-labelledby="t-quem">
+    <div class="container grade">
+      <div class="texto surge">
+        <p class="sobretitulo"><img src="assets/mao-circula.png" alt="" width="22">Quem somos</p>
+        <h2 id="t-quem">Libras circulando por onde a cultura acontece.</h2>
+        <p>O Instituto Circula Libras (ICL) promove a acessibilidade cultural para que pessoas surdas e com deficiência tenham acesso pleno às artes, à educação e à informação.</p>
+        <p>Atuamos de forma contínua no ensino de Libras, na formação em acessibilidade e inclusão e na sensibilização de profissionais e espaços culturais. Também produzimos curtas-metragens e videoclipes acessíveis, circo e teatro para surdos e ouvintes.</p>
+        <div class="missao">
+          <div><b>Missão</b><p>Garantir acesso à cultura e à informação para a comunidade surda.</p></div>
+          <div><b>Como</b><p>Arte, formação, audiovisual e interpretação em Libras.</p></div>
+          <div><b>Onde</b><p>Escolas e periferias de Neves, Esmeraldas e da RMBH.</p></div>
+        </div>
+        <div class="selo">
+          <i class="ph ph-seal-check" aria-hidden="true"></i>
+          <p><strong>Ponto de Cultura certificado</strong> pelo Ministério da Cultura, na Política Nacional Cultura Viva.</p>
+        </div>
+        <figure class="certificado pb">
+          <img src="assets/fotos/ponto-de-cultura.jpg" alt="Certificado de Ponto de Cultura do Instituto Circula Libras, emitido pelo Ministério da Cultura em 26 de agosto de 2025" loading="lazy" width="917" height="630">
+        </figure>
+      </div>
+      <figure class="composicao surge">
+        <span class="bloco-amarelo" aria-hidden="true"></span>
+        <img class="f1" src="assets/fotos/forum-culturas-perifericas.jpg" alt="Roberto Granato apresenta para o público sentado em roda no Fórum Culturas Periféricas em Debate, em Ribeirão das Neves" loading="lazy" width="1280" height="853">
+        <img class="selo-mao" src="assets/mao-circula.png" alt="" aria-hidden="true">
+        <figcaption>Fórum Culturas Periféricas em Debate, Ribeirão das Neves, 2025.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="frentes secao escuro" id="o-que-fazemos" aria-labelledby="t-frentes">
+    <img class="mao-gira" src="assets/mao-amarela.png" alt="" aria-hidden="true" style="--t:56px;right:6vw;top:60px;--v:-1">
+    <div class="container">
+      <div class="cab surge">
         <div>
-        <h2 id="titulo-jogos">Escolha seu jogo</h2>
-        <p>Cada jogo mostra a aula do curso a que pertence.</p>
+          <p class="sobretitulo">O que fazemos</p>
+          <h2 id="t-frentes">Cinco frentes, uma causa.</h2>
         </div>
-        <img src="assets/mao-ily.png" alt="Mão fazendo o sinal de eu te amo em Libras" width="568" height="760" loading="lazy">
+        <p>Passe o mouse ou toque nas fotos: cada frente ganha cor quando a Libras chega.</p>
       </div>
-
-      <div class="cartoes">
-        <a class="cartao" href="jogos/aula-01/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
-          <span class="aula-tag">Aula 01 · Libras é língua</span>
-          <strong>Quiz da Aula 01</strong>
-          <span class="desc">Pode ou não pode? e a história da Libras. 30 perguntas.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
-        <a class="cartao" href="jogos/aula-02/alfabeto/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-hand-waving"></i></span>
-          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
-          <strong>Vamos treinar o alfabeto</strong>
-          <span class="desc">4 níveis: fácil, médio, difícil e fluente.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
-        <a class="cartao" href="jogos/aula-02/quiz-letras/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
-          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
-          <strong>Quiz do alfabeto manual</strong>
-          <span class="desc">Descubra a letra ou ache a mão certa.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-02/memoria-letras/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
-          <strong>Memória do alfabeto</strong>
-          <span class="desc">Junte a letra com a mão do alfabeto.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-02/quem-sou-eu/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-identification-card"></i></span>
-          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
-          <strong>Quem sou eu?</strong>
-          <span class="desc">Monte o seu nome com o alfabeto manual e repita.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-03/datilologia/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-eye"></i></span>
-          <span class="aula-tag">Aula 03 · Datilologia na prática</span>
-          <strong>Leia a datilologia</strong>
-          <span class="desc">A mão soletra, você descobre a palavra.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-04/palavras/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-text-aa"></i></span>
-          <span class="aula-tag">Aula 04 · Datilologia</span>
-          <strong>Soletrando palavras do dia a dia</strong>
-          <span class="desc">170 palavras com figura e alfabeto manual.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
-        <a class="cartao" href="jogos/aula-04/quiz-parametros/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
-          <span class="aula-tag">Aula 04 · Os 5 parâmetros</span>
-          <strong>Quiz dos 5 parâmetros</strong>
-          <span class="desc">8 perguntas sobre os parâmetros da Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-04/memoria-parametros/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 04 · Os 5 parâmetros</span>
-          <strong>Memória dos parâmetros</strong>
-          <span class="desc">Junte cada parâmetro com o seu significado.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-05/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
-          <span class="aula-tag">Aula 05 · Meu nome e meu sinal</span>
-          <strong>Quiz: muito prazer!</strong>
-          <span class="desc">Os 7 sinais de apresentação da aula.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-05/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 05 · Meu nome e meu sinal</span>
-          <strong>Memória das apresentações</strong>
-          <span class="desc">Encontre o par: nome e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-05/roleta/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
-          <span class="aula-tag">Aula 05 · Meu nome e meu sinal</span>
-          <strong>Roleta das apresentações</strong>
-          <span class="desc">Gire, faça o sinal e confira.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-06/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
-          <span class="aula-tag">Aula 06 · Saudações e gentilezas</span>
-          <strong>Quiz das saudações</strong>
-          <span class="desc">Os 15 sinais de saudação da aula.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-06/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 06 · Saudações e gentilezas</span>
-          <strong>Memória das saudações</strong>
-          <span class="desc">Encontre o par: nome e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-06/roleta/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
-          <span class="aula-tag">Aula 06 · Saudações e gentilezas</span>
-          <strong>Roleta das saudações</strong>
-          <span class="desc">Gire, faça o sinal e confira.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-07/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
-          <span class="aula-tag">Aula 07 · Números de 0 a 9</span>
-          <strong>Quiz dos números</strong>
-          <span class="desc">Números e quantidades: 19 sinais.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-07/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 07 · Números de 0 a 9</span>
-          <strong>Memória dos números</strong>
-          <span class="desc">Junte o número com a mão.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-08/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
-          <span class="aula-tag">Aula 08 · Números maiores e ordinais</span>
-          <strong>Quiz dos ordinais</strong>
-          <span class="desc">Do 1º ao 9º em Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-08/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 08 · Números maiores e ordinais</span>
-          <strong>Memória dos ordinais</strong>
-          <span class="desc">Junte o ordinal com a mão.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-09/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-users"></i></span>
-          <span class="aula-tag">Aula 09 · Pronomes</span>
-          <strong>Quiz dos pronomes</strong>
-          <span class="desc">Eu, ele, ela, nós e meu/minha.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-09/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 09 · Pronomes</span>
-          <strong>Memória dos pronomes</strong>
-          <span class="desc">Encontre o par: nome e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-10/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-chat-circle-dots"></i></span>
-          <span class="aula-tag">Aula 10 · Fazendo perguntas</span>
-          <strong>Quiz das perguntas</strong>
-          <span class="desc">O que, quem, onde, quando, como...</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-10/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 10 · Fazendo perguntas</span>
-          <strong>Memória das perguntas</strong>
-          <span class="desc">Encontre o par: nome e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-10/roleta/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
-          <span class="aula-tag">Aula 10 · Fazendo perguntas</span>
-          <strong>Roleta das perguntas</strong>
-          <span class="desc">Gire, faça o sinal e não esqueça o rosto.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-11/quem-sou-eu/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-identification-card"></i></span>
-          <span class="aula-tag">Aula 11 · Revisão 1</span>
-          <strong>Quem sou eu?</strong>
-          <span class="desc">Nome, sobrenome e idade em Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-11/encontre-o-erro/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
-          <span class="aula-tag">Aula 11 · Revisão 1</span>
-          <strong>Encontre o erro</strong>
-          <span class="desc">Um dos sinais está trocado. Ache!</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-12/domino/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
-          <span class="aula-tag">Aula 12 · Família I</span>
-          <strong>Dominó da família</strong>
-          <span class="desc">Encaixe o sinal com a letra em Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-12/minha-familia/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-users-three"></i></span>
-          <span class="aula-tag">Aula 12 · Família I</span>
-          <strong>Minha família em Libras</strong>
-          <span class="desc">Soletre o nome dos seus parentes.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-13/encontre-o-erro/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
-          <span class="aula-tag">Aula 13 · Família II</span>
-          <strong>Encontre o erro</strong>
-          <span class="desc">Laços de família e estado civil.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-13/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 13 · Família II</span>
-          <strong>Memória da família</strong>
-          <span class="desc">Encontre o par: palavra e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-14/sequencia/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
-          <span class="aula-tag">Aula 14 · Dias da semana</span>
-          <strong>Os dias em ordem</strong>
-          <span class="desc">Toque nos sinais de domingo a sábado.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-14/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
-          <span class="aula-tag">Aula 14 · Dias da semana</span>
-          <strong>Quiz dos dias da semana</strong>
-          <span class="desc">Os 7 dias em Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-15/sequencia/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
-          <span class="aula-tag">Aula 15 · Meses e datas</span>
-          <strong>Os meses em ordem</strong>
-          <span class="desc">De janeiro a dezembro.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-15/encontre-o-erro/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
-          <span class="aula-tag">Aula 15 · Meses e datas</span>
-          <strong>Encontre o erro: datas especiais</strong>
-          <span class="desc">Natal, aniversário, férias...</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-16/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-clock"></i></span>
-          <span class="aula-tag">Aula 16 · Que horas são</span>
-          <strong>Qual sinal combina com o relógio?</strong>
-          <span class="desc">Veja o relógio e escolha o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-16/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 16 · Que horas são</span>
-          <strong>Memória do tempo</strong>
-          <span class="desc">Horas, minutos e dias.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-17/encontre-o-erro/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
-          <span class="aula-tag">Aula 17 · Cores</span>
-          <strong>Encontre o erro das cores</strong>
-          <span class="desc">Qual sinal não é daquela cor?</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-17/qual-cor/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-palette"></i></span>
-          <span class="aula-tag">Aula 17 · Cores</span>
-          <strong>Qual é a cor?</strong>
-          <span class="desc">Veja a cor e escolha o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-18/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-smiley"></i></span>
-          <span class="aula-tag">Aula 18 · Sentimentos</span>
-          <strong>Qual sinal combina com a carinha?</strong>
-          <span class="desc">O rosto também fala.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-18/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 18 · Sentimentos</span>
-          <strong>Memória dos sentimentos</strong>
-          <span class="desc">Encontre o par: palavra e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-19/intruso/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-warning-circle"></i></span>
-          <span class="aula-tag">Aula 19 · Revisão 2</span>
-          <strong>O intruso da categoria</strong>
-          <span class="desc">Qual sinal não é do grupo?</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-19/domino/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
-          <span class="aula-tag">Aula 19 · Revisão 2</span>
-          <strong>Dominó da revisão</strong>
-          <span class="desc">Família, dias, meses, cores e sentimentos.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-20/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-bowl-food"></i></span>
-          <span class="aula-tag">Aula 20 · Alimentos</span>
-          <strong>Qual sinal combina com o prato?</strong>
-          <span class="desc">Veja o alimento e escolha o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-20/domino/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
-          <span class="aula-tag">Aula 20 · Alimentos</span>
-          <strong>Dominó dos alimentos</strong>
-          <span class="desc">Encaixe o sinal com a letra em Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-21/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-orange-slice"></i></span>
-          <span class="aula-tag">Aula 21 · Frutas</span>
-          <strong>Qual sinal combina com a fruta?</strong>
-          <span class="desc">Veja a fruta e escolha o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-21/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 21 · Frutas</span>
-          <strong>Memória das frutas</strong>
-          <span class="desc">39 frutas, 8 por partida.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-22/caca-palavras/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-magnifying-glass"></i></span>
-          <span class="aula-tag">Aula 22 · Animais I</span>
-          <strong>Caça-palavras dos animais</strong>
-          <span class="desc">Em português e no alfabeto manual.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
-        <a class="cartao" href="jogos/aula-22/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 22 · Animais I</span>
-          <strong>Jogo da memória dos animais</strong>
-          <span class="desc">Encontre o par: palavra soletrada e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
-        <a class="cartao" href="jogos/aula-22/roleta/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
-          <span class="aula-tag">Aula 22 · Animais I</span>
-          <strong>Roleta dos animais</strong>
-          <span class="desc">10 animais novos: gire e faça o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
-        <a class="cartao" href="jogos/aula-22/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-paw-print"></i></span>
-          <span class="aula-tag">Aula 22 · Animais I</span>
-          <strong>Quiz dos animais</strong>
-          <span class="desc">40 perguntas com os animais da apostila.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
-        <a class="cartao" href="jogos/aula-23/domino/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
-          <span class="aula-tag">Aula 23 · Animais II</span>
-          <strong>Dominó dos bichos</strong>
-          <span class="desc">Encaixe o bicho com a letra em Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-23/encontre-o-erro/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
-          <span class="aula-tag">Aula 23 · Animais II</span>
-          <strong>Encontre o erro dos bichos</strong>
-          <span class="desc">Qual sinal não é daquele bicho?</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-24/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-airplane-tilt"></i></span>
-          <span class="aula-tag">Aula 24 · Transportes</span>
-          <strong>Qual sinal combina com o transporte?</strong>
-          <span class="desc">Veja o transporte e escolha o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-24/roleta/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
-          <span class="aula-tag">Aula 24 · Transportes</span>
-          <strong>Roleta dos transportes</strong>
-          <span class="desc">Gire e faça o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-25/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-pencil-simple"></i></span>
-          <span class="aula-tag">Aula 25 · Material escolar</span>
-          <strong>Qual sinal combina com o material?</strong>
-          <span class="desc">Veja o material e escolha o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-25/domino/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
-          <span class="aula-tag">Aula 25 · Material escolar</span>
-          <strong>Dominó da escola</strong>
-          <span class="desc">Encaixe o material com a letra em Libras.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-26/encontre-o-erro/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
-          <span class="aula-tag">Aula 26 · Profissões I</span>
-          <strong>Encontre o erro das profissões</strong>
-          <span class="desc">Qual sinal não é daquela profissão?</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-26/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
-          <span class="aula-tag">Aula 26 · Profissões I</span>
-          <strong>Quiz das profissões</strong>
-          <span class="desc">As 21 profissões da aula.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-27/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-image"></i></span>
-          <span class="aula-tag">Aula 27 · Profissões II</span>
-          <strong>Qual profissão combina com a figura?</strong>
-          <span class="desc">Veja a figura e escolha o sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-27/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 27 · Profissões II</span>
-          <strong>Memória das profissões</strong>
-          <span class="desc">44 profissões, 8 por partida.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-28/qual-combina/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-device-mobile"></i></span>
-          <span class="aula-tag">Aula 28 · Comunicação</span>
-          <strong>Qual sinal combina com a figura?</strong>
-          <span class="desc">Celular, TV, carta, cinema...</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-28/memoria/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
-          <span class="aula-tag">Aula 28 · Comunicação</span>
-          <strong>Memória da comunicação</strong>
-          <span class="desc">Encontre o par: palavra e sinal.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-29/quiz/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-hands-clapping"></i></span>
-          <span class="aula-tag">Aula 29 · Comunidade surda</span>
-          <strong>Quiz da comunidade surda</strong>
-          <span class="desc">Direitos, cultura e respeito.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-30/roleta-dos-temas/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
-          <span class="aula-tag">Aula 30 · Revisão final</span>
-          <strong>Roleta dos temas</strong>
-          <span class="desc">Sorteie um tema e faça 5 sinais.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao" href="jogos/aula-30/intruso/">
-          <span class="icone" aria-hidden="true"><i class="ph ph-warning-circle"></i></span>
-          <span class="aula-tag">Aula 30 · Revisão final</span>
-          <strong>O intruso da categoria</strong>
-          <span class="desc">Todos os temas do curso.</span>
-          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>        <a class="cartao cartao-mais" href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">
-          <span class="icone" aria-hidden="true"><i class="ph ph-sparkle"></i></span>
-          <strong>Mais jogos em breve</strong>
-          <span class="desc">Novos jogos entram conforme as aulas do curso.</span>
-          <span class="jogar">Acompanhe no Instagram <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
-        </a>
+      <div class="lista-frentes">
+        <article class="frente pb surge" tabindex="0">
+          <img src="assets/fotos/interprete-conubes.jpg" alt="" loading="lazy">
+          <span class="marcador" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span>
+          <div class="info"><span class="num">01</span><h3>Interpretação e acessibilidade em eventos</h3><p>Congressos, shows, mostras e espaços culturais com intérpretes de Libras e planejamento de acessibilidade.</p></div>
+        </article>
+        <article class="frente pb surge" tabindex="0">
+          <img src="assets/fotos/aula-libras-kids.jpg" alt="" loading="lazy" style="object-position:50% 25%">
+          <span class="marcador" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span>
+          <div class="info"><span class="num">02</span><h3>Ensino de Libras</h3><p>Cursos para estudantes, educadores, profissionais e comunidades, do básico à conversa completa.</p></div>
+        </article>
+        <article class="frente pb surge" tabindex="0">
+          <img src="assets/fotos/interprete-palco.jpg" alt="" loading="lazy">
+          <span class="marcador" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span>
+          <div class="info"><span class="num">03</span><h3>Arte acessível</h3><p>Circo, teatro e música em Libras, como o espetáculo CIRCO(LA)LIBRAS.</p></div>
+        </article>
+        <article class="frente pb surge" tabindex="0">
+          <img src="assets/fotos/debate-periferias.jpg" alt="" loading="lazy">
+          <span class="marcador" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span>
+          <div class="info"><span class="num">04</span><h3>Audiovisual acessível</h3><p>Curtas-metragens e videoclipes com Libras, legendas e audiodescrição.</p></div>
+        </article>
+        <article class="frente pb surge" tabindex="0">
+          <img src="assets/fotos/forum-grupo.jpg" alt="" loading="lazy">
+          <span class="marcador" aria-hidden="true"><i class="ph ph-arrow-up-right"></i></span>
+          <div class="info"><span class="num">05</span><h3>Formação e pesquisa</h3><p>Consultoria em acessibilidade, oficinas para equipes e pesquisa sobre inclusão na cultura.</p></div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="numeros escuro" aria-label="Os jogos em números">
-    <svg class="digital" viewBox="0 0 400 520" aria-hidden="true" focusable="false">
-      <ellipse cx="200" cy="270" rx="10.0" ry="14.0" stroke-dasharray="45 32" transform="rotate(153 200 270)"/>
-      <ellipse cx="200" cy="270" rx="21.5" ry="28.5" stroke-dasharray="59 18 21 61" transform="rotate(160 200 270)"/>
-      <ellipse cx="200" cy="270" rx="33.0" ry="43.0" stroke-dasharray="137 104" transform="rotate(124 200 270)"/>
-      <ellipse cx="200" cy="270" rx="44.5" ry="57.5" stroke-dasharray="235 88" transform="rotate(137 200 270)"/>
-      <ellipse cx="200" cy="270" rx="56.0" ry="72.0" stroke-dasharray="178 18 100 109" transform="rotate(128 200 270)"/>
-      <ellipse cx="200" cy="270" rx="67.5" ry="86.5" stroke-dasharray="312 175" transform="rotate(274 200 270)"/>
-      <ellipse cx="200" cy="270" rx="79.0" ry="101.0" stroke-dasharray="390 180" transform="rotate(295 200 270)"/>
-      <ellipse cx="200" cy="270" rx="90.5" ry="115.5" stroke-dasharray="296 18 180 158" transform="rotate(141 200 270)"/>
-      <ellipse cx="200" cy="270" rx="102.0" ry="130.0" stroke-dasharray="423 311" transform="rotate(130 200 270)"/>
-      <ellipse cx="200" cy="270" rx="113.5" ry="144.5" stroke-dasharray="449 367" transform="rotate(112 200 270)"/>
-      <ellipse cx="200" cy="270" rx="125.0" ry="159.0" stroke-dasharray="416 18 259 206" transform="rotate(291 200 270)"/>
-      <ellipse cx="200" cy="270" rx="136.5" ry="173.5" stroke-dasharray="575 406" transform="rotate(59 200 270)"/>
-      <ellipse cx="200" cy="270" rx="148.0" ry="188.0" stroke-dasharray="763 300" transform="rotate(55 200 270)"/>
-      <ellipse cx="200" cy="270" rx="159.5" ry="202.5" stroke-dasharray="536 18 339 252" transform="rotate(231 200 270)"/>
-      <ellipse cx="200" cy="270" rx="171.0" ry="217.0" stroke-dasharray="826 402" transform="rotate(321 200 270)"/>
-      <ellipse cx="200" cy="270" rx="182.5" ry="231.5" stroke-dasharray="1087 222" transform="rotate(141 200 270)"/>
-      <ellipse cx="200" cy="270" rx="194.0" ry="246.0" stroke-dasharray="497 18 313 564" transform="rotate(308 200 270)"/>
-    </svg>
+  <section class="jogos secao" id="jogos" aria-labelledby="t-jogos">
+    <img class="mao-gira" src="assets/mao-amarela.png" alt="" aria-hidden="true" style="--t:70px;left:3vw;bottom:40px;--v:1.2">
+    <div class="container grade">
+      <div class="surge">
+        <p class="sobretitulo" style="color:var(--amarelo)">Jogando e aprendendo Libras</p>
+        <h2 id="t-jogos">Pratique Libras <em>jogando.</em></h2>
+        <p>Jogos gratuitos ligados às aulas do nosso Curso de Libras. Funcionam no celular e no computador, sem instalar nada.</p>
+        <div class="mini">
+          <div><b>65</b><span>jogos</span></div>
+          <div><b>30</b><span>aulas</span></div>
+          <div><b>27</b><span>letras do alfabeto manual</span></div>
+        </div>
+        <a class="botao amarelo" href="jogos/">Jogar agora <i class="ph ph-game-controller" aria-hidden="true"></i></a>
+      </div>
+      <div class="cartas surge" aria-hidden="true">
+        <div class="carta c1"><i class="ph ph-hand-waving"></i><b>Alfabeto manual</b><small>Aula 2</small></div>
+        <div class="carta c2"><i class="ph ph-cards"></i><b>Jogo da memória</b><small>Família, cores, animais</small></div>
+        <div class="carta c3"><i class="ph ph-question"></i><b>Quiz de sinais</b><small>30 aulas</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trajetoria secao" id="trajetoria" aria-labelledby="t-traj">
     <div class="container">
-      <div class="numero"><strong>65</strong><span>jogos para praticar</span></div>
-      <div class="numero"><strong>30</strong><span>aulas com jogos</span></div>
-      <div class="numero"><strong>170</strong><span>palavras para soletrar</span></div>
-      <div class="numero"><strong>27</strong><span>letras do alfabeto manual</span></div>
+      <p class="sobretitulo surge"><img src="assets/mao-circula.png" alt="" width="22">Nossa trajetória</p>
+      <h2 id="t-traj" class="surge">De uma sala de aula para a cidade.</h2>
+      <div class="linha-tempo" id="linha-tempo">
+        <span class="progresso" aria-hidden="true"></span>
+        <img class="mao-marcador" src="assets/mao-circula.png" alt="" aria-hidden="true">
+        <div class="marco"><span class="ano">2012</span><div><h3>As primeiras intervenções</h3><p>A jornada começa com pequenas ações em Libras na PUC Minas São Gabriel.</p></div></div>
+        <div class="marco"><span class="ano">2016</span><div><h3>A primeira circulação do CIRCO(LA)LIBRAS</h3><p>Estreia o espetáculo que une circo e Libras, com apoio do curso de formação de agentes culturais da UFMG.</p></div></div>
+        <div class="marco"><span class="ano">2018</span><div><h3>Cursos na universidade</h3><p>Parceria com a PUC Minas Coração Eucarístico para formar estudantes de várias áreas em Libras.</p></div></div>
+        <div class="marco"><span class="ano">2019</span><div><h3>Terceiro setor</h3><p>O Circula Libras passa a atuar como iniciativa social e amplia os serviços: consultoria em acessibilidade para eventos culturais e negócios.</p></div></div>
+        <div class="marco"><span class="ano">2023</span><div><h3>Cinema e leitura acessíveis</h3><p>Pela Lei Paulo Gustavo em Ribeirão das Neves, lançamos o curta "Silêncio Revelado" e o projeto Geladeira Literária.</p></div></div>
+        <div class="marco"><span class="ano">2024</span><div><h3>No palco do Mineirinho</h3><p>Apresentação cultural em Libras no Estádio do Mineirinho, em Belo Horizonte.</p></div></div>
+        <div class="marco"><span class="ano">2025</span><div><h3>Instituto formalizado e Ponto de Cultura</h3><p>Nasce o Instituto Circula Libras com CNPJ próprio, certificado como Ponto de Cultura. Fazemos a acessibilidade do 45º CONUBES e do Fórum Culturas Periféricas em Debate.</p></div></div>
+        <div class="marco"><span class="ano">2026</span><div><h3>Circo, escola e jogos</h3><p>O espetáculo CIRCO(LA)LIBRAS circula pelas escolas, o Libras Kids chega à rede de Esmeraldas e lançamos o Curso de Libras com 65 jogos online.</p></div></div>
+      </div>
     </div>
   </section>
 
-  <section class="instituto" id="instituto" aria-labelledby="titulo-instituto">
+  <section class="projetos secao" id="projetos" aria-labelledby="t-proj">
     <div class="container">
-      <div class="bloco-mao">
-        <img src="assets/mao-juntas.png" alt="" width="568" height="760" loading="lazy">
+      <div class="cab surge">
+        <div>
+          <p class="sobretitulo"><img src="assets/mao-circula.png" alt="" width="22">Projetos</p>
+          <h2 id="t-proj">O que já fizemos circular.</h2>
+        </div>
+        <a class="botao principal" href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Veja mais no Instagram <i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
       </div>
-      <div>
-        <h2 id="titulo-instituto">Aprender Libras é construir junto.</h2>
-        <p>O Instituto Circula Libras forma pessoas em Libras desde 2016 e leva acessibilidade para a cultura, a educação e os eventos.</p>
-        <p>Os jogos fazem parte do nosso curso de Libras. Cada partida é um passo a mais para se comunicar com a comunidade surda.</p>
-        <a class="link-seta" href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Conheça o Instituto no Instagram <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      <div class="lista-proj">
+        <article class="proj pb surge">
+          <div class="moldura"><img src="assets/fotos/interprete-mineirinho.jpg" alt="Intérprete do Circula Libras de costas, no palco de um ginásio cheio" loading="lazy"><span class="tag">Acessibilidade</span></div>
+          <h3>45º CONUBES</h3><p>Interpretação em Libras no Congresso Nacional dos Estudantes Secundaristas.</p>
+        </article>
+        <article class="proj pb surge">
+          <div class="moldura"><img src="assets/fotos/capoeira-acessivel.jpg" alt="Roda de capoeira com crianças de abadá branco em uma quadra" loading="lazy"><span class="tag">Cultura popular</span></div>
+          <h3>Capoeira acessível</h3><p>8º Encontro da Capoeira Nevense com o grupo Guerreiros do Abaeté, com Libras do início ao fim.</p>
+        </article>
+        <article class="proj pb surge">
+          <div class="moldura"><img src="assets/fotos/geladeira-literaria.jpg" alt="Geladeira transformada em biblioteca comunitária, cheia de livros" loading="lazy"><span class="tag">Lei Paulo Gustavo</span></div>
+          <h3>Geladeira Literária</h3><p>Bibliotecas autogeridas pela comunidade, com leitura e acessibilidade lado a lado.</p>
+        </article>
+        <article class="proj pb surge">
+          <div class="moldura"><img src="assets/fotos/galeria-raizes.jpg" alt="Corredor da Galeria Raízes com quadros nas paredes" loading="lazy"><span class="tag">Arquitetura acessível</span></div>
+          <h3>Galeria Raízes</h3><p>Projeto de acessibilidade completo da galeria do Origem Instituto, em Ribeirão das Neves.</p>
+        </article>
+        <article class="proj pb surge">
+          <div class="moldura"><img src="assets/fotos/debate-periferias.jpg" alt="Debatedor fala ao microfone diante do banner do Fórum Culturas Periféricas em Debate" loading="lazy"><span class="tag">Debate</span></div>
+          <h3>Culturas Periféricas em Debate</h3><p>Fórum sobre cultura e acessibilidade em Ribeirão das Neves, em outubro de 2025.</p>
+        </article>
+        <article class="proj pb surge">
+          <div class="moldura"><img src="assets/fotos/turma-vale-acacias-amarelo.jpg" alt="Turma do curso de Libras com o Instituto Vale das Acácias fazendo sinais com as mãos" loading="lazy" style="object-position:50% 70%"><span class="tag">Formação</span></div>
+          <h3>Curso com o Instituto Vale das Acácias</h3><p>Curso gratuito de Libras e acessibilidade para a comunidade de Neves.</p>
+        </article>
       </div>
     </div>
   </section>
+
+  <section class="apoie secao escuro" id="apoie" aria-labelledby="t-apoie">
+    <img class="mao-gira" src="assets/mao-branca.png" alt="" aria-hidden="true" style="--t:60px;left:6vw;bottom:70px;--v:1">
+    <img class="mao-gira" src="assets/mao-amarela.png" alt="" aria-hidden="true" style="--t:36px;left:16vw;bottom:150px;--v:-1.6">
+    <div class="container grade">
+      <div class="intro surge">
+        <p class="sobretitulo">Apoie</p>
+        <h2 id="t-apoie">Faça a Libras circular com a gente.</h2>
+        <p>Cada apoio vira aula, intérprete no palco, filme com legenda e criança surda vendo um espetáculo pela primeira vez.</p>
+      </div>
+      <div class="formas">
+        <div class="forma surge">
+          <i class="ph ph-heart" aria-hidden="true"></i>
+          <div><h3>Doe</h3><p>Contribua com qualquer valor, uma vez ou todo mês.</p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Fale com a gente para doar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="forma surge">
+          <i class="ph ph-buildings" aria-hidden="true"></i>
+          <div><h3>Patrocine pela lei de incentivo</h3><p>Empresas contribuintes de ICMS em Minas podem apoiar nossos projetos pela LEIC-MG, sem custo extra.</p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Quero patrocinar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="forma surge">
+          <i class="ph ph-handshake" aria-hidden="true"></i>
+          <div><h3>Seja parceiro</h3><p>Escolas, espaços culturais e eventos: leve Libras e acessibilidade para o seu público.</p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Vamos conversar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transp secao" id="transparencia" aria-labelledby="t-transp">
+    <div class="container grade">
+      <div class="surge">
+        <p class="sobretitulo"><img src="assets/mao-circula.png" alt="" width="22">Transparência</p>
+        <h2 id="t-transp">Quem somos, no papel.</h2>
+        <dl class="dados">
+          <dt>Razão social</dt><dd>Instituto Circula Libras</dd>
+          <dt>CNPJ</dt><dd>63.312.613/0001-84</dd>
+          <dt>Natureza</dt><dd>Associação sem fins lucrativos</dd>
+          <dt>Sede</dt><dd>Ribeirão das Neves, MG</dd>
+          <dt>Certificação</dt><dd>Ponto de Cultura (Cultura Viva, MinC)</dd>
+          <dt>Presidente</dt><dd>Roberto Granato</dd>
+        </dl>
+      </div>
+      <div class="surge">
+        <h3>Quem já caminhou com a gente</h3>
+        <ul class="parceiros">
+          <li>Origem Instituto</li><li>Prefeitura de Ribeirão das Neves</li><li>Prefeitura de Esmeraldas</li><li>PUC Minas</li><li>Instituto Vale das Acácias</li><li>Instituto Saber Viver</li><li>UBES</li><li>Guerreiros do Abaeté</li><li>Lei Paulo Gustavo</li><li>Ministério da Cultura</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="rodape escuro">
   <div class="container">
-    <img src="assets/logo-circula-escuro.png" alt="Instituto Circula Libras" width="480" height="246" loading="lazy">
-    <p>Um projeto do <span translate="no">Instituto Circula Libras</span>.</p>
-    <p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">@circulalibras</a></p>
+    <div class="grade">
+      <div>
+        <img class="logo" src="assets/logo-branca-amarela.png" alt="Instituto Circula Libras" width="1079" height="554">
+        <p>Arte, educação e acessibilidade em Libras.</p>
+      </div>
+      <div>
+        <h3>Navegue</h3>
+        <ul>
+          <li><a href="#quem-somos">Quem somos</a></li>
+          <li><a href="#o-que-fazemos">O que fazemos</a></li>
+          <li><a href="#trajetoria">Trajetória</a></li>
+          <li><a href="jogos/">Jogos de Libras</a></li>
+          <li><a href="#apoie">Apoie</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contato</h3>
+        <p>Av. Deputado Dênio Moreira de Carvalho, 144<br>Vereda, Ribeirão das Neves, MG<br>CEP 33822-500</p>
+        <ul><li><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i> @circulalibras</a></li></ul>
+      </div>
+    </div>
+    <div class="base"><span>© 2026 Instituto Circula Libras · CNPJ 63.312.613/0001-84</span><span>Site com acessibilidade em Libras (VLibras)</span></div>
   </div>
 </footer>
 
+<!-- VLibras: tradutor oficial do Governo Federal -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try{new window.VLibras.Widget('https://vlibras.gov.br/app');}catch(e){}</script>
+
+<script>
+(function(){
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var topo = document.getElementById('topo');
+  var abertura = document.getElementById('abertura');
+  var maos = document.querySelectorAll('.mao-gira');
+  var linha = document.getElementById('linha-tempo');
+  var marcos = linha.querySelectorAll('.marco');
+
+  // menu do celular
+  var botaoMenu = document.querySelector('.abre-menu'), menu = document.getElementById('menu');
+  botaoMenu.addEventListener('click', function(){
+    var aberto = menu.classList.toggle('aberto');
+    botaoMenu.setAttribute('aria-expanded', aberto);
+    botaoMenu.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+    topo.classList.add('solido');
+  });
+  menu.addEventListener('click', function(e){ if(e.target.closest('a')){ menu.classList.remove('aberto'); botaoMenu.setAttribute('aria-expanded', false); } });
+
+  // foto de abertura ganha cor
+  setTimeout(function(){ abertura.classList.add('colorida'); }, 700);
+
+  function aoRolar(){
+    var y = window.scrollY;
+    // topo: logo branco vira colorido depois da abertura
+    if(!menu.classList.contains('aberto')) topo.classList.toggle('solido', y > 60);
+    if(!reduz){
+      maos.forEach(function(m){ m.style.setProperty('--giro', (y * 0.25) + 'deg'); });
+    }
+    // linha da trajetória
+    var r = linha.getBoundingClientRect(), meio = window.innerHeight * 0.6;
+    var p = Math.max(0, Math.min(1, (meio - r.top) / r.height));
+    linha.style.setProperty('--p', (p * 100) + '%');
+    marcos.forEach(function(m){ m.classList.toggle('ativo', m.getBoundingClientRect().top < meio); });
+  }
+  window.addEventListener('scroll', aoRolar, {passive:true});
+  window.addEventListener('load', aoRolar);
+  aoRolar();
+
+  // surgir e colorir ao entrar na tela (no celular não existe mouse)
+  var toque = window.matchMedia('(hover: none)').matches;
+  var obs = new IntersectionObserver(function(ents){
+    ents.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visivel');
+        if(toque && e.target.classList.contains('pb')) e.target.classList.add('em-vista');
+      } else if(toque && e.target.classList.contains('pb')) e.target.classList.remove('em-vista');
+    });
+  }, {threshold:.25});
+  document.querySelectorAll('.surge, .pb').forEach(function(el){ obs.observe(el); });
+
+  // contadores
+  var fmt = new Intl.NumberFormat('pt-BR');
+  var obsNum = new IntersectionObserver(function(ents){
+    ents.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target, alvo = +el.dataset.conta, pre = el.dataset.prefixo || '', t0 = null;
+      obsNum.unobserve(el);
+      if(reduz) return;
+      function passo(t){ if(!t0) t0 = t; var k = Math.min(1,(t - t0)/1400); k = 1 - Math.pow(1-k,3);
+        el.textContent = pre + fmt.format(Math.round(alvo * k)); if(k < 1) requestAnimationFrame(passo); }
+      requestAnimationFrame(passo);
+    });
+  }, {threshold:.6});
+  document.querySelectorAll('[data-conta]').forEach(function(el){ obsNum.observe(el); });
+})();
+</script>
 </body>
 </html>

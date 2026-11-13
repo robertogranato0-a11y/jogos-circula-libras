@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jogos de Libras | Instituto Circula Libras</title>
+<meta name="description" content="Jogos para praticar Libras: sinais, alfabeto manual e vocabulário. Curso de Libras do Instituto Circula Libras.">
+<meta name="theme-color" content="#662D91">
+<meta property="og:title" content="Jogos de Libras | Instituto Circula Libras">
+<meta property="og:description" content="Pratique Libras jogando, no celular ou no computador.">
+<meta property="og:image" content="https://circulalibras.online/assets/logo-circula.png">
+<link rel="icon" href="../assets/mao-circula.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+:root {
+  color-scheme: light;
+  --roxo: #662D91;
+  --lilas: #8752B5;
+  --amarelo: #FFCC33;
+  --amarelo-escuro: #F2B90F;
+  --cinza: #848688;
+  --branco: #FFFFFF;
+  --creme: #FFF8E7;
+  --grafite: #1A1A1A;
+  --cinza-texto: #5C5E60;
+  --linha: #ECE6F2;
+  --sombra: 0 8px 24px rgba(102, 45, 145, 0.12);
+  --sombra-forte: 0 18px 40px rgba(102, 45, 145, 0.18);
+  --fonte: "Cabin", "Segoe UI", system-ui, sans-serif;
+  --r-botao: 12px;
+  --r-cartao: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-tap-highlight-color: rgba(102, 45, 145, 0.15); }
+a, button { touch-action: manipulation; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--branco);
+  color: var(--grafite);
+  font-family: var(--fonte);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--roxo); }
+a:hover { color: var(--lilas); }
+:focus-visible { outline: 3px solid var(--roxo); outline-offset: 3px; border-radius: 6px; }
+.escuro :focus-visible { outline-color: var(--amarelo); }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding-inline: 20px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.pular {
+  position: absolute; left: 16px; top: -60px; z-index: 30;
+  background: var(--amarelo); color: var(--grafite); padding: 10px 16px;
+  border-radius: var(--r-botao); font-weight: 700; text-decoration: none;
+}
+.pular:focus { top: 12px; }
+
+/* Faixa superior */
+.faixa { background: var(--roxo); color: var(--branco); font-size: 14px; }
+.faixa .container { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 40px; }
+.faixa a { color: var(--branco); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.faixa a:hover { color: var(--amarelo); }
+.faixa i { font-size: 18px; }
+
+/* Menu */
+.topo { position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha); }
+.topo .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
+.topo .logo img { height: 46px; width: auto; }
+.menu { display: flex; align-items: center; gap: 28px; }
+.menu a:not(.botao) { color: var(--grafite); text-decoration: none; font-weight: 600; font-size: 16px; padding-block: 6px; border-bottom: 3px solid transparent; }
+.menu a:not(.botao):hover { color: var(--roxo); border-bottom-color: var(--amarelo); }
+
+/* Botões */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 12px 22px; border-radius: var(--r-botao);
+  font-family: inherit; font-weight: 700; font-size: 17px; text-decoration: none; white-space: nowrap;
+  transition: transform .2s cubic-bezier(.16,1,.3,1), background-color .2s, box-shadow .2s;
+}
+.botao:active { transform: translateY(1px) scale(0.98); }
+.botao-roxo { background: var(--roxo); color: var(--branco); }
+.botao-roxo:hover { background: var(--lilas); color: var(--branco); }
+.botao-amarelo { background: var(--amarelo); color: var(--roxo); }
+.botao-amarelo:hover { background: var(--amarelo-escuro); color: var(--roxo); }
+.link-seta { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; text-decoration: none; }
+.link-seta i { transition: transform .2s; }
+.link-seta:hover i { transform: translateX(3px); }
+
+/* Abertura */
+.abertura { position: relative; background: var(--creme); overflow: hidden; }
+.abertura .container { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 32px; padding-block: 64px 140px; }
+.abertura h1 {
+  font-size: clamp(40px, 6vw, 64px); line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--roxo); margin: 0 0 20px; text-wrap: balance;
+}
+.abertura h1 span { position: relative; white-space: nowrap; }
+.abertura h1 span::after {
+  content: ""; position: absolute; left: -2px; right: -2px; bottom: 0.06em; height: 0.28em;
+  background: var(--amarelo); z-index: -1; border-radius: 4px;
+}
+.abertura h1 span { z-index: 0; isolation: isolate; }
+.abertura p { font-size: 20px; color: var(--grafite); max-width: 32ch; margin: 0 0 32px; }
+.acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+
+.ilustracao { position: relative; aspect-ratio: 479 / 485; width: 100%; max-width: 520px; justify-self: end; }
+.mapa { width: 100%; height: 100%; overflow: visible; }
+.mapa .pontos circle { fill: var(--lilas); opacity: .4; }
+.mapa .rede line { stroke: var(--roxo); stroke-width: 1.2; opacity: .45; }
+.mapa .nos circle { fill: var(--amarelo); stroke: var(--roxo); stroke-width: 2; transform-box: fill-box; transform-origin: center; }
+.mao {
+  position: absolute; left: -6%; bottom: -4%; width: 38%; height: auto;
+  filter: drop-shadow(0 10px 18px rgba(102, 45, 145, 0.18));
+}
+
+/* Painel "como funciona" (sobreposto à abertura) */
+.painel-wrap { position: relative; margin-top: -88px; z-index: 2; }
+.painel {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  background: var(--branco); border-radius: var(--r-cartao); box-shadow: var(--sombra-forte);
+}
+.passo { padding: 32px 28px; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-items: start; }
+.passo + .passo { border-left: 1px solid var(--linha); }
+.passo .icone {
+  grid-row: span 2; width: 52px; height: 52px; border-radius: 14px;
+  background: var(--amarelo); color: var(--roxo); display: grid; place-items: center; font-size: 28px;
+}
+.passo h3 { margin: 0; font-size: 20px; line-height: 1.3; color: var(--grafite); }
+.passo p { margin: 0; font-size: 16px; color: var(--cinza-texto); line-height: 1.5; }
+
+/* Jogos */
+.jogos { padding-block: 96px 96px; }
+.titulo-secao { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 40px; }
+.titulo-secao > div { max-width: 640px; }
+.titulo-secao img { width: 140px; height: auto; margin-bottom: -8px; }
+.titulo-secao h2 { font-size: clamp(30px, 4vw, 42px); line-height: 1.15; color: var(--roxo); margin: 0 0 12px; letter-spacing: -0.01em; text-wrap: balance; }
+.titulo-secao p { margin: 0; color: var(--cinza-texto); }
+
+
+.cartoes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.aula-tag { font-size: 14px; font-weight: 700; color: var(--lilas); margin-top: 6px; }
+.cartao-mais { background: var(--roxo); border-color: var(--roxo); color: var(--branco); justify-content: center; }
+.cartao-mais:hover { border-color: var(--roxo); color: var(--branco); }
+.cartao-mais .icone { background: var(--amarelo); }
+.cartao-mais .desc { color: #EDE3F5; }
+.cartao-mais .jogar { color: var(--amarelo); }
+.cartao {
+  position: relative; display: flex; flex-direction: column; gap: 10px;
+  padding: 22px 22px 20px; border-radius: var(--r-cartao);
+  background: var(--branco); border: 1.5px solid var(--linha);
+  color: var(--grafite); text-decoration: none;
+  transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s, border-color .25s;
+}
+.cartao:hover { transform: translateY(-3px); box-shadow: var(--sombra); border-color: var(--lilas); color: var(--grafite); }
+.cartao:active { transform: translateY(-1px) scale(0.99); }
+.cartao .icone { width: 44px; height: 44px; border-radius: 12px; background: var(--creme); color: var(--roxo); display: grid; place-items: center; font-size: 24px; }
+.cartao strong { font-size: 19px; line-height: 1.3; }
+.cartao .desc { font-size: 16px; color: var(--cinza-texto); line-height: 1.45; flex: 1; }
+.cartao .jogar { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--roxo); font-size: 16px; margin-top: 4px; }
+.cartao .jogar i { transition: transform .2s; }
+.cartao:hover .jogar i { transform: translateX(4px); }
+
+/* Números */
+.numeros { position: relative; background: var(--roxo); color: var(--branco); overflow: hidden; }
+.digital { position: absolute; right: -80px; top: 50%; width: 420px; height: auto; transform: translateY(-50%); opacity: .22; pointer-events: none; }
+.digital ellipse { fill: none; stroke: var(--lilas); stroke-width: 6; stroke-linecap: round; }
+.numeros .container { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-block: 56px; }
+.numero strong { display: block; font-size: clamp(40px, 5vw, 56px); line-height: 1; color: var(--amarelo); font-variant-numeric: tabular-nums; }
+.numero span { display: block; margin-top: 8px; font-size: 17px; }
+
+/* Instituto */
+.instituto { background: var(--creme); padding-block: 96px; }
+.instituto .container { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; }
+.bloco-mao { position: relative; aspect-ratio: 4 / 4.2; max-width: 440px; }
+.bloco-mao::before { content: ""; position: absolute; inset: 12% 22% 0 0; background: var(--amarelo); border-radius: var(--r-cartao); }
+.bloco-mao img { position: relative; height: 112%; width: auto; margin: -10% 0 0 8%; }
+.instituto h2 { font-size: clamp(30px, 4vw, 42px); line-height: 1.15; color: var(--roxo); margin: 0 0 20px; letter-spacing: -0.01em; text-wrap: balance; }
+.instituto p { margin: 0 0 16px; max-width: 54ch; }
+.instituto .link-seta { margin-top: 12px; font-size: 18px; }
+
+/* Rodapé */
+.rodape { background: var(--grafite); color: #D9D9D9; padding-block: 48px 40px; font-size: 16px; }
+.rodape .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
+.rodape img { height: 52px; width: auto; }
+.rodape a { color: var(--amarelo); }
+.rodape a:hover { color: var(--branco); }
+.rodape p { margin: 0; }
+
+/* Movimento */
+@media (prefers-reduced-motion: no-preference) {
+  .entra { animation: entra .8s cubic-bezier(.16,1,.3,1) both; animation-delay: var(--atraso, 0s); }
+  @keyframes entra { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .mapa .nos circle { animation: pulsa 3.2s ease-in-out infinite; animation-delay: var(--d, 0s); }
+  @keyframes pulsa { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+}
+
+
+/* Celular e tablet */
+@media (max-width: 960px) {
+  .abertura .container { grid-template-columns: 1fr; padding-block: 48px 128px; }
+  .ilustracao { justify-self: center; max-width: 420px; }
+  .painel { grid-template-columns: 1fr; }
+  .passo + .passo { border-left: 0; border-top: 1px solid var(--linha); }
+
+  .cartoes { grid-template-columns: repeat(2, 1fr); }
+  .numeros .container { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+  .instituto .container { grid-template-columns: 1fr; gap: 40px; }
+  .bloco-mao { max-width: 320px; }
+}
+@media (max-width: 720px) {
+  .menu a:not(.botao) { display: none; }
+  .faixa .container { justify-content: center; }
+  .faixa .rede-social { display: none; }
+  .topo .logo img { height: 40px; }
+  .botao { padding-inline: 18px; }
+  .abertura p { font-size: 18px; }
+  .ilustracao { max-width: 320px; }
+  .mao { left: 0; }
+  .acoes .botao { width: 100%; }
+  .passo { padding: 24px 20px; }
+  .jogos, .instituto { padding-block: 72px; }
+  .cartoes { grid-template-columns: 1fr; }
+  .titulo-secao img { width: 84px; }
+  .digital { width: 300px; right: -120px; }
+  .rodape .container { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<a class="pular" href="#jogos">Pular para os jogos</a>
+
+<div class="faixa escuro">
+  <div class="container">
+    <span>Curso de Libras · Módulo I</span>
+    <a class="rede-social" href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i>@circulalibras</a>
+  </div>
+</div>
+
+<header class="topo">
+  <div class="container">
+    <a class="logo" href="./" aria-label="Instituto Circula Libras, página inicial">
+      <img src="../assets/logo-circula.png" alt="Instituto Circula Libras" width="480" height="246" fetchpriority="high">
+    </a>
+    <nav class="menu" aria-label="Principal">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#jogos">Jogos</a>
+      <a href="#instituto">O Instituto</a>
+      <a class="botao botao-amarelo" href="#jogos">Jogar agora</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="abertura" aria-labelledby="titulo">
+    <div class="container">
+      <div>
+        <h1 id="titulo" class="entra">Pratique Libras <span>jogando.</span></h1>
+        <p class="entra" style="--atraso:.12s">Jogos do curso de Libras para treinar sinais, alfabeto manual e vocabulário. No celular ou no computador.</p>
+        <div class="acoes entra" style="--atraso:.24s">
+          <a class="botao botao-roxo" href="#jogos">Jogar agora <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+          <a class="link-seta" href="#como-funciona">Como funciona <i class="ph ph-arrow-down" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="ilustracao entra" style="--atraso:.2s">
+<svg class="mapa" viewBox="0 0 479 485" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<g class="pontos"><circle cx="152.5" cy="18.6" r="2.6"/><circle cx="164.7" cy="18.6" r="2.6"/><circle cx="121.9" cy="31.2" r="2.6"/><circle cx="134.2" cy="31.2" r="2.6"/><circle cx="146.4" cy="31.2" r="2.6"/><circle cx="158.6" cy="31.2" r="2.6"/><circle cx="268.6" cy="31.2" r="2.6"/><circle cx="140.3" cy="43.8" r="2.6"/><circle cx="152.5" cy="43.8" r="2.6"/><circle cx="164.7" cy="43.8" r="2.6"/><circle cx="225.8" cy="43.8" r="2.6"/><circle cx="262.5" cy="43.8" r="2.6"/><circle cx="274.7" cy="43.8" r="2.6"/><circle cx="60.8" cy="56.4" r="2.6"/><circle cx="73.0" cy="56.4" r="2.6"/><circle cx="85.3" cy="56.4" r="2.6"/><circle cx="109.7" cy="56.4" r="2.6"/><circle cx="121.9" cy="56.4" r="2.6"/><circle cx="134.2" cy="56.4" r="2.6"/><circle cx="146.4" cy="56.4" r="2.6"/><circle cx="158.6" cy="56.4" r="2.6"/><circle cx="170.8" cy="56.4" r="2.6"/><circle cx="183.0" cy="56.4" r="2.6"/><circle cx="195.3" cy="56.4" r="2.6"/><circle cx="207.5" cy="56.4" r="2.6"/><circle cx="219.7" cy="56.4" r="2.6"/><circle cx="231.9" cy="56.4" r="2.6"/><circle cx="244.1" cy="56.4" r="2.6"/><circle cx="256.4" cy="56.4" r="2.6"/><circle cx="268.6" cy="56.4" r="2.6"/><circle cx="280.8" cy="56.4" r="2.6"/><circle cx="54.7" cy="69.0" r="2.6"/><circle cx="66.9" cy="69.0" r="2.6"/><circle cx="79.2" cy="69.0" r="2.6"/><circle cx="91.4" cy="69.0" r="2.6"/><circle cx="103.6" cy="69.0" r="2.6"/><circle cx="115.8" cy="69.0" r="2.6"/><circle cx="128.0" cy="69.0" r="2.6"/><circle cx="140.3" cy="69.0" r="2.6"/><circle cx="152.5" cy="69.0" r="2.6"/><circle cx="164.7" cy="69.0" r="2.6"/><circle cx="176.9" cy="69.0" r="2.6"/><circle cx="189.1" cy="69.0" r="2.6"/><circle cx="201.4" cy="69.0" r="2.6"/><circle cx="213.6" cy="69.0" r="2.6"/><circle cx="225.8" cy="69.0" r="2.6"/><circle cx="238.0" cy="69.0" r="2.6"/><circle cx="250.3" cy="69.0" r="2.6"/><circle cx="262.5" cy="69.0" r="2.6"/><circle cx="274.7" cy="69.0" r="2.6"/><circle cx="60.8" cy="81.6" r="2.6"/><circle cx="73.0" cy="81.6" r="2.6"/><circle cx="85.3" cy="81.6" r="2.6"/><circle cx="97.5" cy="81.6" r="2.6"/><circle cx="109.7" cy="81.6" r="2.6"/><circle cx="121.9" cy="81.6" r="2.6"/><circle cx="134.2" cy="81.6" r="2.6"/><circle cx="146.4" cy="81.6" r="2.6"/><circle cx="158.6" cy="81.6" r="2.6"/><circle cx="170.8" cy="81.6" r="2.6"/><circle cx="183.0" cy="81.6" r="2.6"/><circle cx="195.3" cy="81.6" r="2.6"/><circle cx="207.5" cy="81.6" r="2.6"/><circle cx="219.7" cy="81.6" r="2.6"/><circle cx="231.9" cy="81.6" r="2.6"/><circle cx="244.1" cy="81.6" r="2.6"/><circle cx="256.4" cy="81.6" r="2.6"/><circle cx="268.6" cy="81.6" r="2.6"/><circle cx="280.8" cy="81.6" r="2.6"/><circle cx="293.0" cy="81.6" r="2.6"/><circle cx="305.3" cy="81.6" r="2.6"/><circle cx="317.5" cy="81.6" r="2.6"/><circle cx="66.9" cy="94.2" r="2.6"/><circle cx="79.2" cy="94.2" r="2.6"/><circle cx="91.4" cy="94.2" r="2.6"/><circle cx="103.6" cy="94.2" r="2.6"/><circle cx="115.8" cy="94.2" r="2.6"/><circle cx="128.0" cy="94.2" r="2.6"/><circle cx="140.3" cy="94.2" r="2.6"/><circle cx="152.5" cy="94.2" r="2.6"/><circle cx="164.7" cy="94.2" r="2.6"/><circle cx="176.9" cy="94.2" r="2.6"/><circle cx="189.1" cy="94.2" r="2.6"/><circle cx="201.4" cy="94.2" r="2.6"/><circle cx="213.6" cy="94.2" r="2.6"/><circle cx="225.8" cy="94.2" r="2.6"/><circle cx="238.0" cy="94.2" r="2.6"/><circle cx="250.3" cy="94.2" r="2.6"/><circle cx="262.5" cy="94.2" r="2.6"/><circle cx="274.7" cy="94.2" r="2.6"/><circle cx="286.9" cy="94.2" r="2.6"/><circle cx="299.1" cy="94.2" r="2.6"/><circle cx="311.4" cy="94.2" r="2.6"/><circle cx="323.6" cy="94.2" r="2.6"/><circle cx="335.8" cy="94.2" r="2.6"/><circle cx="348.0" cy="94.2" r="2.6"/><circle cx="60.8" cy="106.8" r="2.6"/><circle cx="73.0" cy="106.8" r="2.6"/><circle cx="85.3" cy="106.8" r="2.6"/><circle cx="97.5" cy="106.8" r="2.6"/><circle cx="109.7" cy="106.8" r="2.6"/><circle cx="121.9" cy="106.8" r="2.6"/><circle cx="134.2" cy="106.8" r="2.6"/><circle cx="146.4" cy="106.8" r="2.6"/><circle cx="158.6" cy="106.8" r="2.6"/><circle cx="170.8" cy="106.8" r="2.6"/><circle cx="183.0" cy="106.8" r="2.6"/><circle cx="195.3" cy="106.8" r="2.6"/><circle cx="207.5" cy="106.8" r="2.6"/><circle cx="219.7" cy="106.8" r="2.6"/><circle cx="231.9" cy="106.8" r="2.6"/><circle cx="244.1" cy="106.8" r="2.6"/><circle cx="256.4" cy="106.8" r="2.6"/><circle cx="268.6" cy="106.8" r="2.6"/><circle cx="280.8" cy="106.8" r="2.6"/><circle cx="293.0" cy="106.8" r="2.6"/><circle cx="305.3" cy="106.8" r="2.6"/><circle cx="317.5" cy="106.8" r="2.6"/><circle cx="329.7" cy="106.8" r="2.6"/><circle cx="341.9" cy="106.8" r="2.6"/><circle cx="354.1" cy="106.8" r="2.6"/><circle cx="366.4" cy="106.8" r="2.6"/><circle cx="378.6" cy="106.8" r="2.6"/><circle cx="390.8" cy="106.8" r="2.6"/><circle cx="403.0" cy="106.8" r="2.6"/><circle cx="54.7" cy="119.4" r="2.6"/><circle cx="66.9" cy="119.4" r="2.6"/><circle cx="79.2" cy="119.4" r="2.6"/><circle cx="91.4" cy="119.4" r="2.6"/><circle cx="103.6" cy="119.4" r="2.6"/><circle cx="115.8" cy="119.4" r="2.6"/><circle cx="128.0" cy="119.4" r="2.6"/><circle cx="140.3" cy="119.4" r="2.6"/><circle cx="152.5" cy="119.4" r="2.6"/><circle cx="164.7" cy="119.4" r="2.6"/><circle cx="176.9" cy="119.4" r="2.6"/><circle cx="189.1" cy="119.4" r="2.6"/><circle cx="201.4" cy="119.4" r="2.6"/><circle cx="213.6" cy="119.4" r="2.6"/><circle cx="225.8" cy="119.4" r="2.6"/><circle cx="238.0" cy="119.4" r="2.6"/><circle cx="250.3" cy="119.4" r="2.6"/><circle cx="262.5" cy="119.4" r="2.6"/><circle cx="274.7" cy="119.4" r="2.6"/><circle cx="286.9" cy="119.4" r="2.6"/><circle cx="299.1" cy="119.4" r="2.6"/><circle cx="311.4" cy="119.4" r="2.6"/><circle cx="323.6" cy="119.4" r="2.6"/><circle cx="335.8" cy="119.4" r="2.6"/><circle cx="348.0" cy="119.4" r="2.6"/><circle cx="360.3" cy="119.4" r="2.6"/><circle cx="372.5" cy="119.4" r="2.6"/><circle cx="384.7" cy="119.4" r="2.6"/><circle cx="396.9" cy="119.4" r="2.6"/><circle cx="409.1" cy="119.4" r="2.6"/><circle cx="421.4" cy="119.4" r="2.6"/><circle cx="24.2" cy="132.0" r="2.6"/><circle cx="36.4" cy="132.0" r="2.6"/><circle cx="48.6" cy="132.0" r="2.6"/><circle cx="60.8" cy="132.0" r="2.6"/><circle cx="73.0" cy="132.0" r="2.6"/><circle cx="85.3" cy="132.0" r="2.6"/><circle cx="97.5" cy="132.0" r="2.6"/><circle cx="109.7" cy="132.0" r="2.6"/><circle cx="121.9" cy="132.0" r="2.6"/><circle cx="134.2" cy="132.0" r="2.6"/><circle cx="146.4" cy="132.0" r="2.6"/><circle cx="158.6" cy="132.0" r="2.6"/><circle cx="170.8" cy="132.0" r="2.6"/><circle cx="183.0" cy="132.0" r="2.6"/><circle cx="195.3" cy="132.0" r="2.6"/><circle cx="207.5" cy="132.0" r="2.6"/><circle cx="219.7" cy="132.0" r="2.6"/><circle cx="231.9" cy="132.0" r="2.6"/><circle cx="244.1" cy="132.0" r="2.6"/><circle cx="256.4" cy="132.0" r="2.6"/><circle cx="268.6" cy="132.0" r="2.6"/><circle cx="280.8" cy="132.0" r="2.6"/><circle cx="293.0" cy="132.0" r="2.6"/><circle cx="305.3" cy="132.0" r="2.6"/><circle cx="317.5" cy="132.0" r="2.6"/><circle cx="329.7" cy="132.0" r="2.6"/><circle cx="341.9" cy="132.0" r="2.6"/><circle cx="354.1" cy="132.0" r="2.6"/><circle cx="366.4" cy="132.0" r="2.6"/><circle cx="378.6" cy="132.0" r="2.6"/><circle cx="390.8" cy="132.0" r="2.6"/><circle cx="403.0" cy="132.0" r="2.6"/><circle cx="415.3" cy="132.0" r="2.6"/><circle cx="427.5" cy="132.0" r="2.6"/><circle cx="439.7" cy="132.0" r="2.6"/><circle cx="451.9" cy="132.0" r="2.6"/><circle cx="18.0" cy="144.6" r="2.6"/><circle cx="30.3" cy="144.6" r="2.6"/><circle cx="42.5" cy="144.6" r="2.6"/><circle cx="54.7" cy="144.6" r="2.6"/><circle cx="66.9" cy="144.6" r="2.6"/><circle cx="79.2" cy="144.6" r="2.6"/><circle cx="91.4" cy="144.6" r="2.6"/><circle cx="103.6" cy="144.6" r="2.6"/><circle cx="115.8" cy="144.6" r="2.6"/><circle cx="128.0" cy="144.6" r="2.6"/><circle cx="140.3" cy="144.6" r="2.6"/><circle cx="152.5" cy="144.6" r="2.6"/><circle cx="164.7" cy="144.6" r="2.6"/><circle cx="176.9" cy="144.6" r="2.6"/><circle cx="189.1" cy="144.6" r="2.6"/><circle cx="201.4" cy="144.6" r="2.6"/><circle cx="213.6" cy="144.6" r="2.6"/><circle cx="225.8" cy="144.6" r="2.6"/><circle cx="238.0" cy="144.6" r="2.6"/><circle cx="250.3" cy="144.6" r="2.6"/><circle cx="262.5" cy="144.6" r="2.6"/><circle cx="274.7" cy="144.6" r="2.6"/><circle cx="286.9" cy="144.6" r="2.6"/><circle cx="299.1" cy="144.6" r="2.6"/><circle cx="311.4" cy="144.6" r="2.6"/><circle cx="323.6" cy="144.6" r="2.6"/><circle cx="335.8" cy="144.6" r="2.6"/><circle cx="348.0" cy="144.6" r="2.6"/><circle cx="360.3" cy="144.6" r="2.6"/><circle cx="372.5" cy="144.6" r="2.6"/><circle cx="384.7" cy="144.6" r="2.6"/><circle cx="396.9" cy="144.6" r="2.6"/><circle cx="409.1" cy="144.6" r="2.6"/><circle cx="421.4" cy="144.6" r="2.6"/><circle cx="433.6" cy="144.6" r="2.6"/><circle cx="445.8" cy="144.6" r="2.6"/><circle cx="458.0" cy="144.6" r="2.6"/><circle cx="11.9" cy="157.2" r="2.6"/><circle cx="24.2" cy="157.2" r="2.6"/><circle cx="36.4" cy="157.2" r="2.6"/><circle cx="48.6" cy="157.2" r="2.6"/><circle cx="60.8" cy="157.2" r="2.6"/><circle cx="73.0" cy="157.2" r="2.6"/><circle cx="85.3" cy="157.2" r="2.6"/><circle cx="97.5" cy="157.2" r="2.6"/><circle cx="109.7" cy="157.2" r="2.6"/><circle cx="121.9" cy="157.2" r="2.6"/><circle cx="134.2" cy="157.2" r="2.6"/><circle cx="146.4" cy="157.2" r="2.6"/><circle cx="158.6" cy="157.2" r="2.6"/><circle cx="170.8" cy="157.2" r="2.6"/><circle cx="183.0" cy="157.2" r="2.6"/><circle cx="195.3" cy="157.2" r="2.6"/><circle cx="207.5" cy="157.2" r="2.6"/><circle cx="219.7" cy="157.2" r="2.6"/><circle cx="231.9" cy="157.2" r="2.6"/><circle cx="244.1" cy="157.2" r="2.6"/><circle cx="256.4" cy="157.2" r="2.6"/><circle cx="268.6" cy="157.2" r="2.6"/><circle cx="280.8" cy="157.2" r="2.6"/><circle cx="293.0" cy="157.2" r="2.6"/><circle cx="305.3" cy="157.2" r="2.6"/><circle cx="317.5" cy="157.2" r="2.6"/><circle cx="329.7" cy="157.2" r="2.6"/><circle cx="341.9" cy="157.2" r="2.6"/><circle cx="354.1" cy="157.2" r="2.6"/><circle cx="366.4" cy="157.2" r="2.6"/><circle cx="378.6" cy="157.2" r="2.6"/><circle cx="390.8" cy="157.2" r="2.6"/><circle cx="403.0" cy="157.2" r="2.6"/><circle cx="415.3" cy="157.2" r="2.6"/><circle cx="427.5" cy="157.2" r="2.6"/><circle cx="439.7" cy="157.2" r="2.6"/><circle cx="451.9" cy="157.2" r="2.6"/><circle cx="18.0" cy="169.8" r="2.6"/><circle cx="30.3" cy="169.8" r="2.6"/><circle cx="42.5" cy="169.8" r="2.6"/><circle cx="54.7" cy="169.8" r="2.6"/><circle cx="66.9" cy="169.8" r="2.6"/><circle cx="79.2" cy="169.8" r="2.6"/><circle cx="91.4" cy="169.8" r="2.6"/><circle cx="103.6" cy="169.8" r="2.6"/><circle cx="115.8" cy="169.8" r="2.6"/><circle cx="128.0" cy="169.8" r="2.6"/><circle cx="140.3" cy="169.8" r="2.6"/><circle cx="152.5" cy="169.8" r="2.6"/><circle cx="164.7" cy="169.8" r="2.6"/><circle cx="176.9" cy="169.8" r="2.6"/><circle cx="189.1" cy="169.8" r="2.6"/><circle cx="201.4" cy="169.8" r="2.6"/><circle cx="213.6" cy="169.8" r="2.6"/><circle cx="225.8" cy="169.8" r="2.6"/><circle cx="238.0" cy="169.8" r="2.6"/><circle cx="250.3" cy="169.8" r="2.6"/><circle cx="262.5" cy="169.8" r="2.6"/><circle cx="274.7" cy="169.8" r="2.6"/><circle cx="286.9" cy="169.8" r="2.6"/><circle cx="299.1" cy="169.8" r="2.6"/><circle cx="311.4" cy="169.8" r="2.6"/><circle cx="323.6" cy="169.8" r="2.6"/><circle cx="335.8" cy="169.8" r="2.6"/><circle cx="348.0" cy="169.8" r="2.6"/><circle cx="360.3" cy="169.8" r="2.6"/><circle cx="372.5" cy="169.8" r="2.6"/><circle cx="384.7" cy="169.8" r="2.6"/><circle cx="396.9" cy="169.8" r="2.6"/><circle cx="409.1" cy="169.8" r="2.6"/><circle cx="421.4" cy="169.8" r="2.6"/><circle cx="433.6" cy="169.8" r="2.6"/><circle cx="445.8" cy="169.8" r="2.6"/><circle cx="458.0" cy="169.8" r="2.6"/><circle cx="24.2" cy="182.4" r="2.6"/><circle cx="36.4" cy="182.4" r="2.6"/><circle cx="48.6" cy="182.4" r="2.6"/><circle cx="60.8" cy="182.4" r="2.6"/><circle cx="73.0" cy="182.4" r="2.6"/><circle cx="85.3" cy="182.4" r="2.6"/><circle cx="97.5" cy="182.4" r="2.6"/><circle cx="109.7" cy="182.4" r="2.6"/><circle cx="121.9" cy="182.4" r="2.6"/><circle cx="134.2" cy="182.4" r="2.6"/><circle cx="146.4" cy="182.4" r="2.6"/><circle cx="158.6" cy="182.4" r="2.6"/><circle cx="170.8" cy="182.4" r="2.6"/><circle cx="183.0" cy="182.4" r="2.6"/><circle cx="195.3" cy="182.4" r="2.6"/><circle cx="207.5" cy="182.4" r="2.6"/><circle cx="219.7" cy="182.4" r="2.6"/><circle cx="231.9" cy="182.4" r="2.6"/><circle cx="244.1" cy="182.4" r="2.6"/><circle cx="256.4" cy="182.4" r="2.6"/><circle cx="268.6" cy="182.4" r="2.6"/><circle cx="280.8" cy="182.4" r="2.6"/><circle cx="293.0" cy="182.4" r="2.6"/><circle cx="305.3" cy="182.4" r="2.6"/><circle cx="317.5" cy="182.4" r="2.6"/><circle cx="329.7" cy="182.4" r="2.6"/><circle cx="341.9" cy="182.4" r="2.6"/><circle cx="354.1" cy="182.4" r="2.6"/><circle cx="366.4" cy="182.4" r="2.6"/><circle cx="378.6" cy="182.4" r="2.6"/><circle cx="390.8" cy="182.4" r="2.6"/><circle cx="403.0" cy="182.4" r="2.6"/><circle cx="415.3" cy="182.4" r="2.6"/><circle cx="427.5" cy="182.4" r="2.6"/><circle cx="439.7" cy="182.4" r="2.6"/><circle cx="451.9" cy="182.4" r="2.6"/><circle cx="54.7" cy="195.0" r="2.6"/><circle cx="66.9" cy="195.0" r="2.6"/><circle cx="79.2" cy="195.0" r="2.6"/><circle cx="115.8" cy="195.0" r="2.6"/><circle cx="128.0" cy="195.0" r="2.6"/><circle cx="140.3" cy="195.0" r="2.6"/><circle cx="152.5" cy="195.0" r="2.6"/><circle cx="164.7" cy="195.0" r="2.6"/><circle cx="176.9" cy="195.0" r="2.6"/><circle cx="189.1" cy="195.0" r="2.6"/><circle cx="201.4" cy="195.0" r="2.6"/><circle cx="213.6" cy="195.0" r="2.6"/><circle cx="225.8" cy="195.0" r="2.6"/><circle cx="238.0" cy="195.0" r="2.6"/><circle cx="250.3" cy="195.0" r="2.6"/><circle cx="262.5" cy="195.0" r="2.6"/><circle cx="274.7" cy="195.0" r="2.6"/><circle cx="286.9" cy="195.0" r="2.6"/><circle cx="299.1" cy="195.0" r="2.6"/><circle cx="311.4" cy="195.0" r="2.6"/><circle cx="323.6" cy="195.0" r="2.6"/><circle cx="335.8" cy="195.0" r="2.6"/><circle cx="348.0" cy="195.0" r="2.6"/><circle cx="360.3" cy="195.0" r="2.6"/><circle cx="372.5" cy="195.0" r="2.6"/><circle cx="384.7" cy="195.0" r="2.6"/><circle cx="396.9" cy="195.0" r="2.6"/><circle cx="409.1" cy="195.0" r="2.6"/><circle cx="421.4" cy="195.0" r="2.6"/><circle cx="433.6" cy="195.0" r="2.6"/><circle cx="109.7" cy="207.6" r="2.6"/><circle cx="121.9" cy="207.6" r="2.6"/><circle cx="134.2" cy="207.6" r="2.6"/><circle cx="146.4" cy="207.6" r="2.6"/><circle cx="158.6" cy="207.6" r="2.6"/><circle cx="170.8" cy="207.6" r="2.6"/><circle cx="183.0" cy="207.6" r="2.6"/><circle cx="195.3" cy="207.6" r="2.6"/><circle cx="207.5" cy="207.6" r="2.6"/><circle cx="219.7" cy="207.6" r="2.6"/><circle cx="231.9" cy="207.6" r="2.6"/><circle cx="244.1" cy="207.6" r="2.6"/><circle cx="256.4" cy="207.6" r="2.6"/><circle cx="268.6" cy="207.6" r="2.6"/><circle cx="280.8" cy="207.6" r="2.6"/><circle cx="293.0" cy="207.6" r="2.6"/><circle cx="305.3" cy="207.6" r="2.6"/><circle cx="317.5" cy="207.6" r="2.6"/><circle cx="329.7" cy="207.6" r="2.6"/><circle cx="341.9" cy="207.6" r="2.6"/><circle cx="354.1" cy="207.6" r="2.6"/><circle cx="366.4" cy="207.6" r="2.6"/><circle cx="378.6" cy="207.6" r="2.6"/><circle cx="390.8" cy="207.6" r="2.6"/><circle cx="403.0" cy="207.6" r="2.6"/><circle cx="415.3" cy="207.6" r="2.6"/><circle cx="427.5" cy="207.6" r="2.6"/><circle cx="128.0" cy="220.2" r="2.6"/><circle cx="140.3" cy="220.2" r="2.6"/><circle cx="152.5" cy="220.2" r="2.6"/><circle cx="164.7" cy="220.2" r="2.6"/><circle cx="176.9" cy="220.2" r="2.6"/><circle cx="189.1" cy="220.2" r="2.6"/><circle cx="201.4" cy="220.2" r="2.6"/><circle cx="213.6" cy="220.2" r="2.6"/><circle cx="225.8" cy="220.2" r="2.6"/><circle cx="238.0" cy="220.2" r="2.6"/><circle cx="250.3" cy="220.2" r="2.6"/><circle cx="262.5" cy="220.2" r="2.6"/><circle cx="274.7" cy="220.2" r="2.6"/><circle cx="286.9" cy="220.2" r="2.6"/><circle cx="299.1" cy="220.2" r="2.6"/><circle cx="311.4" cy="220.2" r="2.6"/><circle cx="323.6" cy="220.2" r="2.6"/><circle cx="335.8" cy="220.2" r="2.6"/><circle cx="348.0" cy="220.2" r="2.6"/><circle cx="360.3" cy="220.2" r="2.6"/><circle cx="372.5" cy="220.2" r="2.6"/><circle cx="384.7" cy="220.2" r="2.6"/><circle cx="396.9" cy="220.2" r="2.6"/><circle cx="409.1" cy="220.2" r="2.6"/><circle cx="421.4" cy="220.2" r="2.6"/><circle cx="170.8" cy="232.8" r="2.6"/><circle cx="183.0" cy="232.8" r="2.6"/><circle cx="195.3" cy="232.8" r="2.6"/><circle cx="207.5" cy="232.8" r="2.6"/><circle cx="219.7" cy="232.8" r="2.6"/><circle cx="231.9" cy="232.8" r="2.6"/><circle cx="244.1" cy="232.8" r="2.6"/><circle cx="256.4" cy="232.8" r="2.6"/><circle cx="268.6" cy="232.8" r="2.6"/><circle cx="280.8" cy="232.8" r="2.6"/><circle cx="293.0" cy="232.8" r="2.6"/><circle cx="305.3" cy="232.8" r="2.6"/><circle cx="317.5" cy="232.8" r="2.6"/><circle cx="329.7" cy="232.8" r="2.6"/><circle cx="341.9" cy="232.8" r="2.6"/><circle cx="354.1" cy="232.8" r="2.6"/><circle cx="366.4" cy="232.8" r="2.6"/><circle cx="378.6" cy="232.8" r="2.6"/><circle cx="390.8" cy="232.8" r="2.6"/><circle cx="403.0" cy="232.8" r="2.6"/><circle cx="176.9" cy="245.4" r="2.6"/><circle cx="189.1" cy="245.4" r="2.6"/><circle cx="201.4" cy="245.4" r="2.6"/><circle cx="213.6" cy="245.4" r="2.6"/><circle cx="225.8" cy="245.4" r="2.6"/><circle cx="238.0" cy="245.4" r="2.6"/><circle cx="250.3" cy="245.4" r="2.6"/><circle cx="262.5" cy="245.4" r="2.6"/><circle cx="274.7" cy="245.4" r="2.6"/><circle cx="286.9" cy="245.4" r="2.6"/><circle cx="299.1" cy="245.4" r="2.6"/><circle cx="311.4" cy="245.4" r="2.6"/><circle cx="323.6" cy="245.4" r="2.6"/><circle cx="335.8" cy="245.4" r="2.6"/><circle cx="348.0" cy="245.4" r="2.6"/><circle cx="360.3" cy="245.4" r="2.6"/><circle cx="372.5" cy="245.4" r="2.6"/><circle cx="384.7" cy="245.4" r="2.6"/><circle cx="396.9" cy="245.4" r="2.6"/><circle cx="409.1" cy="245.4" r="2.6"/><circle cx="170.8" cy="258.0" r="2.6"/><circle cx="183.0" cy="258.0" r="2.6"/><circle cx="195.3" cy="258.0" r="2.6"/><circle cx="207.5" cy="258.0" r="2.6"/><circle cx="219.7" cy="258.0" r="2.6"/><circle cx="231.9" cy="258.0" r="2.6"/><circle cx="244.1" cy="258.0" r="2.6"/><circle cx="256.4" cy="258.0" r="2.6"/><circle cx="268.6" cy="258.0" r="2.6"/><circle cx="280.8" cy="258.0" r="2.6"/><circle cx="293.0" cy="258.0" r="2.6"/><circle cx="305.3" cy="258.0" r="2.6"/><circle cx="317.5" cy="258.0" r="2.6"/><circle cx="329.7" cy="258.0" r="2.6"/><circle cx="341.9" cy="258.0" r="2.6"/><circle cx="354.1" cy="258.0" r="2.6"/><circle cx="366.4" cy="258.0" r="2.6"/><circle cx="378.6" cy="258.0" r="2.6"/><circle cx="390.8" cy="258.0" r="2.6"/><circle cx="403.0" cy="258.0" r="2.6"/><circle cx="189.1" cy="270.6" r="2.6"/><circle cx="201.4" cy="270.6" r="2.6"/><circle cx="213.6" cy="270.6" r="2.6"/><circle cx="225.8" cy="270.6" r="2.6"/><circle cx="238.0" cy="270.6" r="2.6"/><circle cx="250.3" cy="270.6" r="2.6"/><circle cx="262.5" cy="270.6" r="2.6"/><circle cx="274.7" cy="270.6" r="2.6"/><circle cx="286.9" cy="270.6" r="2.6"/><circle cx="299.1" cy="270.6" r="2.6"/><circle cx="311.4" cy="270.6" r="2.6"/><circle cx="323.6" cy="270.6" r="2.6"/><circle cx="335.8" cy="270.6" r="2.6"/><circle cx="348.0" cy="270.6" r="2.6"/><circle cx="360.3" cy="270.6" r="2.6"/><circle cx="372.5" cy="270.6" r="2.6"/><circle cx="384.7" cy="270.6" r="2.6"/><circle cx="396.9" cy="270.6" r="2.6"/><circle cx="409.1" cy="270.6" r="2.6"/><circle cx="207.5" cy="283.2" r="2.6"/><circle cx="219.7" cy="283.2" r="2.6"/><circle cx="231.9" cy="283.2" r="2.6"/><circle cx="244.1" cy="283.2" r="2.6"/><circle cx="256.4" cy="283.2" r="2.6"/><circle cx="268.6" cy="283.2" r="2.6"/><circle cx="280.8" cy="283.2" r="2.6"/><circle cx="293.0" cy="283.2" r="2.6"/><circle cx="305.3" cy="283.2" r="2.6"/><circle cx="317.5" cy="283.2" r="2.6"/><circle cx="329.7" cy="283.2" r="2.6"/><circle cx="341.9" cy="283.2" r="2.6"/><circle cx="354.1" cy="283.2" r="2.6"/><circle cx="366.4" cy="283.2" r="2.6"/><circle cx="378.6" cy="283.2" r="2.6"/><circle cx="390.8" cy="283.2" r="2.6"/><circle cx="403.0" cy="283.2" r="2.6"/><circle cx="201.4" cy="295.8" r="2.6"/><circle cx="213.6" cy="295.8" r="2.6"/><circle cx="225.8" cy="295.8" r="2.6"/><circle cx="238.0" cy="295.8" r="2.6"/><circle cx="250.3" cy="295.8" r="2.6"/><circle cx="262.5" cy="295.8" r="2.6"/><circle cx="274.7" cy="295.8" r="2.6"/><circle cx="286.9" cy="295.8" r="2.6"/><circle cx="299.1" cy="295.8" r="2.6"/><circle cx="311.4" cy="295.8" r="2.6"/><circle cx="323.6" cy="295.8" r="2.6"/><circle cx="335.8" cy="295.8" r="2.6"/><circle cx="348.0" cy="295.8" r="2.6"/><circle cx="360.3" cy="295.8" r="2.6"/><circle cx="372.5" cy="295.8" r="2.6"/><circle cx="384.7" cy="295.8" r="2.6"/><circle cx="396.9" cy="295.8" r="2.6"/><circle cx="195.3" cy="308.4" r="2.6"/><circle cx="207.5" cy="308.4" r="2.6"/><circle cx="219.7" cy="308.4" r="2.6"/><circle cx="231.9" cy="308.4" r="2.6"/><circle cx="244.1" cy="308.4" r="2.6"/><circle cx="256.4" cy="308.4" r="2.6"/><circle cx="268.6" cy="308.4" r="2.6"/><circle cx="280.8" cy="308.4" r="2.6"/><circle cx="293.0" cy="308.4" r="2.6"/><circle cx="305.3" cy="308.4" r="2.6"/><circle cx="317.5" cy="308.4" r="2.6"/><circle cx="329.7" cy="308.4" r="2.6"/><circle cx="341.9" cy="308.4" r="2.6"/><circle cx="354.1" cy="308.4" r="2.6"/><circle cx="366.4" cy="308.4" r="2.6"/><circle cx="378.6" cy="308.4" r="2.6"/><circle cx="390.8" cy="308.4" r="2.6"/><circle cx="201.4" cy="321.0" r="2.6"/><circle cx="213.6" cy="321.0" r="2.6"/><circle cx="225.8" cy="321.0" r="2.6"/><circle cx="238.0" cy="321.0" r="2.6"/><circle cx="250.3" cy="321.0" r="2.6"/><circle cx="262.5" cy="321.0" r="2.6"/><circle cx="274.7" cy="321.0" r="2.6"/><circle cx="286.9" cy="321.0" r="2.6"/><circle cx="299.1" cy="321.0" r="2.6"/><circle cx="311.4" cy="321.0" r="2.6"/><circle cx="323.6" cy="321.0" r="2.6"/><circle cx="335.8" cy="321.0" r="2.6"/><circle cx="348.0" cy="321.0" r="2.6"/><circle cx="360.3" cy="321.0" r="2.6"/><circle cx="372.5" cy="321.0" r="2.6"/><circle cx="384.7" cy="321.0" r="2.6"/><circle cx="195.3" cy="333.6" r="2.6"/><circle cx="207.5" cy="333.6" r="2.6"/><circle cx="219.7" cy="333.6" r="2.6"/><circle cx="231.9" cy="333.6" r="2.6"/><circle cx="244.1" cy="333.6" r="2.6"/><circle cx="256.4" cy="333.6" r="2.6"/><circle cx="268.6" cy="333.6" r="2.6"/><circle cx="280.8" cy="333.6" r="2.6"/><circle cx="293.0" cy="333.6" r="2.6"/><circle cx="305.3" cy="333.6" r="2.6"/><circle cx="317.5" cy="333.6" r="2.6"/><circle cx="329.7" cy="333.6" r="2.6"/><circle cx="341.9" cy="333.6" r="2.6"/><circle cx="354.1" cy="333.6" r="2.6"/><circle cx="366.4" cy="333.6" r="2.6"/><circle cx="378.6" cy="333.6" r="2.6"/><circle cx="225.8" cy="346.2" r="2.6"/><circle cx="238.0" cy="346.2" r="2.6"/><circle cx="250.3" cy="346.2" r="2.6"/><circle cx="262.5" cy="346.2" r="2.6"/><circle cx="274.7" cy="346.2" r="2.6"/><circle cx="286.9" cy="346.2" r="2.6"/><circle cx="299.1" cy="346.2" r="2.6"/><circle cx="311.4" cy="346.2" r="2.6"/><circle cx="323.6" cy="346.2" r="2.6"/><circle cx="335.8" cy="346.2" r="2.6"/><circle cx="348.0" cy="346.2" r="2.6"/><circle cx="360.3" cy="346.2" r="2.6"/><circle cx="244.1" cy="358.8" r="2.6"/><circle cx="256.4" cy="358.8" r="2.6"/><circle cx="268.6" cy="358.8" r="2.6"/><circle cx="280.8" cy="358.8" r="2.6"/><circle cx="293.0" cy="358.8" r="2.6"/><circle cx="305.3" cy="358.8" r="2.6"/><circle cx="317.5" cy="358.8" r="2.6"/><circle cx="238.0" cy="371.4" r="2.6"/><circle cx="250.3" cy="371.4" r="2.6"/><circle cx="262.5" cy="371.4" r="2.6"/><circle cx="274.7" cy="371.4" r="2.6"/><circle cx="286.9" cy="371.4" r="2.6"/><circle cx="299.1" cy="371.4" r="2.6"/><circle cx="244.1" cy="384.0" r="2.6"/><circle cx="256.4" cy="384.0" r="2.6"/><circle cx="268.6" cy="384.0" r="2.6"/><circle cx="280.8" cy="384.0" r="2.6"/><circle cx="293.0" cy="384.0" r="2.6"/><circle cx="238.0" cy="396.6" r="2.6"/><circle cx="250.3" cy="396.6" r="2.6"/><circle cx="262.5" cy="396.6" r="2.6"/><circle cx="274.7" cy="396.6" r="2.6"/><circle cx="286.9" cy="396.6" r="2.6"/><circle cx="299.1" cy="396.6" r="2.6"/><circle cx="219.7" cy="409.2" r="2.6"/><circle cx="231.9" cy="409.2" r="2.6"/><circle cx="244.1" cy="409.2" r="2.6"/><circle cx="256.4" cy="409.2" r="2.6"/><circle cx="268.6" cy="409.2" r="2.6"/><circle cx="280.8" cy="409.2" r="2.6"/><circle cx="293.0" cy="409.2" r="2.6"/><circle cx="213.6" cy="421.8" r="2.6"/><circle cx="225.8" cy="421.8" r="2.6"/><circle cx="238.0" cy="421.8" r="2.6"/><circle cx="250.3" cy="421.8" r="2.6"/><circle cx="262.5" cy="421.8" r="2.6"/><circle cx="274.7" cy="421.8" r="2.6"/><circle cx="286.9" cy="421.8" r="2.6"/><circle cx="219.7" cy="434.4" r="2.6"/><circle cx="231.9" cy="434.4" r="2.6"/><circle cx="244.1" cy="434.4" r="2.6"/><circle cx="256.4" cy="434.4" r="2.6"/><circle cx="268.6" cy="434.4" r="2.6"/><circle cx="280.8" cy="434.4" r="2.6"/><circle cx="238.0" cy="447.0" r="2.6"/><circle cx="250.3" cy="447.0" r="2.6"/><circle cx="262.5" cy="447.0" r="2.6"/><circle cx="256.4" cy="459.6" r="2.6"/></g>
+<g class="rede"><line x1="168.8" y1="106.8" x2="302.6" y2="87.0"/><line x1="168.8" y1="106.8" x2="123.4" y2="174.7"/><line x1="168.8" y1="106.8" x2="161.0" y2="35.8"/><line x1="168.8" y1="106.8" x2="214.2" y2="256.8"/><line x1="168.8" y1="106.8" x2="305.0" y2="192.0"/><line x1="302.6" y1="87.0" x2="272.7" y2="69.2"/><line x1="302.6" y1="87.0" x2="351.5" y2="100.0"/><line x1="302.6" y1="87.0" x2="305.0" y2="192.0"/><line x1="351.5" y1="100.0" x2="369.0" y2="130.7"/><line x1="369.0" y1="130.7" x2="419.0" y2="114.0"/><line x1="419.0" y1="114.0" x2="457.5" y2="139.2"/><line x1="457.5" y1="139.2" x2="459.8" y2="166.2"/><line x1="459.8" y1="166.2" x2="419.0" y2="225.2"/><line x1="369.0" y1="130.7" x2="305.0" y2="192.0"/><line x1="305.0" y1="192.0" x2="309.6" y2="259.2"/><line x1="419.0" y1="225.2" x2="309.6" y2="259.2"/><line x1="419.0" y1="225.2" x2="355.7" y2="308.6"/><line x1="309.6" y1="259.2" x2="355.7" y2="308.6"/><line x1="355.7" y1="308.6" x2="364.3" y2="344.4"/><line x1="364.3" y1="344.4" x2="324.4" y2="352.2"/><line x1="324.4" y1="352.2" x2="309.6" y2="259.2"/><line x1="324.4" y1="352.2" x2="293.7" y2="374.8"/><line x1="293.7" y1="374.8" x2="302.1" y2="400.8"/><line x1="302.1" y1="400.8" x2="271.2" y2="430.0"/><line x1="271.2" y1="430.0" x2="231.6" y2="315.0"/><line x1="293.7" y1="374.8" x2="231.6" y2="315.0"/><line x1="231.6" y1="315.0" x2="214.2" y2="256.8"/><line x1="214.2" y1="256.8" x2="309.6" y2="259.2"/><line x1="214.2" y1="256.8" x2="123.4" y2="174.7"/><line x1="123.4" y1="174.7" x2="78.0" y2="189.2"/><line x1="161.0" y1="35.8" x2="272.7" y2="69.2"/><line x1="305.0" y1="192.0" x2="419.0" y2="225.2"/><line x1="231.6" y1="315.0" x2="324.4" y2="352.2"/><line x1="355.7" y1="308.6" x2="459.8" y2="166.2"/><line x1="214.2" y1="256.8" x2="305.0" y2="192.0"/></g>
+<g class="nos"><circle cx="168.8" cy="106.8" r="5" style="--d:0.7s"/><circle cx="302.6" cy="87.0" r="5" style="--d:1.4s"/><circle cx="419.0" cy="114.0" r="5" style="--d:2.1s"/><circle cx="457.5" cy="139.2" r="5" style="--d:2.8s"/><circle cx="459.8" cy="166.2" r="5" style="--d:0s"/><circle cx="419.0" cy="225.2" r="5" style="--d:0.7s"/><circle cx="309.6" cy="259.2" r="7" style="--d:1.4s"/><circle cx="355.7" cy="308.6" r="7" style="--d:2.1s"/><circle cx="364.3" cy="344.4" r="5" style="--d:2.8s"/><circle cx="324.4" cy="352.2" r="5" style="--d:0s"/><circle cx="293.7" cy="374.8" r="5" style="--d:0.7s"/><circle cx="271.2" cy="430.0" r="5" style="--d:1.4s"/><circle cx="231.6" cy="315.0" r="5" style="--d:2.1s"/><circle cx="214.2" cy="256.8" r="5" style="--d:2.8s"/><circle cx="123.4" cy="174.7" r="5" style="--d:0s"/><circle cx="78.0" cy="189.2" r="5" style="--d:0.7s"/><circle cx="305.0" cy="192.0" r="5" style="--d:1.4s"/><circle cx="369.0" cy="130.7" r="5" style="--d:2.1s"/><circle cx="351.5" cy="100.0" r="5" style="--d:2.8s"/><circle cx="161.0" cy="35.8" r="5" style="--d:0s"/><circle cx="272.7" cy="69.2" r="5" style="--d:0.7s"/><circle cx="302.1" cy="400.8" r="5" style="--d:1.4s"/></g>
+</svg>
+        <img class="mao" src="../assets/mao-circula.png" alt="" width="394" height="640">
+      </div>
+    </div>
+  </section>
+
+  <div class="container painel-wrap" id="como-funciona">
+    <h2 class="sr-only">Como funciona</h2>
+    <div class="painel">
+      <div class="passo">
+        <span class="icone" aria-hidden="true"><i class="ph ph-books"></i></span>
+        <h3>Escolha a aula</h3>
+        <p>Cada jogo acompanha uma aula do Módulo I.</p>
+      </div>
+      <div class="passo">
+        <span class="icone" aria-hidden="true"><i class="ph ph-device-mobile"></i></span>
+        <h3>Jogue onde estiver</h3>
+        <p>Funciona no celular e no computador, sem instalar nada.</p>
+      </div>
+      <div class="passo">
+        <span class="icone" aria-hidden="true"><i class="ph ph-repeat"></i></span>
+        <h3>Repita à vontade</h3>
+        <p>Treine quantas vezes quiser, até o sinal ficar natural.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="jogos" id="jogos" aria-labelledby="titulo-jogos">
+    <div class="container">
+      <div class="titulo-secao">
+        <div>
+        <h2 id="titulo-jogos">Escolha seu jogo</h2>
+        <p>Cada jogo mostra a aula do curso a que pertence.</p>
+        </div>
+        <img src="../assets/mao-ily.png" alt="Mão fazendo o sinal de eu te amo em Libras" width="568" height="760" loading="lazy">
+      </div>
+
+      <div class="cartoes">
+        <a class="cartao" href="aula-01/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
+          <span class="aula-tag">Aula 01 · Libras é língua</span>
+          <strong>Quiz da Aula 01</strong>
+          <span class="desc">Pode ou não pode? e a história da Libras. 30 perguntas.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="cartao" href="aula-02/alfabeto/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-hand-waving"></i></span>
+          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
+          <strong>Vamos treinar o alfabeto</strong>
+          <span class="desc">4 níveis: fácil, médio, difícil e fluente.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="cartao" href="aula-02/quiz-letras/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
+          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
+          <strong>Quiz do alfabeto manual</strong>
+          <span class="desc">Descubra a letra ou ache a mão certa.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-02/memoria-letras/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
+          <strong>Memória do alfabeto</strong>
+          <span class="desc">Junte a letra com a mão do alfabeto.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-02/quem-sou-eu/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-identification-card"></i></span>
+          <span class="aula-tag">Aula 02 · Alfabeto manual</span>
+          <strong>Quem sou eu?</strong>
+          <span class="desc">Monte o seu nome com o alfabeto manual e repita.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-03/datilologia/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-eye"></i></span>
+          <span class="aula-tag">Aula 03 · Datilologia na prática</span>
+          <strong>Leia a datilologia</strong>
+          <span class="desc">A mão soletra, você descobre a palavra.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-04/palavras/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-text-aa"></i></span>
+          <span class="aula-tag">Aula 04 · Datilologia</span>
+          <strong>Soletrando palavras do dia a dia</strong>
+          <span class="desc">170 palavras com figura e alfabeto manual.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="cartao" href="aula-04/quiz-parametros/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
+          <span class="aula-tag">Aula 04 · Os 5 parâmetros</span>
+          <strong>Quiz dos 5 parâmetros</strong>
+          <span class="desc">8 perguntas sobre os parâmetros da Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-04/memoria-parametros/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 04 · Os 5 parâmetros</span>
+          <strong>Memória dos parâmetros</strong>
+          <span class="desc">Junte cada parâmetro com o seu significado.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-05/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
+          <span class="aula-tag">Aula 05 · Meu nome e meu sinal</span>
+          <strong>Quiz: muito prazer!</strong>
+          <span class="desc">Os 7 sinais de apresentação da aula.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-05/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 05 · Meu nome e meu sinal</span>
+          <strong>Memória das apresentações</strong>
+          <span class="desc">Encontre o par: nome e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-05/roleta/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
+          <span class="aula-tag">Aula 05 · Meu nome e meu sinal</span>
+          <strong>Roleta das apresentações</strong>
+          <span class="desc">Gire, faça o sinal e confira.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-06/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
+          <span class="aula-tag">Aula 06 · Saudações e gentilezas</span>
+          <strong>Quiz das saudações</strong>
+          <span class="desc">Os 15 sinais de saudação da aula.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-06/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 06 · Saudações e gentilezas</span>
+          <strong>Memória das saudações</strong>
+          <span class="desc">Encontre o par: nome e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-06/roleta/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
+          <span class="aula-tag">Aula 06 · Saudações e gentilezas</span>
+          <strong>Roleta das saudações</strong>
+          <span class="desc">Gire, faça o sinal e confira.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-07/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
+          <span class="aula-tag">Aula 07 · Números de 0 a 9</span>
+          <strong>Quiz dos números</strong>
+          <span class="desc">Números e quantidades: 19 sinais.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-07/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 07 · Números de 0 a 9</span>
+          <strong>Memória dos números</strong>
+          <span class="desc">Junte o número com a mão.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-08/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
+          <span class="aula-tag">Aula 08 · Números maiores e ordinais</span>
+          <strong>Quiz dos ordinais</strong>
+          <span class="desc">Do 1º ao 9º em Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-08/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 08 · Números maiores e ordinais</span>
+          <strong>Memória dos ordinais</strong>
+          <span class="desc">Junte o ordinal com a mão.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-09/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-users"></i></span>
+          <span class="aula-tag">Aula 09 · Pronomes</span>
+          <strong>Quiz dos pronomes</strong>
+          <span class="desc">Eu, ele, ela, nós e meu/minha.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-09/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 09 · Pronomes</span>
+          <strong>Memória dos pronomes</strong>
+          <span class="desc">Encontre o par: nome e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-10/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-chat-circle-dots"></i></span>
+          <span class="aula-tag">Aula 10 · Fazendo perguntas</span>
+          <strong>Quiz das perguntas</strong>
+          <span class="desc">O que, quem, onde, quando, como...</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-10/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 10 · Fazendo perguntas</span>
+          <strong>Memória das perguntas</strong>
+          <span class="desc">Encontre o par: nome e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-10/roleta/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
+          <span class="aula-tag">Aula 10 · Fazendo perguntas</span>
+          <strong>Roleta das perguntas</strong>
+          <span class="desc">Gire, faça o sinal e não esqueça o rosto.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-11/quem-sou-eu/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-identification-card"></i></span>
+          <span class="aula-tag">Aula 11 · Revisão 1</span>
+          <strong>Quem sou eu?</strong>
+          <span class="desc">Nome, sobrenome e idade em Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-11/encontre-o-erro/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
+          <span class="aula-tag">Aula 11 · Revisão 1</span>
+          <strong>Encontre o erro</strong>
+          <span class="desc">Um dos sinais está trocado. Ache!</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-12/domino/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
+          <span class="aula-tag">Aula 12 · Família I</span>
+          <strong>Dominó da família</strong>
+          <span class="desc">Encaixe o sinal com a letra em Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-12/minha-familia/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-users-three"></i></span>
+          <span class="aula-tag">Aula 12 · Família I</span>
+          <strong>Minha família em Libras</strong>
+          <span class="desc">Soletre o nome dos seus parentes.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-13/encontre-o-erro/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
+          <span class="aula-tag">Aula 13 · Família II</span>
+          <strong>Encontre o erro</strong>
+          <span class="desc">Laços de família e estado civil.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-13/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 13 · Família II</span>
+          <strong>Memória da família</strong>
+          <span class="desc">Encontre o par: palavra e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-14/sequencia/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
+          <span class="aula-tag">Aula 14 · Dias da semana</span>
+          <strong>Os dias em ordem</strong>
+          <span class="desc">Toque nos sinais de domingo a sábado.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-14/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
+          <span class="aula-tag">Aula 14 · Dias da semana</span>
+          <strong>Quiz dos dias da semana</strong>
+          <span class="desc">Os 7 dias em Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-15/sequencia/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-list-numbers"></i></span>
+          <span class="aula-tag">Aula 15 · Meses e datas</span>
+          <strong>Os meses em ordem</strong>
+          <span class="desc">De janeiro a dezembro.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-15/encontre-o-erro/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
+          <span class="aula-tag">Aula 15 · Meses e datas</span>
+          <strong>Encontre o erro: datas especiais</strong>
+          <span class="desc">Natal, aniversário, férias...</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-16/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-clock"></i></span>
+          <span class="aula-tag">Aula 16 · Que horas são</span>
+          <strong>Qual sinal combina com o relógio?</strong>
+          <span class="desc">Veja o relógio e escolha o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-16/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 16 · Que horas são</span>
+          <strong>Memória do tempo</strong>
+          <span class="desc">Horas, minutos e dias.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-17/encontre-o-erro/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
+          <span class="aula-tag">Aula 17 · Cores</span>
+          <strong>Encontre o erro das cores</strong>
+          <span class="desc">Qual sinal não é daquela cor?</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-17/qual-cor/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-palette"></i></span>
+          <span class="aula-tag">Aula 17 · Cores</span>
+          <strong>Qual é a cor?</strong>
+          <span class="desc">Veja a cor e escolha o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-18/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-smiley"></i></span>
+          <span class="aula-tag">Aula 18 · Sentimentos</span>
+          <strong>Qual sinal combina com a carinha?</strong>
+          <span class="desc">O rosto também fala.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-18/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 18 · Sentimentos</span>
+          <strong>Memória dos sentimentos</strong>
+          <span class="desc">Encontre o par: palavra e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-19/intruso/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-warning-circle"></i></span>
+          <span class="aula-tag">Aula 19 · Revisão 2</span>
+          <strong>O intruso da categoria</strong>
+          <span class="desc">Qual sinal não é do grupo?</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-19/domino/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
+          <span class="aula-tag">Aula 19 · Revisão 2</span>
+          <strong>Dominó da revisão</strong>
+          <span class="desc">Família, dias, meses, cores e sentimentos.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-20/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-bowl-food"></i></span>
+          <span class="aula-tag">Aula 20 · Alimentos</span>
+          <strong>Qual sinal combina com o prato?</strong>
+          <span class="desc">Veja o alimento e escolha o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-20/domino/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
+          <span class="aula-tag">Aula 20 · Alimentos</span>
+          <strong>Dominó dos alimentos</strong>
+          <span class="desc">Encaixe o sinal com a letra em Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-21/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-orange-slice"></i></span>
+          <span class="aula-tag">Aula 21 · Frutas</span>
+          <strong>Qual sinal combina com a fruta?</strong>
+          <span class="desc">Veja a fruta e escolha o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-21/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 21 · Frutas</span>
+          <strong>Memória das frutas</strong>
+          <span class="desc">39 frutas, 8 por partida.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-22/caca-palavras/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-magnifying-glass"></i></span>
+          <span class="aula-tag">Aula 22 · Animais I</span>
+          <strong>Caça-palavras dos animais</strong>
+          <span class="desc">Em português e no alfabeto manual.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="cartao" href="aula-22/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 22 · Animais I</span>
+          <strong>Jogo da memória dos animais</strong>
+          <span class="desc">Encontre o par: palavra soletrada e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="cartao" href="aula-22/roleta/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
+          <span class="aula-tag">Aula 22 · Animais I</span>
+          <strong>Roleta dos animais</strong>
+          <span class="desc">10 animais novos: gire e faça o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="cartao" href="aula-22/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-paw-print"></i></span>
+          <span class="aula-tag">Aula 22 · Animais I</span>
+          <strong>Quiz dos animais</strong>
+          <span class="desc">40 perguntas com os animais da apostila.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="cartao" href="aula-23/domino/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
+          <span class="aula-tag">Aula 23 · Animais II</span>
+          <strong>Dominó dos bichos</strong>
+          <span class="desc">Encaixe o bicho com a letra em Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-23/encontre-o-erro/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
+          <span class="aula-tag">Aula 23 · Animais II</span>
+          <strong>Encontre o erro dos bichos</strong>
+          <span class="desc">Qual sinal não é daquele bicho?</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-24/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="aula-tag">Aula 24 · Transportes</span>
+          <strong>Qual sinal combina com o transporte?</strong>
+          <span class="desc">Veja o transporte e escolha o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-24/roleta/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
+          <span class="aula-tag">Aula 24 · Transportes</span>
+          <strong>Roleta dos transportes</strong>
+          <span class="desc">Gire e faça o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-25/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-pencil-simple"></i></span>
+          <span class="aula-tag">Aula 25 · Material escolar</span>
+          <strong>Qual sinal combina com o material?</strong>
+          <span class="desc">Veja o material e escolha o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-25/domino/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-puzzle-piece"></i></span>
+          <span class="aula-tag">Aula 25 · Material escolar</span>
+          <strong>Dominó da escola</strong>
+          <span class="desc">Encaixe o material com a letra em Libras.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-26/encontre-o-erro/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-detective"></i></span>
+          <span class="aula-tag">Aula 26 · Profissões I</span>
+          <strong>Encontre o erro das profissões</strong>
+          <span class="desc">Qual sinal não é daquela profissão?</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-26/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-question"></i></span>
+          <span class="aula-tag">Aula 26 · Profissões I</span>
+          <strong>Quiz das profissões</strong>
+          <span class="desc">As 21 profissões da aula.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-27/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-image"></i></span>
+          <span class="aula-tag">Aula 27 · Profissões II</span>
+          <strong>Qual profissão combina com a figura?</strong>
+          <span class="desc">Veja a figura e escolha o sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-27/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 27 · Profissões II</span>
+          <strong>Memória das profissões</strong>
+          <span class="desc">44 profissões, 8 por partida.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-28/qual-combina/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-device-mobile"></i></span>
+          <span class="aula-tag">Aula 28 · Comunicação</span>
+          <strong>Qual sinal combina com a figura?</strong>
+          <span class="desc">Celular, TV, carta, cinema...</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-28/memoria/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-cards"></i></span>
+          <span class="aula-tag">Aula 28 · Comunicação</span>
+          <strong>Memória da comunicação</strong>
+          <span class="desc">Encontre o par: palavra e sinal.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-29/quiz/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-hands-clapping"></i></span>
+          <span class="aula-tag">Aula 29 · Comunidade surda</span>
+          <strong>Quiz da comunidade surda</strong>
+          <span class="desc">Direitos, cultura e respeito.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-30/roleta-dos-temas/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-arrows-clockwise"></i></span>
+          <span class="aula-tag">Aula 30 · Revisão final</span>
+          <strong>Roleta dos temas</strong>
+          <span class="desc">Sorteie um tema e faça 5 sinais.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao" href="aula-30/intruso/">
+          <span class="icone" aria-hidden="true"><i class="ph ph-warning-circle"></i></span>
+          <span class="aula-tag">Aula 30 · Revisão final</span>
+          <strong>O intruso da categoria</strong>
+          <span class="desc">Todos os temas do curso.</span>
+          <span class="jogar">Jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>        <a class="cartao cartao-mais" href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">
+          <span class="icone" aria-hidden="true"><i class="ph ph-sparkle"></i></span>
+          <strong>Mais jogos em breve</strong>
+          <span class="desc">Novos jogos entram conforme as aulas do curso.</span>
+          <span class="jogar">Acompanhe no Instagram <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="numeros escuro" aria-label="Os jogos em números">
+    <svg class="digital" viewBox="0 0 400 520" aria-hidden="true" focusable="false">
+      <ellipse cx="200" cy="270" rx="10.0" ry="14.0" stroke-dasharray="45 32" transform="rotate(153 200 270)"/>
+      <ellipse cx="200" cy="270" rx="21.5" ry="28.5" stroke-dasharray="59 18 21 61" transform="rotate(160 200 270)"/>
+      <ellipse cx="200" cy="270" rx="33.0" ry="43.0" stroke-dasharray="137 104" transform="rotate(124 200 270)"/>
+      <ellipse cx="200" cy="270" rx="44.5" ry="57.5" stroke-dasharray="235 88" transform="rotate(137 200 270)"/>
+      <ellipse cx="200" cy="270" rx="56.0" ry="72.0" stroke-dasharray="178 18 100 109" transform="rotate(128 200 270)"/>
+      <ellipse cx="200" cy="270" rx="67.5" ry="86.5" stroke-dasharray="312 175" transform="rotate(274 200 270)"/>
+      <ellipse cx="200" cy="270" rx="79.0" ry="101.0" stroke-dasharray="390 180" transform="rotate(295 200 270)"/>
+      <ellipse cx="200" cy="270" rx="90.5" ry="115.5" stroke-dasharray="296 18 180 158" transform="rotate(141 200 270)"/>
+      <ellipse cx="200" cy="270" rx="102.0" ry="130.0" stroke-dasharray="423 311" transform="rotate(130 200 270)"/>
+      <ellipse cx="200" cy="270" rx="113.5" ry="144.5" stroke-dasharray="449 367" transform="rotate(112 200 270)"/>
+      <ellipse cx="200" cy="270" rx="125.0" ry="159.0" stroke-dasharray="416 18 259 206" transform="rotate(291 200 270)"/>
+      <ellipse cx="200" cy="270" rx="136.5" ry="173.5" stroke-dasharray="575 406" transform="rotate(59 200 270)"/>
+      <ellipse cx="200" cy="270" rx="148.0" ry="188.0" stroke-dasharray="763 300" transform="rotate(55 200 270)"/>
+      <ellipse cx="200" cy="270" rx="159.5" ry="202.5" stroke-dasharray="536 18 339 252" transform="rotate(231 200 270)"/>
+      <ellipse cx="200" cy="270" rx="171.0" ry="217.0" stroke-dasharray="826 402" transform="rotate(321 200 270)"/>
+      <ellipse cx="200" cy="270" rx="182.5" ry="231.5" stroke-dasharray="1087 222" transform="rotate(141 200 270)"/>
+      <ellipse cx="200" cy="270" rx="194.0" ry="246.0" stroke-dasharray="497 18 313 564" transform="rotate(308 200 270)"/>
+    </svg>
+    <div class="container">
+      <div class="numero"><strong>65</strong><span>jogos para praticar</span></div>
+      <div class="numero"><strong>30</strong><span>aulas com jogos</span></div>
+      <div class="numero"><strong>170</strong><span>palavras para soletrar</span></div>
+      <div class="numero"><strong>27</strong><span>letras do alfabeto manual</span></div>
+    </div>
+  </section>
+
+  <section class="instituto" id="instituto" aria-labelledby="titulo-instituto">
+    <div class="container">
+      <div class="bloco-mao">
+        <img src="../assets/mao-juntas.png" alt="" width="568" height="760" loading="lazy">
+      </div>
+      <div>
+        <h2 id="titulo-instituto">Aprender Libras é construir junto.</h2>
+        <p>O Instituto Circula Libras forma pessoas em Libras desde 2012 e leva acessibilidade para a cultura, a educação e os eventos.</p>
+        <p>Os jogos fazem parte do nosso curso de Libras. Cada partida é um passo a mais para se comunicar com a comunidade surda.</p>
+        <a class="link-seta" href="../">Conheça o Instituto Circula Libras <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape escuro">
+  <div class="container">
+    <img src="../assets/logo-circula-escuro.png" alt="Instituto Circula Libras" width="480" height="246" loading="lazy">
+    <p>Um projeto do <span translate="no">Instituto Circula Libras</span>.</p>
+    <p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">@circulalibras</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
