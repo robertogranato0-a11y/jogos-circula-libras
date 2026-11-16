@@ -196,6 +196,35 @@ section{position:relative}
 .forma p{margin:0 0 10px;font-size:16px;color:#CFC8D8;line-height:1.5}
 .forma a{font-weight:700;text-decoration:none}
 .forma a:hover{text-decoration:underline}
+/* PIX */
+.pix{grid-column:1/-1;position:relative;z-index:1;display:grid;grid-template-columns:240px 1fr;gap:clamp(24px,4vw,48px);align-items:center;padding:clamp(20px,3vw,36px);border-radius:var(--r-cartao);background:var(--branco);color:var(--grafite);scroll-margin-top:110px;border-top:6px solid var(--amarelo)}
+.pix img{width:240px;height:auto;border-radius:12px;border:1px solid var(--linha)}
+.pix h3{margin:0 0 8px;color:var(--roxo);font-size:clamp(26px,3vw,34px)}
+.apoie .pix p{margin:0 0 16px;font-size:17px;line-height:1.55;color:#3C3A40;max-width:60ch}
+.apoie .pix .favorecido{margin:14px 0 0;font-size:14px;color:var(--cinza-texto)}
+.pix .chave{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:12px;font-size:16px}
+.pix .chave b{color:var(--roxo)}
+.pix .chave code{font-family:inherit;font-weight:700;font-size:18px;letter-spacing:.02em}
+.copiar{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px;border-radius:var(--r-botao);border:2px solid var(--roxo);background:var(--branco);color:var(--roxo);font:700 15px var(--fonte);cursor:pointer;transition:background .2s,color .2s}
+.copiar:hover{background:var(--roxo);color:var(--branco)}
+.copiar.ok{background:var(--amarelo);border-color:var(--amarelo);color:var(--grafite)}
+.pix .acoes-pix{display:flex;flex-wrap:wrap;gap:10px}
+/* fotos que se revezam ao passar o mouse */
+.troca img{position:absolute;inset:0;opacity:0;transition:opacity .6s ease,filter .6s ease,transform .8s ease}
+.troca img.atual{opacity:1}
+.troca .pontos{position:absolute;right:12px;bottom:12px;display:flex;gap:6px;z-index:2}
+.troca .pontos span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.troca .pontos span.atual{background:var(--amarelo)}
+/* botão de assistir */
+.assistir{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:7px 14px;border-radius:999px;background:var(--roxo);color:var(--branco);font-size:14px;font-weight:700;text-decoration:none}
+.assistir:hover{background:var(--lilas);color:var(--branco)}
+/* turmas da PUC */
+.turmas{margin-top:96px}
+.turmas h3{margin-bottom:6px}
+.turmas > p{margin:0 0 20px;max-width:60ch;color:#3C3A40}
+.galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.galeria figure{margin:0;border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+.galeria img{width:100%;height:100%;object-fit:cover}
 
 /* transparência */
 .transp .grade{display:grid;grid-template-columns:1fr 1fr;gap:56px}
@@ -230,12 +259,16 @@ section{position:relative}
   .lista-frentes{grid-template-columns:1fr 1fr}
   .frente,.frente:nth-child(1),.frente:nth-child(2){grid-column:span 1;min-height:320px}
   .lista-proj{grid-template-columns:1fr 1fr}
+  .galeria{grid-template-columns:1fr 1fr}
   .numeros ul{grid-template-columns:1fr 1fr}
   .rodape .grade{grid-template-columns:1fr 1fr}
   .cartas{height:340px}
 }
 @media (max-width:620px){
   .lista-frentes,.lista-proj,.missao{grid-template-columns:1fr}
+  .pix{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .pix .chave,.pix .acoes-pix{justify-content:center}
+  .pix img{width:220px}
   .marco{grid-template-columns:1fr;gap:4px}
   .linha-tempo{padding-left:56px}
   .linha-tempo::before,.linha-tempo .progresso{left:19px}
@@ -271,7 +304,7 @@ section{position:relative}
       <a href="#projetos">Projetos</a>
       <a href="jogos/">Jogos de Libras</a>
       <a href="#transparencia">Transparência</a>
-      <a class="botao amarelo" href="#apoie">Apoie</a>
+      <a class="botao amarelo" href="#pix">Apoie</a>
     </nav>
   </div>
 </header>
@@ -291,7 +324,7 @@ section{position:relative}
       <p>Somos uma organização sem fins lucrativos que leva a Língua Brasileira de Sinais para a cultura, a escola e a comunidade, para que pessoas surdas e com deficiência tenham acesso pleno à arte e à informação.</p>
       <div class="acoes">
         <a class="botao amarelo" href="#o-que-fazemos">Conheça nosso trabalho <i class="ph ph-arrow-down" aria-hidden="true"></i></a>
-        <a class="botao contorno" href="#apoie">Apoie a causa</a>
+        <a class="botao contorno" href="#pix">Apoie a causa</a>
       </div>
     </div>
   </section>
@@ -414,6 +447,16 @@ section{position:relative}
         <div class="marco"><span class="ano">2025</span><div><h3>Instituto formalizado e Ponto de Cultura</h3><p>Nasce o Instituto Circula Libras com CNPJ próprio, certificado como Ponto de Cultura. Fazemos a acessibilidade do 45º CONUBES e do Fórum Culturas Periféricas em Debate.</p></div></div>
         <div class="marco"><span class="ano">2026</span><div><h3>Circo, escola e jogos</h3><p>O espetáculo CIRCO(LA)LIBRAS circula pelas escolas, o Libras Kids chega à rede de Esmeraldas e lançamos o Curso de Libras com 65 jogos online.</p></div></div>
       </div>
+      <div class="turmas">
+        <h3 class="surge">Onde tudo começou: as turmas da PUC Minas</h3>
+        <p class="surge">Antes do Instituto, eram turmas de estudantes aprendendo Libras nos campi São Gabriel e Coração Eucarístico.</p>
+        <div class="galeria">
+          <figure class="pb surge"><img src="assets/fotos/puc-turma-sinais.jpg" alt="Turma de Libras da PUC Minas fazendo sinais em frente ao quadro" loading="lazy" width="1400" height="1051"></figure>
+          <figure class="pb surge"><img src="assets/fotos/puc-turma-lanche-sinais.jpg" alt="Turma de Libras da PUC Minas fazendo sinais ao redor de uma mesa com lanche" loading="lazy" width="1400" height="1050"></figure>
+          <figure class="pb surge"><img src="assets/fotos/puc-turma-avaliacao.jpg" alt="Turma grande de Libras da PUC Minas reunida em sala de aula" loading="lazy" width="1400" height="1051"></figure>
+          <figure class="pb surge"><img src="assets/fotos/puc-turma-selfie.jpg" alt="Selfie de Roberto Granato com uma turma de Libras da PUC Minas" loading="lazy" width="1400" height="1050"></figure>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -427,6 +470,35 @@ section{position:relative}
         <a class="botao principal" href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Veja mais no Instagram <i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
       </div>
       <div class="lista-proj">
+        <article class="proj pb surge">
+          <div class="moldura troca">
+            <img class="atual" src="assets/fotos/circolalibras-escola-maos.jpg" alt="Crianças de uniforme escolar sentadas na quadra com os braços para cima, ao lado de dois palhaços e de Roberto Granato fazendo sinais em Libras" loading="lazy" width="1600" height="1066">
+            <img src="assets/fotos/circolalibras-escola-turma.jpg" alt="Crianças de uma escola sentadas na quadra com os palhaços do CIRCO(LA)LIBRAS e Roberto Granato" loading="lazy" width="1600" height="1066">
+            <span class="tag">Circo e Libras</span>
+          </div>
+          <h3>CIRCO(LA)LIBRAS</h3><p>Espetáculo de circo bilíngue, em Libras e português, criado em 2016. Em 2026 voltou a circular por escolas e espaços culturais, e cada apresentação termina com uma minioficina de Libras para crianças e famílias.</p>
+        </article>
+        <article class="proj pb surge">
+          <div class="moldura troca">
+            <img class="atual" src="assets/fotos/puc-turma-amarela.jpg" alt="Turma de Libras da PUC Minas posando em sala de aula e fazendo sinais com as mãos" loading="lazy" width="1400" height="1050">
+            <img src="assets/fotos/puc-turma-sinais.jpg" alt="Turma de Libras da PUC Minas fazendo sinais em frente ao quadro" loading="lazy" width="1400" height="1051">
+            <img src="assets/fotos/puc-turma-lanche-sinais.jpg" alt="Turma de Libras da PUC Minas fazendo sinais ao redor de uma mesa com lanche" loading="lazy" width="1400" height="1050">
+            <img src="assets/fotos/puc-turma-lanche.jpg" alt="Turma de Libras da PUC Minas sorrindo atrás de uma mesa de lanche" loading="lazy" width="1400" height="1050">
+            <img src="assets/fotos/puc-turma-avaliacao.jpg" alt="Turma grande de Libras da PUC Minas reunida em sala de aula" loading="lazy" width="1400" height="1051">
+            <img src="assets/fotos/puc-turma-selfie.jpg" alt="Selfie de Roberto Granato com uma turma de Libras da PUC Minas" loading="lazy" width="1400" height="1050">
+            <span class="tag">Universidade</span>
+          </div>
+          <h3>Cursos na PUC Minas</h3><p>Turmas de Libras para estudantes de várias áreas nos campi São Gabriel e Coração Eucarístico.</p>
+        </article>
+        <article class="proj pb surge">
+          <div class="moldura troca">
+            <img class="atual" src="assets/fotos/silencio-revelado-cena.jpg" alt="Cena do curta Silêncio Revelado: um homem compra pão no balcão de uma lanchonete" loading="lazy" width="828" height="474">
+            <img src="assets/fotos/silencio-revelado-cartaz.jpg" alt="Cartaz do curta Silêncio Revelado, com uma mão aberta sobre fundo escuro" loading="lazy" width="900" height="1273" style="object-position:50% 30%">
+            <span class="tag">Curta-metragem</span>
+          </div>
+          <h3>Silêncio Revelado</h3><p>Curta-metragem silencioso sobre a rotina de um homem diante dos obstáculos da comunicação, um convite a pensar a inclusão. Realizado com a Lei Paulo Gustavo.</p>
+          <a class="assistir" href="https://www.youtube.com/watch?v=cqAtb6buVOU" target="_blank" rel="noopener">Clique para assistir <i class="ph ph-youtube-logo" aria-hidden="true"></i></a>
+        </article>
         <article class="proj pb surge">
           <div class="moldura"><img src="assets/fotos/interprete-mineirinho.jpg" alt="Intérprete do Circula Libras de costas, no palco de um ginásio cheio" loading="lazy"><span class="tag">Acessibilidade</span></div>
           <h3>45º CONUBES</h3><p>Interpretação em Libras no Congresso Nacional dos Estudantes Secundaristas.</p>
@@ -467,17 +539,30 @@ section{position:relative}
       <div class="formas">
         <div class="forma surge">
           <i class="ph ph-heart" aria-hidden="true"></i>
-          <div><h3>Doe</h3><p>Contribua com qualquer valor, uma vez ou todo mês.</p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Fale com a gente para doar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+          <div><h3>Doe</h3><p>Contribua com qualquer valor, uma vez ou todo mês.</p><a href="#pix">Doe pelo PIX <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
         </div>
         <div class="forma surge">
           <i class="ph ph-buildings" aria-hidden="true"></i>
-          <div><h3>Patrocine pela lei de incentivo</h3><p>Empresas contribuintes de ICMS em Minas podem apoiar nossos projetos pela LEIC-MG, sem custo extra.</p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Quero patrocinar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+          <div><h3>Patrocine pela lei de incentivo</h3><p>Empresas contribuintes de ICMS em Minas podem apoiar nossos projetos pela LEIC-MG, sem custo extra.</p><a href="mailto:circulalibras@gmail.com?subject=Patroc%C3%ADnio%20pela%20LEIC-MG">Quero patrocinar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
         </div>
         <div class="forma surge">
           <i class="ph ph-handshake" aria-hidden="true"></i>
-          <div><h3>Seja parceiro</h3><p>Escolas, espaços culturais e eventos: leve Libras e acessibilidade para o seu público.</p><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener">Vamos conversar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+          <div><h3>Seja parceiro</h3><p>Escolas, espaços culturais e eventos: leve Libras e acessibilidade para o seu público.</p><a href="mailto:circulalibras@gmail.com?subject=Parceria%20com%20o%20Circula%20Libras">Vamos conversar <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
         </div>
       </div>
+        <div class="pix" id="pix">
+          <img src="assets/fotos/pix-qrcode.jpg" alt="QR Code do PIX para o Instituto Circula Libras" width="700" height="990" loading="lazy">
+          <div>
+            <h3>Doe pelo PIX</h3>
+            <p>Quer contribuir? Abra o aplicativo do seu banco e escaneie o QR Code, ou use os botões abaixo para copiar a chave PIX ou o código copia e cola. Qualquer valor ajuda a Libras a circular.</p>
+            <div class="chave"><b>Chave PIX (CNPJ)</b><code>63.312.613/0001-84</code></div>
+            <div class="acoes-pix">
+              <button class="copiar" type="button" data-copiar="63312613000184"><i class="ph ph-copy" aria-hidden="true"></i> <span>Copiar chave PIX</span></button>
+              <button class="copiar" type="button" data-copiar="00020126360014br.gov.bcb.pix0114633126130001845204000053039865802BR5924INSTITUTO CIRCULA LIBRAS6015Ribeirao das Ne6211050726f7879630418E4"><i class="ph ph-qr-code" aria-hidden="true"></i> <span>Copiar código copia e cola</span></button>
+            </div>
+            <p class="favorecido">Favorecido: Instituto Circula Libras.</p>
+          </div>
+        </div>
     </div>
   </section>
 
@@ -520,13 +605,16 @@ section{position:relative}
           <li><a href="#o-que-fazemos">O que fazemos</a></li>
           <li><a href="#trajetoria">Trajetória</a></li>
           <li><a href="jogos/">Jogos de Libras</a></li>
-          <li><a href="#apoie">Apoie</a></li>
+          <li><a href="#pix">Apoie</a></li>
         </ul>
       </div>
       <div>
         <h3>Contato</h3>
         <p>Av. Deputado Dênio Moreira de Carvalho, 144<br>Vereda, Ribeirão das Neves, MG<br>CEP 33822-500</p>
-        <ul><li><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i> @circulalibras</a></li></ul>
+        <ul>
+          <li><a href="mailto:circulalibras@gmail.com"><i class="ph ph-envelope-simple" aria-hidden="true"></i> circulalibras@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/circulalibras/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i> @circulalibras</a></li>
+        </ul>
       </div>
     </div>
     <div class="base"><span>© 2026 Instituto Circula Libras · CNPJ 63.312.613/0001-84</span><span>Site com acessibilidade em Libras (VLibras)</span></div>
@@ -606,6 +694,34 @@ section{position:relative}
     });
   }, {threshold:.6});
   document.querySelectorAll('[data-conta]').forEach(function(el){ obsNum.observe(el); });
+
+  // fotos que se revezam: no mouse, ao passar; no celular, quando o card aparece na tela
+  document.querySelectorAll('.troca').forEach(function(m){
+    var fotos = m.querySelectorAll('img'), i = 0, timer = null;
+    if(fotos.length < 2) return;
+    var pontos = document.createElement('span'); pontos.className = 'pontos'; pontos.setAttribute('aria-hidden','true');
+    fotos.forEach(function(f, k){ var p = document.createElement('span'); if(k===0) p.className = 'atual'; pontos.appendChild(p); if(k>0) f.loading = 'eager'; });
+    m.appendChild(pontos);
+    function mostra(n){ fotos[i].classList.remove('atual'); pontos.children[i].classList.remove('atual'); i = n % fotos.length; fotos[i].classList.add('atual'); pontos.children[i].classList.add('atual'); }
+    function inicia(){ if(timer || reduz) return; mostra(i+1); timer = setInterval(function(){ mostra(i+1); }, 1400); }
+    function para(){ clearInterval(timer); timer = null; }
+    var card = m.closest('.proj') || m;
+    card.addEventListener('mouseenter', inicia);
+    card.addEventListener('mouseleave', para);
+    if(toque){ new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? inicia() : para(); }); }, {threshold:.6}).observe(m); }
+  });
+
+  // botões de copiar do PIX
+  document.querySelectorAll('[data-copiar]').forEach(function(b){
+    var rotulo = b.querySelector('span'), original = rotulo.textContent;
+    b.addEventListener('click', function(){
+      var texto = b.dataset.copiar;
+      function feito(){ b.classList.add('ok'); rotulo.textContent = 'Copiado!'; setTimeout(function(){ b.classList.remove('ok'); rotulo.textContent = original; }, 2500); }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(texto).then(feito, function(){ reserva(texto); feito(); }); }
+      else { reserva(texto); feito(); }
+    });
+  });
+  function reserva(t){ var a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly',''); a.style.position='fixed'; a.style.opacity='0'; document.body.appendChild(a); a.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(a); }
 })();
 </script>
 </body>
