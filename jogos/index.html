@@ -769,5 +769,37 @@ a:hover { color: var(--lilas); }
   </div>
 </footer>
 
+<!-- Filtro por aula (19/11/2026): circulalibras.online/jogos/?aula=01 mostra só os jogos da Aula 01.
+     Usado pelo botão "Abrir atividade" da plataforma do curso. Sem ?aula, a página fica igual. -->
+<style>
+  .faixa-aula { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--creme); border: 2px solid var(--amarelo); border-radius: 16px; padding: 16px 20px; margin: 0 0 24px; }
+  .faixa-aula strong { color: var(--roxo); font-size: 1.15rem; }
+  .faixa-aula a { font-weight: 700; }
+  #jogos .cartoes > [hidden] { display: none !important; }
+</style>
+<script>
+(function () {
+  var p = new URLSearchParams(location.search).get("aula");
+  if (!p || !/^\d{1,2}$/.test(p)) return;
+  var n = ("0" + parseInt(p, 10)).slice(-2);
+  var grade = document.querySelector("#jogos .cartoes");
+  if (!grade) return;
+  var cartoes = Array.prototype.slice.call(grade.children);
+  var daAula = cartoes.filter(function (c) { return (c.getAttribute("href") || "").indexOf("aula-" + n + "/") === 0; });
+  if (!daAula.length) return; // aula sem jogo: mostra tudo, como antes
+  cartoes.forEach(function (c) { if (daAula.indexOf(c) < 0) c.hidden = true; });
+  var tag = daAula[0].querySelector(".aula-tag");
+  var titulo = document.getElementById("titulo-jogos");
+  if (titulo) titulo.textContent = "Atividades da Aula " + n;
+  var faixa = document.createElement("div");
+  faixa.className = "faixa-aula";
+  faixa.innerHTML = "<strong></strong><a href=\"./#jogos\">Ver os jogos de todas as aulas</a>";
+  faixa.querySelector("strong").textContent = (tag ? tag.textContent : "Aula " + n) + " · " + daAula.length + (daAula.length > 1 ? " atividades" : " atividade");
+  grade.parentNode.insertBefore(faixa, grade);
+  document.title = "Atividades da Aula " + n + " | " + document.title;
+  window.addEventListener("load", function () { document.getElementById("jogos").scrollIntoView(); });
+})();
+</script>
 </body>
 </html>
