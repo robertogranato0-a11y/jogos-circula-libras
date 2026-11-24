@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O projeto Circula Xadrez Acessível | Instituto Circula Libras</title>
+<meta name="description" content="Conheça o Circula Xadrez Acessível, projeto de esporte e inclusão do Instituto Circula Libras, e a nossa ideia sobre o xadrez como esporte que já nasce acessível.">
+<link rel="icon" href="../assets/mao-circula.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,600;0,700;1,400&family=Cabin+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="xadrez.css">
+<link rel="stylesheet" href="../assets/acessibilidade.css">
+<style>
+.capa{background:var(--grafite);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
+.capa .container{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.capa h1{color:#fff;margin-bottom:16px} .capa h1 em{font-style:normal;color:var(--amarelo)}
+.capa p{color:#E6E0EC;font-size:20px;max-width:46ch}
+.capa .sobretitulo{color:var(--amarelo)}
+.capa .diagrama{margin:0 auto;max-width:340px} .capa .diagrama figcaption{color:#CFC8D8}
+.artigo{padding:56px 0}
+.artigo .texto{width:min(100% - 32px,720px);margin-inline:auto}
+.artigo p{margin:0 0 1.15em}
+.artigo h2{margin-top:1.6em;color:var(--roxo)}
+.artigo .abre::first-letter{font-family:var(--display);font-size:3.4em;float:left;line-height:.85;padding:6px 10px 0 0;color:var(--roxo)}
+.destaque-frase{font-family:var(--display);font-size:clamp(26px,3.6vw,34px);line-height:1.2;color:var(--roxo);border-left:6px solid var(--amarelo);padding:6px 0 6px 20px;margin:32px 0}
+.assinatura{margin-top:36px;padding-top:20px;border-top:2px solid var(--linha);font-style:italic}
+.assinatura b{font-style:normal;color:var(--roxo)}
+.referencias{margin-top:40px;font-size:15px;color:var(--cinza-texto)}
+.referencias h2{font-size:22px;color:var(--grafite)}
+.referencias p{margin:0 0 .8em;padding-left:1.5em;text-indent:-1.5em}
+.contato{background:var(--creme);padding:56px 0}
+.contato .container{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start}
+.contato .canais{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.contato .canais a{display:inline-flex;align-items:center;gap:10px;font-weight:700;text-decoration:none}
+.contato .canais i{font-size:22px}
+form.proposta{background:#fff;border-radius:var(--r);padding:24px;box-shadow:0 8px 24px rgba(102,45,145,.12);display:grid;gap:14px}
+form.proposta .duas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form.proposta label{display:grid;gap:6px;font-weight:700;font-size:16px}
+form.proposta label small{font-weight:600;color:var(--cinza-texto);font-size:13px}
+form.proposta input,form.proposta textarea,form.proposta select{font:400 17px var(--fonte);padding:12px 14px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--grafite);width:100%}
+form.proposta input:focus,form.proposta textarea:focus,form.proposta select:focus{border-color:var(--roxo);outline:none;box-shadow:0 0 0 3px rgba(135,82,181,.25)}
+form.proposta textarea{min-height:150px;resize:vertical}
+.aviso-form{padding:12px 14px;border-radius:12px;font-weight:600;display:none}
+.aviso-form.ok{display:block;background:#E8F6EC;color:#1E6B34}
+.aviso-form.erro{display:block;background:#FDECEC;color:#A12626}
+@media (max-width:860px){ .capa .container,.contato .container{grid-template-columns:1fr} form.proposta .duas{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo-x">
+  <div class="container">
+    <a class="marca" href="../"><img src="../assets/logo-branca-amarela.png" alt="Instituto Circula Libras, voltar ao site" width="1079" height="554"></a>
+    <nav aria-label="Xadrez">
+      <a href="./">Circula Xadrez Acessível</a>
+      <a href="projeto.html" aria-current="page">O projeto</a>
+      <a href="jogar.html">Jogar xadrez</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="capa" aria-labelledby="t-capa">
+    <div class="container">
+      <div>
+        <p class="sobretitulo">Circula Xadrez Acessível</p>
+        <h1 id="t-capa">Um tabuleiro onde <em>cabe todo mundo.</em></h1>
+        <p>O projeto de esporte e inclusão do Instituto Circula Libras, e a nossa ideia sobre ele.</p>
+      </div>
+      <figure class="diagrama" data-fen="6rk/5Npp/8/8/8/8/8/6K1" data-destaque="f7 h8" data-descricao="O cavalo branco em f7 dá xeque-mate no rei preto em h8, cercado pelas próprias peças: o mate de Philidor.">
+        <figcaption><b>Mate de Philidor.</b> O rei preto fica preso pelas próprias peças.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <article class="artigo" aria-labelledby="t-artigo">
+    <div class="texto">
+      <h2 id="t-artigo" style="margin-top:0">Sessenta e quatro casas e nenhuma porta trancada</h2>
+
+      <p class="abre">Pense num tabuleiro de xadrez em cima de uma mesa de escola. Sessenta e quatro casas, trinta e duas peças, duas pessoas sentadas uma de frente para a outra. Agora repare numa coisa: nenhuma das duas precisa ouvir para jogar. Uma delas pode ser surda, a outra pode ser ouvinte, e a partida acontece do mesmo jeito. O cavalo anda em L para quem escuta e para quem não escuta. O bispo corre na diagonal em qualquer língua.</p>
+
+      <p>Agora mude a cena. Uma das pessoas não enxerga. Ela passa os dedos pelo tabuleiro, sente a forma de cada peça, encontra o rei, conta as casas até a torre. Quando move, diz o lance em voz alta. E a partida, de novo, acontece.</p>
+
+      <p>Eu fico olhando para isso e me pergunto: o que faz um jogo ser para todo mundo? Porque a gente se acostumou a pensar que inclusão é sempre um puxadinho, uma rampa feita depois que a casa ficou pronta. E aí vem o xadrez, um jogo com mais de mil anos, e mostra que algumas casas já nascem com a porta larga.</p>
+
+      <h2>Um músico, um livro e uma frase sobre os peões</h2>
+
+      <p>Quero apresentar alguém. François-André Danican Philidor foi um músico francês do século XVIII, compositor de óperas, que também era o maior enxadrista do seu tempo. Em 1749 ele publicou um livro chamado <i>L'analyse des échecs</i>, "A análise do xadrez", e deixou ali uma frase que até hoje os professores repetem: os peões são a alma do xadrez.</p>
+
+      <p>Eu gosto dessa frase porque ela vira o jogo de cabeça para baixo. O peão é a peça mais simples, a que anda uma casinha de cada vez, a que todo mundo acha que pode sacrificar. E Philidor diz que é dela que depende a partida inteira. Quem trabalha com educação popular entende na hora o recado: quem parece pequeno é quem segura a estrutura.</p>
+
+      <p>O nome de Philidor ficou preso a uma jogada famosa, que ilustra o começo deste texto. No mate de Philidor, o rei adversário está no canto, cercado pelas próprias peças: a torre de um lado, os peões do outro. Ele não tem para onde fugir, e um único cavalo basta para encerrar o jogo. O rei não foi derrotado pela força do outro. Foi derrotado pelo próprio isolamento.</p>
+
+      <p class="destaque-frase">O rei que se cerca só dos seus fica sem saída.</p>
+
+      <p>Eu não conheço imagem melhor para falar de exclusão. Uma escola, uma empresa, uma cidade que só se cerca de gente igual parece protegida, até o dia em que precisa se mexer e descobre que não tem espaço.</p>
+
+      <h2>O xadrez já fala a língua da acessibilidade</h2>
+
+      <p>A história do xadrez para pessoas com deficiência é antiga e organizada. Em 1949, em Copenhague, enxadristas surdos criaram o Comitê Internacional de Xadrez Silencioso, que em 2012 passou a se chamar Comitê Internacional de Xadrez dos Surdos e até hoje organiza campeonatos mundiais com o reconhecimento da FIDE, a Federação Internacional de Xadrez. Dois anos depois, em 1951, o inglês Reginald Bonham organizou o primeiro torneio internacional por correspondência para jogadores cegos. Dali nasceu a Associação Internacional de Xadrez em Braille, a IBCA, que hoje reúne dezenas de países, é filiada à FIDE e realiza a Olimpíada de Xadrez para cegos.</p>
+
+      <p>Repare no que isso significa. Não foi preciso inventar outro esporte. O tabuleiro ganhou casas em relevo, as peças ganharam um jeito de se prender e de se reconhecer pelo toque, os lances passaram a ser falados em voz alta. O jogo continuou o mesmo. As regras continuaram as mesmas. A pessoa cega e a pessoa que enxerga disputam a mesma partida, sentadas à mesma mesa.</p>
+
+      <p>E tem mais um detalhe que pouca gente sabe. Em 1999, o Comitê Olímpico Internacional reconheceu a FIDE como organização esportiva mundial. Ou seja: xadrez é esporte, com federação, ranking, campeonato e preparação. Não é só passatempo de praça, embora a praça também seja um ótimo lugar para ele.</p>
+
+      <p class="destaque-frase">O xadrez não precisa ser adaptado para incluir. Ele só precisa que alguém abra a porta.</p>
+
+      <h2>O que o tabuleiro faz com a cabeça e com o corpo</h2>
+
+      <p>Aqui eu preciso ser honesto, porque muita coisa se fala sobre xadrez e nem tudo tem prova. Tem gente que vende o xadrez como se ele deixasse qualquer criança gênio em matemática. Não é bem assim.</p>
+
+      <p>Dois pesquisadores, Giovanni Sala e Fernand Gobet, que estudam como a gente aprende e se a habilidade de uma área passa para outra, juntaram em 2016 vinte e quatro pesquisas feitas com mais de cinco mil crianças e jovens. O resultado foi animador: quem teve aulas de xadrez na escola mostrou, em média, um ganho moderado em matemática e um ganho menor em leitura, e o efeito era maior quando as aulas duravam mais tempo. Mas os próprios autores fizeram um alerta importante: nenhuma das pesquisas tinha o desenho ideal, com grupos sorteados e comparação justa. Então o recado é este: o xadrez parece ajudar, mas não é mágica.</p>
+
+      <p>Do outro lado da vida, entre os idosos, tem uma pesquisa que eu acho bonita. Joe Verghese e sua equipe acompanharam, por anos, quase quinhentas pessoas com mais de setenta e cinco anos nos Estados Unidos e publicaram os resultados em 2003. Quem lia, tocava um instrumento, dançava ou jogava jogos de tabuleiro tinha menos risco de desenvolver demência. A pesquisa mostra uma associação, não uma receita, e os autores pedem mais estudos. Mas ela diz uma coisa que a gente já sente: a cabeça gosta de ser chamada para brincar.</p>
+
+      <p>E o corpo? Aqui eu falo do que vejo, não de estatística. Uma partida pede que a pessoa fique sentada, respire, espere a vez, aguente o próprio impulso de mexer a peça antes de pensar. Pede que olhe para quem está na frente. Pede que aceite perder, e perder faz parte. Isso é paciência, é respeito, é convivência. Eu chamo isso de saúde também.</p>
+
+      <h2>Quatro mates para pensar a vida</h2>
+
+      <p>Já que estamos aqui, vamos olhar alguns xeques-mates famosos. Cada um conta uma história, e eu não resisto a tirar uma lição de cada.</p>
+
+      <figure class="diagrama" data-fen="4k2Q/R7/8/8/8/8/8/6K1" data-destaque="h8 a7 e8" data-descricao="A torre branca em a7 fecha a sétima fileira e a dama em h8 dá xeque-mate no rei preto em e8.">
+        <figcaption><b>Mate de dama e torre, o mate da escada.</b> Uma peça fecha a fileira, a outra dá o xeque.</figcaption>
+      </figure>
+
+      <p>O primeiro é o mate de dama e torre, que os professores chamam de mate da escada. As duas peças vão empurrando o rei adversário para a borda, uma fileira de cada vez, como quem sobe degraus: enquanto uma fecha o caminho, a outra avança. Nenhuma delas resolve sozinha. É o jogo da dupla, do revezamento, do trabalho em equipe. Em projeto social a gente aprende rápido que ninguém sobe a escada sozinho.</p>
+
+      <figure class="diagrama" data-fen="7k/4N3/6K1/4B3/8/8/8/8" data-destaque="e5 e7 h8" data-descricao="Rei branco em g6, bispo em e5 e cavalo em e7. O bispo dá xeque-mate no rei preto em h8.">
+        <figcaption><b>Mate de bispo e cavalo.</b> Duas peças muito diferentes, um só objetivo.</figcaption>
+      </figure>
+
+      <p>O segundo é o mate de bispo e cavalo, um dos mais difíceis de aprender. O bispo só anda na diagonal e nunca sai da cor da sua casa. O cavalo pula em L e muda de cor a cada salto. São peças que pensam de jeitos completamente diferentes. E, com o rei ajudando, elas conseguem levar o rei adversário até o canto certo e encerrar a partida. Eu vejo nesse mate uma sala de aula de verdade: gente diferente, com tempos diferentes, chegando junto no mesmo lugar.</p>
+
+      <figure class="diagrama" data-fen="4R1k1/5ppp/8/8/8/8/8/6K1" data-destaque="e8 g8" data-descricao="A torre branca em e8 dá xeque-mate no rei preto em g8, que está preso atrás dos próprios peões.">
+        <figcaption><b>Mate do corredor.</b> Os peões que protegiam o rei viram a sua prisão.</figcaption>
+      </figure>
+
+      <p>O terceiro é o mate do corredor. O rei fica na última fileira, protegido pelos seus peões, e se sente seguro. Só que ele nunca abriu uma janelinha, nunca deixou uma casa livre para respirar. Aí uma torre entra pela fileira de trás e acabou. É parente do mate de Philidor: de novo, o que parecia proteção vira prisão. Toda instituição que fecha as portas para não se incomodar corre esse risco.</p>
+
+      <p>E o quarto você já conhece: o mate de Philidor, lá do começo, em que um cavalo sozinho vence um rei cercado pelos seus. Talvez seja o meu preferido justamente porque ele inverte a lógica do poder. A peça que chega pulando, por um caminho que ninguém esperava, é a que decide o jogo.</p>
+
+      <h2>"Mas xadrez não é coisa de gênio?"</h2>
+
+      <p>Alguém sempre diz isso. Que xadrez é jogo de gente muito inteligente, de elite, de quem teve tempo e dinheiro para estudar. Eu entendo de onde vem essa ideia, porque durante muito tempo o tabuleiro foi mostrado assim, em filme e em propaganda. Mas as regras cabem numa tarde. Um tabuleiro custa menos que um lanche. E não existe ninguém que nasceu sabendo: todo grande mestre um dia confundiu o bispo com o cavalo.</p>
+
+      <p>O que falta, quase sempre, não é capacidade. É convite. É alguém que coloque o tabuleiro na mesa, explique em Libras, descreva em voz alta, espere com calma, jogue junto.</p>
+
+      <h2>Onde entra o Circula Xadrez Acessível</h2>
+
+      <p>Foi por isso que nasceu o Circula Xadrez Acessível. Ele é construído pelo Instituto Circula Libras, que é Ponto de Cultura e atua também na área do esporte e da inclusão. Desde 2024, a gente leva o xadrez como modalidade esportiva para perto de quem costuma ficar de fora: pessoas surdas, pessoas cegas e com baixa visão, crianças, jovens e adultos que nunca foram chamados para o tabuleiro.</p>
+
+      <p>A gente acredita no xadrez enquanto esporte e enquanto ferramenta de inclusão. Acredita que ele já traz, na sua essência, a acessibilidade que tantos lugares ainda estão tentando construir. E está aqui para potencializar essa força: com explicação em Libras, com descrição das peças e dos lances, com tabuleiro que se pode tocar, com paciência, e agora também com um xadrez acessível aqui no nosso site, para quem quiser jogar com narração dos lances, confirmação antes de mexer e controle pelo teclado ou pela voz.</p>
+
+      <p>Lembra do rei preso no canto, cercado só pelos seus? O nosso trabalho é o contrário disso. É abrir casa, abrir fileira, abrir caminho. É fazer o tabuleiro circular, do jeito que a Libras circula.</p>
+
+      <p>A próxima partida pode ser na sua escola, na sua instituição, na sua comunidade. Vamos jogar?</p>
+
+      <p class="assinatura">Texto de <b>Roberto Granato</b>, fundador e presidente do Instituto Circula Libras.</p>
+
+      <section class="referencias" aria-labelledby="t-ref">
+        <h2 id="t-ref">Referências</h2>
+        <p>CHESSBASE. <i>Silent chess and snow leopards (part one)</i>. 2012. Disponível em: https://en.chessbase.com/post/silent-che-and-snow-leopards-part-one-. Acesso em: 24 nov. 2026.</p>
+        <p>FIDE. <i>Certificate of recognition of FIDE by IOC</i>. FIDE Museum. Disponível em: https://museum.fide.com/exhibits/certificate-of-recognition-of-fide-by-ioc. Acesso em: 24 nov. 2026.</p>
+        <p>INTERNATIONAL BRAILLE CHESS ASSOCIATION. <i>Welcome to the official IBCA website</i>. Disponível em: https://ibca-info.org/. Acesso em: 24 nov. 2026.</p>
+        <p>PHILIDOR, François-André Danican. <i>L'analyse des échecs</i>. Londres, 1749.</p>
+        <p>SALA, Giovanni; GOBET, Fernand. Do the benefits of chess instruction transfer to academic and cognitive skills? A meta-analysis. <i>Educational Research Review</i>, v. 18, p. 46-57, 2016. DOI: 10.1016/j.edurev.2016.02.002.</p>
+        <p>VERGHESE, Joe <i>et al</i>. Leisure activities and the risk of dementia in the elderly. <i>The New England Journal of Medicine</i>, v. 348, n. 25, p. 2508-2516, 2003.</p>
+      </section>
+    </div>
+  </article>
+
+  <section class="contato" id="contato" aria-labelledby="t-contato">
+    <div class="container">
+      <div>
+        <p class="sobretitulo">Leve o projeto</p>
+        <h2 id="t-contato">Quer o Circula Xadrez Acessível na sua escola, instituição ou comunidade?</h2>
+        <p>Conte para a gente como é o seu espaço e quem participaria. Vamos conversar sobre a viabilidade e a realização do projeto com você.</p>
+        <p>Se preferir, fale com a gente direto:</p>
+        <ul class="canais">
+          <li><a href="mailto:contato@circulalibras.com?subject=Circula%20Xadrez%20Acess%C3%ADvel"><i class="ph ph-envelope-simple" aria-hidden="true"></i> contato@circulalibras.com</a></li>
+          <li><a href="https://ig.me/m/circulalibras" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i> Mensagem no Instagram (@circulalibras)</a></li>
+        </ul>
+      </div>
+      <form class="proposta" id="form-proposta" action="https://formsubmit.co/contato@circulalibras.com" method="POST" novalidate>
+        <!-- envio pelo FormSubmit (formsubmit.co): a proposta chega por e-mail ao Instituto -->
+        <input type="hidden" name="_subject" value="Circula Xadrez Acessível - nova proposta pelo site">
+        <input type="hidden" name="_cc" value="circulalibras@gmail.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://circulalibras.online/xadrez/obrigado.html">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="duas">
+          <label>Nome<input name="nome" autocomplete="name" required></label>
+          <label>E-mail<input name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <div class="duas">
+          <label>Telefone ou WhatsApp<input name="telefone" type="tel" autocomplete="tel" inputmode="tel"></label>
+          <label>Instituição<small>Escola, ONG, associação, grupo…</small><input name="instituicao" autocomplete="organization"></label>
+        </div>
+        <div class="duas">
+          <label>Município e estado<input name="cidade" placeholder="Ex.: Contagem, MG" autocomplete="address-level2"></label>
+          <label>Bairro ou região<input name="bairro"></label>
+        </div>
+        <label>Sua proposta
+          <small>Conte quem participaria (idades, pessoas surdas, cegas, com outras deficiências), quantas pessoas, onde aconteceria e o que vocês imaginam.</small>
+          <textarea name="mensagem" required></textarea>
+        </label>
+        <div class="aviso-form" id="aviso-form" role="status" aria-live="polite"></div>
+        <button class="botao principal" type="submit"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> Enviar proposta</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape-x">
+  <div class="container"><span>© 2026 Instituto Circula Libras · Circula Xadrez Acessível</span><a href="../">Voltar ao site do Instituto</a></div>
+</footer>
+
+<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try{new window.VLibras.Widget('https://vlibras.gov.br/app');}catch(e){}</script>
+<script src="diagrama.js"></script>
+<script src="contato.js"></script>
+<script src="../assets/acessibilidade.js"></script>
+</body>
+</html>

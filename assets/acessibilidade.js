@@ -6,6 +6,8 @@
   var CHAVE = 'cla-acessibilidade-v1';
   var raiz = document.documentElement;
   var falaOk = 'speechSynthesis' in window;
+  // pasta dos arquivos do painel (funciona na página inicial e nas subpastas, como /xadrez/)
+  var BASE = ((document.currentScript && document.currentScript.src) || 'assets/acessibilidade.js').replace(/acessibilidade.js[^/]*$/, '');
 
   var PADRAO = {perfis:[], tam:0, lh:0, ls:0, ws:0, fonte:false, esquerda:false, contraste:'', cor:'', dalt:'',
     links:false, titulos:false, cursor:false, guia:false, mascara:false, pausa:false, semImg:false, teclado:false,
@@ -57,7 +59,7 @@
       '<button type="button" class="cla-botao" id="cla-botao" aria-expanded="false" aria-controls="cla-rapido" aria-label="Opções de acessibilidade">'+SIMBOLO+'</button>'+
     '</div>'+
     '<section class="cla-painel" id="cla-painel" role="dialog" aria-modal="false" aria-labelledby="cla-titulo" tabindex="-1">'+
-      '<div class="cla-topo"><img src="assets/mao-branca.png" alt=""><h2 id="cla-titulo">Acessibilidade</h2><button type="button" data-acao="fechar">Fechar</button></div>'+
+      '<div class="cla-topo"><img src="'+BASE+'mao-branca.png" alt=""><h2 id="cla-titulo">Acessibilidade</h2><button type="button" data-acao="fechar">Fechar</button></div>'+
       '<div class="cla-barra"><button type="button" data-acao="restaurar"><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i> Restaurar tudo</button><button type="button" data-rapido="libras"><i class="ph ph-hand-waving" aria-hidden="true"></i> Traduzir em Libras</button></div>'+
       '<div class="cla-corpo">'+
         '<div class="cla-secao"><h3><i class="ph ph-user-focus" aria-hidden="true"></i>Perfis de acessibilidade</h3><div class="cla-grade">'+perfisHtml+'</div>'+

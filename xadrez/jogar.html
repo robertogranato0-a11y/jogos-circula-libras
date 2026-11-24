@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jogar xadrez acessível | Circula Xadrez Acessível</title>
+<meta name="description" content="Xadrez acessível no navegador: jogue com outra pessoa ou contra o computador, com narração dos lances, confirmação, leitura do tabuleiro e controle pelo teclado ou pela voz.">
+<link rel="icon" href="../assets/mao-circula.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Cabin+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="xadrez.css">
+<link rel="stylesheet" href="../assets/acessibilidade.css">
+<style>
+body{background:#F7F3FB}
+.mesa{padding:28px 0 40px}
+.mesa .container{display:grid;grid-template-columns:minmax(0,600px) minmax(300px,1fr);gap:28px;align-items:start}
+.mesa h1{font-size:clamp(30px,4vw,44px);margin:0 0 6px}
+.status{font-size:19px;font-weight:700;color:var(--roxo);min-height:1.6em;margin:0 0 12px}
+/* tabuleiro */
+.tabuleiro-moldura{position:relative}
+.tabuleiro{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);aspect-ratio:1;border:8px solid var(--grafite);border-radius:8px;overflow:hidden;box-shadow:0 14px 40px rgba(28,26,31,.2);touch-action:manipulation}
+.casa-j{position:relative;border:0;padding:0;margin:0;display:grid;place-items:center;font-family:var(--pecas);font-size:clamp(28px,8.2vw,54px);line-height:1;cursor:pointer;background:var(--casa-clara);color:inherit}
+.casa-j.escura{background:var(--casa-escura)}
+.casa-j:focus-visible{outline:none;box-shadow:inset 0 0 0 5px var(--amarelo),inset 0 0 0 8px var(--grafite);z-index:2}
+.casa-j.ultimo{background-image:linear-gradient(rgba(255,204,51,.55),rgba(255,204,51,.55))}
+.casa-j.selecionada{background-image:linear-gradient(rgba(255,204,51,.85),rgba(255,204,51,.85))}
+.casa-j.alvo::after{content:"";position:absolute;width:28%;height:28%;border-radius:50%;background:rgba(28,26,31,.45)}
+.casa-j.alvo.tem-peca::after{width:88%;height:88%;background:transparent;box-shadow:inset 0 0 0 5px rgba(28,26,31,.5)}
+.casa-j.xeque{background-image:radial-gradient(circle,rgba(220,38,38,.9) 0,rgba(220,38,38,.35) 60%,transparent 75%)}
+.casa-j .rot{position:absolute;font:700 11px var(--fonte);color:rgba(28,26,31,.6);pointer-events:none}
+.casa-j.escura .rot{color:rgba(255,255,255,.8)}
+.casa-j .rot.col{right:3px;bottom:1px} .casa-j .rot.lin{left:3px;top:1px}
+.mostrar-coord-grandes .casa-j .rot{font-size:15px}
+.contraste .casa-j{background:#fff} .contraste .casa-j.escura{background:#6b6b6b}
+.contraste .peca.b{color:#fff;text-shadow:0 0 3px #000,0 0 3px #000,0 0 3px #000}
+.contraste .peca.p{color:#000;text-shadow:0 0 3px #fff,0 0 3px #fff}
+.pecas-grandes .casa-j{font-size:clamp(32px,9.5vw,62px)}
+/* confirmação e promoção */
+.caixa-confirma{display:none;margin-top:14px;padding:16px;border-radius:16px;background:var(--grafite);color:#fff}
+.caixa-confirma.aberta{display:block}
+.caixa-confirma p{margin:0 0 12px;font-size:19px;font-weight:700}
+.caixa-confirma .acoes{display:flex;gap:10px;flex-wrap:wrap}
+.caixa-confirma .promo{display:flex;gap:10px;flex-wrap:wrap}
+.caixa-confirma .promo button{font-family:var(--pecas),var(--fonte);font-size:20px}
+/* painel lateral */
+.lado{display:grid;gap:16px}
+.cartao-j{background:#fff;border-radius:18px;padding:18px;box-shadow:0 6px 20px rgba(102,45,145,.1)}
+.cartao-j h2{font-family:var(--fonte);font-size:18px;margin:0 0 12px;display:flex;align-items:center;gap:8px;color:var(--roxo)}
+.linha-botoes{display:flex;flex-wrap:wrap;gap:8px}
+.bt{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 14px;border-radius:12px;border:2px solid var(--roxo);background:#fff;color:var(--roxo);font:700 15px var(--fonte);cursor:pointer}
+.bt:hover{background:var(--roxo);color:#fff}
+.bt.cheio{background:var(--roxo);color:#fff} .bt.cheio:hover{background:var(--lilas)}
+.bt.amarelo{background:var(--amarelo);border-color:var(--amarelo);color:var(--grafite)}
+.bt:disabled{opacity:.45;cursor:not-allowed}
+.chave{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-top:1px solid var(--linha);cursor:pointer}
+.chave:first-of-type{border-top:0}
+.chave input{width:22px;height:22px;margin-top:2px;accent-color:var(--roxo);flex:none}
+.chave b{display:block;font-size:16px} .chave small{display:block;font-size:13.5px;color:var(--cinza-texto);line-height:1.4}
+.campo-lance{display:flex;gap:8px}
+.campo-lance input{flex:1;min-width:0;font:400 17px var(--fonte);padding:10px 12px;border:2px solid var(--linha);border-radius:12px}
+.campo-lance input:focus{border-color:var(--roxo);outline:none}
+.dica{font-size:13.5px;color:var(--cinza-texto);margin:8px 0 0;line-height:1.45}
+.lista-lances{display:grid;grid-template-columns:auto 1fr 1fr;gap:4px 10px;max-height:220px;overflow:auto;font-size:16px;margin:0;padding:0;list-style:none}
+.lista-lances .n{color:var(--cinza-texto)}
+.config{display:grid;gap:12px}
+.config fieldset{border:0;padding:0;margin:0}
+.config legend{font-weight:700;margin-bottom:6px}
+.opcoes{display:flex;flex-wrap:wrap;gap:8px}
+.opcoes label{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:12px;border:2px solid var(--linha);cursor:pointer;font-weight:600}
+.opcoes label:has(input:checked){border-color:var(--roxo);background:#F3ECFA}
+.opcoes input{accent-color:var(--roxo)}
+.niveis label small{font-weight:600;color:var(--cinza-texto)}
+.libras-breve{display:flex;gap:12px;align-items:center;background:var(--creme);border-radius:14px;padding:12px 14px;font-size:15px}
+.libras-breve i{font-size:28px;color:var(--roxo)}
+.so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:900px){ .mesa .container{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<a class="pular" href="#tabuleiro">Pular para o tabuleiro</a>
+<header class="topo-x">
+  <div class="container">
+    <a class="marca" href="../"><img src="../assets/logo-branca-amarela.png" alt="Instituto Circula Libras, voltar ao site" width="1079" height="554"></a>
+    <nav aria-label="Xadrez">
+      <a href="./">Circula Xadrez Acessível</a>
+      <a href="projeto.html">O projeto</a>
+      <a href="jogar.html" aria-current="page">Jogar xadrez</a>
+    </nav>
+  </div>
+</header>
+
+<main class="mesa" id="conteudo">
+  <div class="container">
+    <section aria-labelledby="t-jogo">
+      <h1 id="t-jogo">Jogar xadrez acessível</h1>
+      <p class="status" id="status" role="status" aria-live="polite">Carregando…</p>
+      <div class="tabuleiro-moldura" id="moldura">
+        <div class="tabuleiro" id="tabuleiro" role="grid" aria-label="Tabuleiro de xadrez. Use as setas para andar pelas casas e Enter para escolher."></div>
+      </div>
+      <div class="caixa-confirma" id="confirma" role="dialog" aria-modal="false" aria-labelledby="confirma-texto">
+        <p id="confirma-texto"></p>
+        <div class="acoes" id="confirma-acoes">
+          <button type="button" class="bt amarelo" id="bt-confirmar"><i class="ph ph-check" aria-hidden="true"></i> Confirmar lance</button>
+          <button type="button" class="bt" id="bt-cancelar" style="background:transparent;color:#fff;border-color:#fff"><i class="ph ph-x" aria-hidden="true"></i> Cancelar</button>
+        </div>
+        <div class="promo" id="promo" hidden></div>
+      </div>
+      <div class="linha-botoes" style="margin-top:14px">
+        <button type="button" class="bt cheio" id="bt-nova"><i class="ph ph-arrow-clockwise" aria-hidden="true"></i> Nova partida</button>
+        <button type="button" class="bt" id="bt-desfazer"><i class="ph ph-arrow-u-up-left" aria-hidden="true"></i> Desfazer</button>
+        <button type="button" class="bt" id="bt-virar"><i class="ph ph-arrows-down-up" aria-hidden="true"></i> Virar tabuleiro</button>
+        <button type="button" class="bt" id="bt-ler"><i class="ph ph-speaker-high" aria-hidden="true"></i> Ler tabuleiro</button>
+        <button type="button" class="bt" id="bt-ultimo"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i> Último lance</button>
+      </div>
+    </section>
+
+    <aside class="lado" aria-label="Opções do jogo">
+      <section class="cartao-j" id="cartao-config" aria-labelledby="t-config">
+        <h2 id="t-config"><i class="ph ph-sliders-horizontal" aria-hidden="true"></i>Partida</h2>
+        <form class="config" id="form-config">
+          <fieldset><legend>Como você quer jogar?</legend>
+            <div class="opcoes">
+              <label><input type="radio" name="modo" value="maquina" checked> Contra o computador</label>
+              <label><input type="radio" name="modo" value="dois"> Duas pessoas, mesmo aparelho</label>
+            </div>
+          </fieldset>
+          <fieldset id="grupo-nivel"><legend>Nível do computador</legend>
+            <div class="opcoes niveis">
+              <label><input type="radio" name="nivel" value="1"> 1 <small>Iniciante</small></label>
+              <label><input type="radio" name="nivel" value="2" checked> 2 <small>Aprendiz</small></label>
+              <label><input type="radio" name="nivel" value="3"> 3 <small>Intermediário</small></label>
+              <label><input type="radio" name="nivel" value="4"> 4 <small>Avançado</small></label>
+              <label><input type="radio" name="nivel" value="5"> 5 <small>Desafio</small></label>
+            </div>
+          </fieldset>
+          <fieldset id="grupo-cor"><legend>Suas peças</legend>
+            <div class="opcoes">
+              <label><input type="radio" name="cor" value="w" checked> Brancas</label>
+              <label><input type="radio" name="cor" value="b"> Pretas</label>
+              <label><input type="radio" name="cor" value="s"> Sortear</label>
+            </div>
+          </fieldset>
+          <button type="submit" class="bt cheio"><i class="ph ph-play" aria-hidden="true"></i> Começar</button>
+        </form>
+      </section>
+
+      <section class="cartao-j" aria-labelledby="t-acess">
+        <h2 id="t-acess"><i class="ph ph-person-arms-spread" aria-hidden="true"></i>Acessibilidade do jogo</h2>
+        <label class="chave"><input type="checkbox" id="op-narrar"><span><b>Narrar os lances</b><small>Toda vez que uma peça se mexer, a voz diz qual peça foi, de onde para onde, e avisa xeque e capturas.</small></span></label>
+        <label class="chave"><input type="checkbox" id="op-confirmar"><span><b>Confirmar antes de jogar</b><small>Depois de escolher o lance, ele é lido e só vale quando você confirma.</small></span></label>
+        <label class="chave"><input type="checkbox" id="op-casa"><span><b>Falar a casa ao navegar</b><small>Ao andar pelo tabuleiro com as setas, a voz diz a casa e a peça que está nela.</small></span></label>
+        <label class="chave"><input type="checkbox" id="op-grandes"><span><b>Peças e coordenadas maiores</b><small>Para quem tem baixa visão.</small></span></label>
+        <label class="chave"><input type="checkbox" id="op-contraste"><span><b>Tabuleiro em alto contraste</b><small>Casas branco e cinza, peças com contorno forte.</small></span></label>
+      </section>
+
+      <section class="cartao-j" aria-labelledby="t-falar">
+        <h2 id="t-falar"><i class="ph ph-keyboard" aria-hidden="true"></i>Escrever ou falar o lance</h2>
+        <form class="campo-lance" id="form-lance">
+          <label class="so-leitor" for="entrada-lance">Digite o lance</label>
+          <input id="entrada-lance" autocomplete="off" placeholder="Ex.: cavalo f3, e2 e4, Cf3">
+          <button type="submit" class="bt cheio" aria-label="Jogar o lance digitado"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+          <button type="button" class="bt" id="bt-voz" aria-label="Falar o lance com o microfone"><i class="ph ph-microphone" aria-hidden="true"></i></button>
+        </form>
+        <p class="dica">Escreva ou fale do jeito que preferir: "cavalo f3", "peão e quatro", "e2 e4", "roque pequeno". Lances falados sempre pedem confirmação.</p>
+      </section>
+
+      <section class="cartao-j" aria-labelledby="t-lances">
+        <h2 id="t-lances"><i class="ph ph-list-numbers" aria-hidden="true"></i>Lances da partida</h2>
+        <ol class="lista-lances" id="lista-lances" aria-label="Lista de lances"></ol>
+        <p class="dica">Letras das peças: R rei, D dama, T torre, B bispo, C cavalo. Peão não tem letra.</p>
+      </section>
+
+      <div class="libras-breve"><i class="ph ph-hand-waving" aria-hidden="true"></i><span>Em breve: vídeo em Libras explicando o xadrez e as funções deste jogo.</span></div>
+    </aside>
+  </div>
+</main>
+
+<footer class="rodape-x">
+  <div class="container"><span>© 2026 Instituto Circula Libras · Circula Xadrez Acessível · Regras do jogo pela biblioteca chess.js (licença BSD-2).</span><a href="../">Voltar ao site do Instituto</a></div>
+</footer>
+
+<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try{new window.VLibras.Widget('https://vlibras.gov.br/app');}catch(e){}</script>
+<script type="module" src="jogo.js"></script>
+<script src="../assets/acessibilidade.js"></script>
+</body>
+</html>

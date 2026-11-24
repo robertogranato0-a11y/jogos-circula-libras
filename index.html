@@ -68,7 +68,8 @@ section{position:relative}
 .topo.solido .marca .cor{opacity:1}
 .topo.solido .marca .branca{opacity:0}
 .menu{display:flex;align-items:center;gap:6px}
-.menu a{color:var(--branco);text-decoration:none;font-weight:600;font-size:16px;padding:10px 12px;border-radius:8px;position:relative}
+.menu a{color:var(--branco);text-decoration:none;font-weight:600;font-size:16px;padding:10px 10px;border-radius:8px;position:relative;white-space:nowrap}
+@media (max-width:1180px) and (min-width:981px){ .menu a{font-size:15px;padding:10px 7px} .menu{gap:2px} .marca{width:128px} }
 .menu a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:3px;background:var(--amarelo);border-radius:2px;transform:scaleX(0);transition:transform .25s;transform-origin:left}
 .menu a:hover::after,.menu a[aria-current]::after{transform:scaleX(1)}
 .topo.solido .menu a{color:var(--grafite)}
@@ -159,6 +160,25 @@ section{position:relative}
 .carta.c3{left:16%;top:230px;transform:rotate(-3deg)}
 .jogos .grade:hover .c1{transform:rotate(-12deg) translate(-10px,-8px)}
 .jogos .grade:hover .c2{transform:rotate(9deg) translate(10px,-6px)}
+
+/* circula xadrez acessível */
+.xadrez-home{background:var(--creme)}
+.xadrez-cartao{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;text-decoration:none;color:inherit;border-radius:28px;padding:clamp(24px,4vw,48px);background:#fff;box-shadow:var(--sombra);border:3px solid transparent;transition:border-color .25s,transform .25s}
+.xadrez-cartao:hover{border-color:var(--roxo);transform:translateY(-4px);color:inherit}
+.xadrez-cartao h2 em{font-style:normal;color:var(--roxo)}
+.xadrez-cartao p{margin:0 0 22px;color:#3C3A40;max-width:52ch}
+.xadrez-cartao .botao{pointer-events:none}
+.diagrama{margin:0;max-width:380px;justify-self:center;width:100%}
+.diagrama .tab{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);aspect-ratio:1;border:6px solid var(--grafite);border-radius:6px;overflow:hidden;box-shadow:0 10px 30px rgba(28,26,31,.18)}
+.diagrama .casa{position:relative;display:grid;place-items:center;font-family:"Segoe UI Symbol","Noto Sans Symbols 2","DejaVu Sans","Apple Symbols",serif;font-size:clamp(22px,4.2vw,38px);line-height:1}
+.diagrama .casa.clara{background:#F3E9D2}.diagrama .casa.escura{background:var(--lilas)}
+.diagrama .casa.destaque::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 4px var(--amarelo)}
+.diagrama .peca.b{color:#fff;text-shadow:0 0 2px #1C1A1F,0 0 2px #1C1A1F,0 1px 0 #1C1A1F,0 -1px 0 #1C1A1F,1px 0 0 #1C1A1F,-1px 0 0 #1C1A1F}
+.diagrama .peca.p{color:#1C1A1F;text-shadow:0 0 2px rgba(255,255,255,.6)}
+.diagrama .coord{display:flex;justify-content:space-around;font-size:13px;font-weight:700;color:var(--cinza-texto);padding:4px 6px 0}
+.diagrama figcaption{margin-top:10px;font-size:15px;color:var(--cinza-texto);text-align:center}
+.diagrama figcaption b{color:var(--roxo)}
+@media (max-width:860px){ .xadrez-cartao{grid-template-columns:1fr} }
 
 /* trajetória */
 .trajetoria{background:var(--creme)}
@@ -304,6 +324,7 @@ section{position:relative}
       <a href="#trajetoria">Trajetória</a>
       <a href="#projetos">Projetos</a>
       <a href="jogos/">Jogos de Libras</a>
+      <a href="xadrez/">Xadrez</a>
       <a href="#transparencia">Transparência</a>
       <a class="botao amarelo" href="#pix">Apoie</a>
     </nav>
@@ -429,6 +450,22 @@ section{position:relative}
         <div class="carta c2"><i class="ph ph-cards"></i><b>Jogo da memória</b><small>Família, cores, animais</small></div>
         <div class="carta c3"><i class="ph ph-question"></i><b>Quiz de sinais</b><small>30 aulas</small></div>
       </div>
+    </div>
+  </section>
+
+  <section class="xadrez-home secao" id="xadrez" aria-labelledby="t-xadrez">
+    <div class="container">
+      <a class="xadrez-cartao surge" href="xadrez/">
+        <div>
+          <p class="sobretitulo"><img src="assets/mao-circula.png" alt="" width="22">Esporte e inclusão</p>
+          <h2 id="t-xadrez">Circula Xadrez <em>Acessível</em></h2>
+          <p>Venha conhecer o projeto de esporte do Instituto Circula Libras, que desde 2024 une o xadrez à acessibilidade e à inclusão. Um tabuleiro com as mesmas regras para pessoas surdas, cegas, com baixa visão e para todo mundo: o xadrez como modalidade esportiva e como caminho de encontro.</p>
+          <span class="botao principal">Venha conhecer <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+        </div>
+        <figure class="diagrama" data-fen="6rk/5Npp/8/8/8/8/8/6K1" data-destaque="f7 h8" data-descricao="O cavalo branco em f7 dá xeque-mate no rei preto em h8, cercado pelas próprias peças: o mate de Philidor.">
+          <figcaption><b>Mate de Philidor.</b> Um cavalo, um rei cercado pelos seus.</figcaption>
+        </figure>
+      </a>
     </div>
   </section>
 
@@ -725,6 +762,7 @@ section{position:relative}
   function reserva(t){ var a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly',''); a.style.position='fixed'; a.style.opacity='0'; document.body.appendChild(a); a.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(a); }
 })();
 </script>
+<script src="xadrez/diagrama.js"></script>
 <script src="assets/acessibilidade.js"></script>
 </body>
 </html>

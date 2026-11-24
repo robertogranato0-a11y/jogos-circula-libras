@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circula Xadrez Acessível | Instituto Circula Libras</title>
+<meta name="description" content="Circula Xadrez Acessível: projeto de esporte e inclusão do Instituto Circula Libras desde 2024. Conheça o projeto ou jogue xadrez acessível no navegador.">
+<meta property="og:title" content="Circula Xadrez Acessível">
+<meta property="og:description" content="Xadrez, esporte e inclusão. Um projeto do Instituto Circula Libras.">
+<link rel="icon" href="../assets/mao-circula.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Cabin+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="xadrez.css">
+<link rel="stylesheet" href="../assets/acessibilidade.css">
+<style>
+.entrada{background:var(--grafite);color:#fff;padding:56px 0 72px}
+.entrada .container{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.entrada h1{color:#fff} .entrada h1 em{font-style:normal;color:var(--amarelo)}
+.entrada .sobretitulo{color:var(--amarelo)}
+.entrada p.lead{color:#E6E0EC;font-size:20px;max-width:48ch;margin:0}
+.entrada .diagrama figcaption{color:#CFC8D8}
+.escolhas{padding:56px 0}
+.escolhas .grade{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.opcao{display:flex;flex-direction:column;gap:12px;padding:32px;border-radius:24px;text-decoration:none;color:var(--grafite);background:var(--creme);border:3px solid transparent;transition:border-color .2s,transform .2s}
+.opcao:hover{border-color:var(--roxo);transform:translateY(-4px);color:var(--grafite)}
+.opcao.jogar{background:var(--roxo);color:#fff} .opcao.jogar:hover{border-color:var(--amarelo);color:#fff}
+.opcao .icone{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:32px;background:var(--amarelo);color:var(--grafite)}
+.opcao h2{margin:0;font-size:clamp(28px,3.6vw,38px)}
+.opcao p{margin:0;font-size:17px;line-height:1.55}
+.opcao.jogar p{color:#EADFF5}
+.opcao .ir{margin-top:auto;font-weight:700;display:flex;align-items:center;gap:8px}
+.opcao.jogar .ir{color:var(--amarelo)}
+.opcao .nova{font-size:13px;font-weight:600;opacity:.85}
+@media (max-width:860px){ .entrada .container,.escolhas .grade{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo-x">
+  <div class="container">
+    <a class="marca" href="../"><img src="../assets/logo-branca-amarela.png" alt="Instituto Circula Libras, voltar ao site" width="1079" height="554"></a>
+    <nav aria-label="Xadrez">
+      <a href="./" aria-current="page">Circula Xadrez Acessível</a>
+      <a href="projeto.html">O projeto</a>
+      <a href="jogar.html">Jogar xadrez</a>
+    </nav>
+  </div>
+</header>
+<main id="conteudo">
+  <section class="entrada" aria-labelledby="t-entrada">
+    <div class="container">
+      <div>
+        <p class="sobretitulo">Esporte e inclusão · desde 2024</p>
+        <h1 id="t-entrada">Circula Xadrez <em>Acessível</em></h1>
+        <p class="lead">O projeto de esporte do Instituto Circula Libras. A gente acredita no xadrez como modalidade esportiva que já traz a inclusão na sua essência: as mesmas regras, o mesmo tabuleiro, para pessoas surdas, cegas, com baixa visão e para todo mundo.</p>
+      </div>
+      <figure class="diagrama" data-fen="6rk/5Npp/8/8/8/8/8/6K1" data-destaque="f7 h8" data-descricao="O cavalo branco em f7 dá xeque-mate no rei preto em h8, cercado pelas próprias peças: o mate de Philidor.">
+        <figcaption><b>Mate de Philidor.</b> Um cavalo, um rei cercado pelos seus.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="escolhas" aria-label="Escolha por onde começar">
+    <div class="container grade">
+      <a class="opcao" href="projeto.html" target="_blank" rel="noopener">
+        <span class="icone"><i class="ph ph-book-open-text" aria-hidden="true"></i></span>
+        <h2>Conheça o projeto</h2>
+        <p>Venha conhecer o Circula Xadrez Acessível e a nossa ideia sobre ele: por que o xadrez é um esporte que já nasce acessível, o que ele faz pela cabeça e pelo corpo, e como levar o projeto para a sua escola, instituição ou comunidade.</p>
+        <span class="ir">Ler sobre o projeto <i class="ph ph-arrow-up-right" aria-hidden="true"></i></span>
+        <span class="nova">Abre em uma nova aba</span>
+      </a>
+      <a class="opcao jogar" href="jogar.html">
+        <span class="icone"><i class="ph ph-crown-simple" aria-hidden="true"></i></span>
+        <h2>Jogar xadrez</h2>
+        <p>Jogue com outra pessoa no mesmo aparelho ou contra o computador, em cinco níveis. Com narração dos lances, confirmação antes de mexer, leitura do tabuleiro e controle pelo teclado ou pela voz.</p>
+        <span class="ir">Começar a jogar <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+  </section>
+</main>
+<footer class="rodape-x">
+  <div class="container"><span>© 2026 Instituto Circula Libras · Circula Xadrez Acessível</span><a href="../">Voltar ao site do Instituto</a></div>
+</footer>
+<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try{new window.VLibras.Widget('https://vlibras.gov.br/app');}catch(e){}</script>
+<script src="diagrama.js"></script>
+<script src="../assets/acessibilidade.js"></script>
+</body>
+</html>

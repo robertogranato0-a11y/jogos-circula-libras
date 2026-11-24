@@ -1,0 +1,58 @@
+/* Circula Xadrez Acessível — estilos comuns (segue o manual de marca do ICL) */
+:root{
+  --roxo:#662D91; --lilas:#8752B5; --amarelo:#FFCC33; --amarelo-escuro:#F2B90F;
+  --branco:#FFFFFF; --creme:#FFF8E7; --grafite:#1C1A1F; --grafite-2:#2A2630;
+  --cinza-texto:#5C5E60; --linha:#ECE6F2;
+  --casa-clara:#F3E9D2; --casa-escura:#8752B5;
+  --fonte:"Cabin","Segoe UI",system-ui,sans-serif;
+  --display:"Cabin Condensed","Cabin","Segoe UI",sans-serif;
+  --pecas:"Segoe UI Symbol","Noto Sans Symbols 2","DejaVu Sans","Apple Symbols",serif;
+  --r:16px; --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--fonte);font-size:18px;line-height:1.65;color:var(--grafite);background:var(--branco)}
+img{max-width:100%;display:block}
+a{color:var(--roxo)} a:hover{color:var(--lilas)}
+:focus-visible{outline:3px solid var(--roxo);outline-offset:3px;border-radius:4px}
+.container{width:min(100% - 32px,var(--max));margin-inline:auto}
+.pular{position:absolute;left:-999px;top:8px;background:var(--amarelo);color:var(--grafite);padding:10px 16px;border-radius:12px;z-index:100;font-weight:700}
+.pular:focus{left:16px}
+h1,h2,h3{line-height:1.12;margin:0 0 .45em}
+h1{font-family:var(--display);font-size:clamp(40px,7vw,76px);letter-spacing:-.01em}
+h2{font-family:var(--display);font-size:clamp(30px,4.4vw,46px)}
+h3{font-size:clamp(20px,2.4vw,24px)}
+.sobretitulo{font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--lilas);margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.botao{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:12px;font:700 17px var(--fonte);text-decoration:none;border:0;cursor:pointer;transition:background .2s,transform .2s}
+.botao:hover{transform:translateY(-2px)}
+.botao.principal{background:var(--roxo);color:#fff} .botao.principal:hover{background:var(--lilas);color:#fff}
+.botao.amarelo{background:var(--amarelo);color:var(--grafite)} .botao.amarelo:hover{background:var(--amarelo-escuro);color:var(--grafite)}
+.botao.contorno{background:#fff;color:var(--roxo);box-shadow:inset 0 0 0 2px var(--roxo)} .botao.contorno:hover{background:var(--roxo);color:#fff}
+
+/* topo simples */
+.topo-x{background:var(--grafite);color:#fff}
+.topo-x .container{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;flex-wrap:wrap}
+.topo-x .marca{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:700}
+.topo-x .marca img{width:120px;height:auto}
+.topo-x nav{display:flex;gap:6px;flex-wrap:wrap}
+.topo-x nav a{color:#fff;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
+.topo-x nav a:hover,.topo-x nav a[aria-current]{background:rgba(255,255,255,.12);color:var(--amarelo)}
+
+.rodape-x{background:var(--grafite);color:#CFC8D8;padding:40px 0;margin-top:64px;font-size:15px}
+.rodape-x a{color:var(--amarelo)}
+.rodape-x .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* diagrama de xadrez (desenhado pelo diagrama.js) */
+.diagrama{margin:28px auto;max-width:420px}
+.diagrama .tab{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);aspect-ratio:1;border:6px solid var(--grafite);border-radius:6px;overflow:hidden;box-shadow:0 10px 30px rgba(28,26,31,.18)}
+.diagrama .casa{position:relative;display:grid;place-items:center;font-family:var(--pecas);font-size:clamp(22px,6.2vw,40px);line-height:1;user-select:none}
+.diagrama .casa.clara{background:var(--casa-clara)} .diagrama .casa.escura{background:var(--casa-escura)}
+.diagrama .casa.destaque::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 4px var(--amarelo)}
+.peca{display:block}
+.peca.b{color:#fff;text-shadow:0 0 2px #1C1A1F,0 0 2px #1C1A1F,0 1px 0 #1C1A1F,0 -1px 0 #1C1A1F,1px 0 0 #1C1A1F,-1px 0 0 #1C1A1F}
+.peca.p{color:#1C1A1F;text-shadow:0 0 2px rgba(255,255,255,.6)}
+.diagrama .coord{display:flex;justify-content:space-around;font-size:13px;font-weight:700;color:var(--cinza-texto);padding:4px 6px 0}
+.diagrama figcaption{margin-top:10px;font-size:15px;color:var(--cinza-texto);text-align:center;line-height:1.45}
+.diagrama figcaption b{color:var(--roxo)}
+.entrada .diagrama figcaption b,.capa .diagrama figcaption b{color:var(--amarelo)}
+.diagrama .casa{min-height:0;min-width:0;overflow:hidden}

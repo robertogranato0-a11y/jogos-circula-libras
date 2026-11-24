@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta recebida | Circula Xadrez Acessível</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/mao-circula.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Cabin+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="xadrez.css">
+<link rel="stylesheet" href="../assets/acessibilidade.css">
+<style>
+.obrigado{min-height:60vh;display:grid;place-items:center;padding:64px 0;text-align:center}
+.obrigado .container{max-width:640px}
+.obrigado .selo{width:96px;height:96px;margin:0 auto 20px;border-radius:50%;background:var(--amarelo);display:grid;place-items:center;font-size:48px;color:var(--grafite)}
+.obrigado p{font-size:19px;color:#3C3A40}
+.obrigado .acoes{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+</style>
+</head>
+<body>
+<header class="topo-x">
+  <div class="container">
+    <a class="marca" href="../"><img src="../assets/logo-branca-amarela.png" alt="Instituto Circula Libras, voltar ao site" width="1079" height="554"></a>
+    <nav aria-label="Xadrez"><a href="./">Circula Xadrez Acessível</a><a href="projeto.html">O projeto</a><a href="jogar.html">Jogar xadrez</a></nav>
+  </div>
+</header>
+<main class="obrigado" id="conteudo">
+  <div class="container">
+    <div class="selo" aria-hidden="true"><i class="ph ph-check-fat"></i></div>
+    <h1>Recebemos a sua proposta!</h1>
+    <p>Obrigado por querer levar o Circula Xadrez Acessível para perto de você. A nossa equipe vai ler com carinho e responder no e-mail que você informou.</p>
+    <p>Enquanto isso, que tal uma partida?</p>
+    <div class="acoes">
+      <a class="botao principal" href="jogar.html"><i class="ph ph-crown-simple" aria-hidden="true"></i> Jogar xadrez</a>
+      <a class="botao contorno" href="../">Voltar ao site do Instituto</a>
+    </div>
+  </div>
+</main>
+<footer class="rodape-x"><div class="container"><span>© 2026 Instituto Circula Libras · Circula Xadrez Acessível</span><a href="https://ig.me/m/circulalibras" target="_blank" rel="noopener">@circulalibras</a></div></footer>
+<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try{new window.VLibras.Widget('https://vlibras.gov.br/app');}catch(e){}</script>
+<script src="../assets/acessibilidade.js"></script>
+</body>
+</html>
