@@ -1,0 +1,110 @@
+/* Painel de acessibilidade do Instituto Circula Libras
+   Código próprio. Tudo fica dentro de #cla (o painel) e das classes cla-* no <html>. */
+
+/* ---------- botão flutuante e menu rápido ---------- */
+#cla{--cla-roxo:#662D91;--cla-lilas:#8752B5;--cla-amarelo:#FFCC33;--cla-grafite:#1C1A1F;--cla-linha:#ECE6F2;--cla-creme:#FFF8E7;
+  font-family:"Cabin","Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.4;color:var(--cla-grafite)}
+#cla *,#cla *::before,#cla *::after{box-sizing:border-box;letter-spacing:normal;word-spacing:normal}
+.cla-lancador{position:fixed;right:12px;top:calc(50% - 28px);z-index:2147483000;width:56px;height:56px}
+.cla-botao{width:56px;height:56px;border-radius:50%;border:3px solid #fff;background:var(--cla-roxo);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(28,26,31,.3);transition:transform .2s,background .2s;padding:0}
+.cla-botao:hover,.cla-botao[aria-expanded="true"]{background:var(--cla-lilas);transform:scale(1.06)}
+.cla-botao svg{width:32px;height:32px}
+.cla-rapido{position:absolute;right:48px;top:50%;margin-top:-82px;padding-right:20px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;opacity:0;visibility:hidden;transform:translateX(12px);transition:opacity .2s,transform .2s,visibility .2s}
+.cla-lancador.aberto .cla-rapido{opacity:1;visibility:visible;transform:none}
+.cla-rapido button{display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 8px 8px 16px;border:0;border-radius:999px;background:#fff;color:var(--cla-grafite);font:700 15px/1.2 inherit;font-family:inherit;cursor:pointer;box-shadow:0 4px 14px rgba(28,26,31,.22);white-space:nowrap}
+.cla-rapido button:hover{background:var(--cla-amarelo)}
+.cla-rapido button i{width:32px;height:32px;border-radius:50%;background:var(--cla-roxo);color:#fff;display:grid;place-items:center;font-size:18px}
+.cla-rapido kbd{font:600 12px inherit;font-family:inherit;color:#5C5E60}
+
+/* ---------- painel ---------- */
+.cla-painel{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);z-index:2147483001;background:#fff;box-shadow:-12px 0 40px rgba(28,26,31,.25);display:flex;flex-direction:column;transform:translateX(105%);visibility:hidden;transition:transform .3s ease,visibility .3s}
+.cla-painel.aberto{transform:none;visibility:visible}
+.cla-topo{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--cla-roxo);color:#fff}
+.cla-topo img{width:34px;height:auto}
+.cla-topo h2{margin:0;flex:1;font-size:20px;font-weight:700;color:#fff;font-family:inherit;line-height:1.2}
+.cla-topo button{min-height:40px;padding:6px 14px;border-radius:10px;border:2px solid rgba(255,255,255,.7);background:transparent;color:#fff;font:700 14px inherit;font-family:inherit;cursor:pointer}
+.cla-topo button:hover{background:#fff;color:var(--cla-roxo)}
+.cla-barra{display:flex;gap:8px;padding:10px 16px;border-bottom:1px solid var(--cla-linha);background:var(--cla-creme)}
+.cla-barra button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;border:0;border-radius:10px;background:#fff;color:var(--cla-roxo);font:700 14px inherit;font-family:inherit;cursor:pointer;box-shadow:inset 0 0 0 2px var(--cla-linha)}
+.cla-barra button:hover{box-shadow:inset 0 0 0 2px var(--cla-roxo)}
+.cla-corpo{flex:1;overflow:auto;padding:8px 16px 24px;overscroll-behavior:contain}
+.cla-secao{margin-top:18px}
+.cla-secao > h3{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cla-lilas);font-family:inherit}
+.cla-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cla-cartao{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:92px;padding:10px 6px;border-radius:14px;border:2px solid var(--cla-linha);background:#fff;color:var(--cla-grafite);font:600 13px/1.2 inherit;font-family:inherit;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.cla-cartao i{font-size:26px;color:var(--cla-roxo)}
+.cla-cartao:hover{border-color:var(--cla-lilas)}
+.cla-cartao[aria-pressed="true"]{border-color:var(--cla-roxo);background:var(--cla-roxo);color:#fff}
+.cla-cartao[aria-pressed="true"] i{color:var(--cla-amarelo)}
+.cla-cartao small{display:block;font-size:11px;font-weight:600;opacity:.8}
+.cla-ajuste{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:14px;border:2px solid var(--cla-linha);margin-bottom:8px}
+.cla-ajuste span{font-weight:700;font-size:15px}
+.cla-ajuste small{display:block;font-weight:600;font-size:12px;color:#5C5E60}
+.cla-passos{display:flex;align-items:center;gap:6px}
+.cla-passos button{width:40px;height:40px;border-radius:10px;border:2px solid var(--cla-roxo);background:#fff;color:var(--cla-roxo);font-size:18px;cursor:pointer;display:grid;place-items:center}
+.cla-passos button:hover{background:var(--cla-roxo);color:#fff}
+.cla-passos output{min-width:52px;text-align:center;font-weight:700}
+.cla-leitor{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.cla-leitor button{display:flex;align-items:center;gap:6px;min-height:40px;padding:6px 14px;border-radius:10px;border:2px solid var(--cla-roxo);background:#fff;color:var(--cla-roxo);font:700 14px inherit;font-family:inherit;cursor:pointer}
+.cla-leitor button:hover{background:var(--cla-roxo);color:#fff}
+.cla-leitor label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;width:100%}
+.cla-leitor input[type=range]{flex:1;accent-color:var(--cla-roxo)}
+.cla-nota{font-size:12.5px;color:#5C5E60;margin:10px 0 0;line-height:1.45}
+.cla-rodape{padding:10px 16px;border-top:1px solid var(--cla-linha);font-size:12px;color:#5C5E60;text-align:center}
+#cla :focus-visible{outline:3px solid var(--cla-amarelo);outline-offset:2px;box-shadow:0 0 0 6px var(--cla-roxo)}
+.cla-aviso{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483002;background:var(--cla-grafite);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;max-width:min(92vw,520px);text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+
+/* ---------- ferramentas na tela ---------- */
+.cla-guia{position:fixed;left:0;right:0;height:14px;z-index:2147482990;pointer-events:none;background:rgba(255,204,51,.55);border-top:3px solid #662D91;border-bottom:3px solid #662D91;display:none}
+.cla-mascara{position:fixed;left:0;right:0;z-index:2147482990;pointer-events:none;background:rgba(28,26,31,.62);display:none}
+html.cla-guia .cla-guia,html.cla-mascara .cla-mascara{display:block}
+.cla-lendo{outline:4px solid #FFCC33!important;outline-offset:3px!important;background-color:rgba(255,204,51,.22)!important}
+.cla-face{position:fixed;left:16px;bottom:16px;z-index:2147483000;width:200px;padding:8px;border-radius:14px;background:var(--cla-grafite);color:#fff;font-size:12.5px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.cla-face video{width:100%;border-radius:8px;transform:scaleX(-1);display:block;background:#000}
+.cla-face p{margin:6px 0}
+.cla-face button{width:100%;min-height:36px;border:0;border-radius:8px;background:var(--cla-amarelo);color:var(--cla-grafite);font:700 13px inherit;font-family:inherit;cursor:pointer}
+.cla-mira{position:fixed;z-index:2147483003;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:4px solid #FFCC33;box-shadow:0 0 0 3px #662D91;pointer-events:none;display:none;transition:transform .1s}
+.cla-mira.clicou{transform:scale(.6);background:rgba(255,204,51,.6)}
+
+/* ---------- ajustes aplicados ao site (nunca ao painel) ---------- */
+html.cla-lh body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) :not(i){line-height:var(--cla-lh)!important}
+html.cla-ls body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) :not(i){letter-spacing:var(--cla-ls)!important}
+html.cla-ws body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) :not(i){word-spacing:var(--cla-ws)!important}
+html.cla-fonte body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) :not(i):not([class*="ph"]){font-family:"Atkinson Hyperlegible",Verdana,Arial,sans-serif!important}
+html.cla-esquerda body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) :is(p,li,h1,h2,h3,h4,dd,dt,figcaption,span){text-align:left!important}
+html.cla-links body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) a{text-decoration:underline!important;text-underline-offset:3px;outline:2px dashed #662D91!important;outline-offset:2px}
+html.cla-titulos body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) :is(h1,h2,h3,h4,h5,h6){outline:3px solid #8752B5!important;outline-offset:4px;background-color:rgba(255,204,51,.28)!important;border-radius:4px}
+html.cla-cursor,html.cla-cursor *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M6 4l30 16-13 3 8 15-6 3-8-15-11 9z' fill='%23FFCC33' stroke='%231C1A1F' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") 6 4,auto!important}
+html.cla-pausa *,html.cla-pausa *::before,html.cla-pausa *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html.cla-pausa .mao-gira{transform:none!important}
+html.cla-sem-img body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) img{visibility:hidden!important}
+html.cla-teclado :focus{outline:4px solid #FFCC33!important;outline-offset:3px!important;box-shadow:0 0 0 8px #662D91!important}
+
+/* alto contraste escuro */
+html.cla-escuro body,html.cla-escuro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper),html.cla-escuro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) *:not(img):not(video){background-color:#000!important;color:#fff!important;border-color:#fff!important;text-shadow:none!important;box-shadow:none!important}
+html.cla-escuro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) a,html.cla-escuro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) a *{color:#FFE14D!important}
+html.cla-escuro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) *::before,html.cla-escuro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) *::after{background-image:none!important}
+/* alto contraste claro */
+html.cla-claro body,html.cla-claro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper),html.cla-claro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) *:not(img):not(video){background-color:#fff!important;color:#000!important;border-color:#000!important;text-shadow:none!important;box-shadow:none!important}
+html.cla-claro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) a,html.cla-claro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) a *{color:#0033CC!important}
+html.cla-claro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) *::before,html.cla-claro body > :not(#cla):not([vw]):not(#vlibras-access-wrapper) *::after{background-image:none!important}
+
+@media (max-width:620px){
+  .cla-lancador{top:auto;bottom:88px;right:10px;width:52px;height:52px}
+  .cla-botao{width:52px;height:52px}
+  .cla-grade{grid-template-columns:repeat(2,1fr)}
+  .cla-face{width:150px}
+}
+
+/* o bonequinho do VLibras fica escondido: o VLibras abre pelo botão "Libras" do nosso painel */
+#vlibras-access-wrapper,[vw] [vw-access-button]{display:none!important}
+/* frase de boas-vindas para o VLibras traduzir */
+.cla-boas{position:fixed;left:16px;bottom:16px;z-index:2147482995;max-width:min(340px,calc(100vw - 32px));padding:14px 40px 14px 16px;border-radius:14px;background:#fff;color:var(--cla-grafite);box-shadow:0 10px 30px rgba(28,26,31,.3);border-left:6px solid var(--cla-amarelo)}
+.cla-boas p{margin:0;font-size:17px;font-weight:700;line-height:1.35;cursor:pointer}
+.cla-boas p:hover{color:var(--cla-roxo)}
+.cla-boas small{display:block;margin-top:6px;font-size:12.5px;color:#5C5E60}
+.cla-boas button{position:absolute;top:6px;right:6px;width:32px;height:32px;border:0;border-radius:8px;background:transparent;color:var(--cla-grafite);font-size:18px;cursor:pointer;display:grid;place-items:center}
+.cla-boas button:hover{background:var(--cla-linha)}
+/* nos modos de contraste, a foto de fundo da abertura fica bem apagada para o texto aparecer */
+html.cla-escuro .abertura .foto,html.cla-claro .abertura .foto{opacity:.18}
+@media (hover:none){.cla-rapido kbd{display:none}}

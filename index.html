@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Cabin+Condensed:wght@600;700&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="assets/acessibilidade.css">
 <style>
 :root{
   --roxo:#662D91; --lilas:#8752B5; --amarelo:#FFCC33; --amarelo-escuro:#F2B90F;
@@ -703,7 +704,7 @@ section{position:relative}
     fotos.forEach(function(f, k){ var p = document.createElement('span'); if(k===0) p.className = 'atual'; pontos.appendChild(p); if(k>0) f.loading = 'eager'; });
     m.appendChild(pontos);
     function mostra(n){ fotos[i].classList.remove('atual'); pontos.children[i].classList.remove('atual'); i = n % fotos.length; fotos[i].classList.add('atual'); pontos.children[i].classList.add('atual'); }
-    function inicia(){ if(timer || reduz) return; mostra(i+1); timer = setInterval(function(){ mostra(i+1); }, 1400); }
+    function inicia(){ if(timer || reduz || document.documentElement.classList.contains('cla-pausa')) return; mostra(i+1); timer = setInterval(function(){ mostra(i+1); }, 1400); }
     function para(){ clearInterval(timer); timer = null; }
     var card = m.closest('.proj') || m;
     card.addEventListener('mouseenter', inicia);
@@ -724,5 +725,6 @@ section{position:relative}
   function reserva(t){ var a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly',''); a.style.position='fixed'; a.style.opacity='0'; document.body.appendChild(a); a.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(a); }
 })();
 </script>
+<script src="assets/acessibilidade.js"></script>
 </body>
 </html>
