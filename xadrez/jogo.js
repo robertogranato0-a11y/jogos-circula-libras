@@ -13,7 +13,7 @@ var LETRA_PT = {K:'R', Q:'D', R:'T', B:'B', N:'C'};
 
 /* ---------- estado ---------- */
 var CHAVE = 'cla-xadrez-v1';
-var pref = {narrar:true, confirmar:false, casa:false, grandes:false, contraste:false, modo:'maquina', nivel:2, cor:'w'};
+var pref = {narrar:false, confirmar:false, casa:false, grandes:false, contraste:false, modo:'maquina', nivel:2, cor:'w'};
 try{ Object.assign(pref, JSON.parse(localStorage.getItem(CHAVE) || '{}')); }catch(e){}
 function salvarPref(){ try{ localStorage.setItem(CHAVE, JSON.stringify(pref)); }catch(e){} }
 var modo = pref.modo, nivel = pref.nivel, corHumano = 'w', virado = false;
@@ -23,12 +23,17 @@ var selecionada = null, pendente = null, pensando = false, focoSq = 'e2', partid
 var falaOk = 'speechSynthesis' in window, voz = null;
 function escolherVoz(){ if(!falaOk) return; var vs = speechSynthesis.getVoices(); voz = vs.filter(function(v){ return /pt[-_]BR/i.test(v.lang); })[0] || vs.filter(function(v){ return /^pt/i.test(v.lang); })[0] || null; }
 if(falaOk){ escolherVoz(); speechSynthesis.onvoiceschanged = escolherVoz; }
+// falar(): só para o que a pessoa pediu (botões "Ler tabuleiro", "Último lance"...).
+// avisar(): falas automáticas do jogo, que só acontecem com "Narrar os lances" marcado ou com o microfone ligado.
 function falar(t, interromper){
   if(!falaOk || !t) return;
   if(interromper !== false) speechSynthesis.cancel();
+  pausarMic(); // o microfone não pode ouvir a própria voz do jogo
   var u = new SpeechSynthesisUtterance(t); u.lang = 'pt-BR'; if(voz) u.voice = voz; u.rate = 1;
+  u.onend = u.onerror = function(){ setTimeout(function(){ if(!speechSynthesis.speaking) retomarMic(); }, 250); };
   speechSynthesis.speak(u);
 }
+function avisar(t){ if(pref.narrar || micAtivo) falar(t); }
 function status(t){ statusEl.textContent = t; }
 
 /* ---------- descrições ---------- */
@@ -183,27 +188,27 @@ function pedirPromocao(opcoes, forcar){
     box.appendChild(bt);
   });
   el('confirma').classList.add('aberta'); box.querySelector('button').focus();
-  falar('O peão chegou ao fim do tabuleiro. Escolha: dama, torre, bispo ou cavalo.');
+  avisar('O peão chegou ao fim do tabuleiro. Escolha: dama, torre, bispo ou cavalo.');
 }
 function pedirConfirmacao(m){
   pendente = {lance:m};
   var t = descreverEscolha(m) + '. Confirmar?';
   el('confirma-texto').textContent = t; el('confirma-acoes').hidden = false; el('promo').hidden = true;
   el('confirma').classList.add('aberta'); el('bt-confirmar').focus();
-  status(t); falar(t);
+  status(t); avisar(t);
 }
 function fecharConfirma(){ pendente = null; el('confirma').classList.remove('aberta'); el('promo').hidden = true; el('confirma-acoes').hidden = false; }
 el('bt-confirmar').addEventListener('click', function(){ var m = pendente && pendente.lance; fecharConfirma(); if(m) jogar(m); });
-el('bt-cancelar').addEventListener('click', function(){ fecharConfirma(); selecionada = null; desenhar(); focar(focoSq); status('Lance cancelado. ' + textoVez()); if(pref.narrar) falar('Lance cancelado.'); });
+el('bt-cancelar').addEventListener('click', function(){ fecharConfirma(); selecionada = null; desenhar(); focar(focoSq); status('Lance cancelado. ' + textoVez()); avisar('Lance cancelado.'); });
 
 function jogar(m){
   var feito;
-  try{ feito = jogo.move({from:m.from, to:m.to, promotion:m.promotion}); }catch(e){ status('Esse lance não é permitido.'); falar('Esse lance não é permitido.'); return; }
+  try{ feito = jogo.move({from:m.from, to:m.to, promotion:m.promotion}); }catch(e){ status('Esse lance não é permitido.'); avisar('Esse lance não é permitido.'); return; }
   selecionada = null; focoSq = feito.to; desenhar(); focar(feito.to);
   var t = descreverLance(feito);
-  if(jogo.isGameOver()){ status(textoFim()); falar(t + (jogo.isCheckmate() ? '' : ' ' + textoFim())); return; }
+  if(jogo.isGameOver()){ status(textoFim()); avisar(t + (jogo.isCheckmate() ? '' : ' ' + textoFim())); return; }
   status(t + '. ' + textoVez());
-  if(pref.narrar) falar(t);
+  avisar(t);
   if(modo === 'maquina' && jogo.turn() !== corHumano) vezDaMaquina();
 }
 
@@ -221,7 +226,7 @@ function iniciarMotor(){
     desenhar(); focar(feito.to);
     var t = descreverLance(feito);
     status(jogo.isGameOver() ? textoFim() : t + '. ' + textoVez());
-    if(pref.narrar || jogo.isGameOver()) falar(jogo.isGameOver() && !jogo.isCheckmate() ? t + ' ' + textoFim() : t);
+    avisar(jogo.isGameOver() && !jogo.isCheckmate() ? t + ' ' + textoFim() : t);
   };
 }
 function vezDaMaquina(){
@@ -273,26 +278,71 @@ function usarTexto(texto, falado){
   if(jogo.isGameOver()){ status(textoFim() + ' Para jogar de novo, clique em Começar.'); return; }
   if(!vezDoHumano()){ status(pendente ? 'Confirme ou cancele o lance escolhido.' : 'Aguarde a sua vez.'); return; }
   var r = interpretar(texto);
-  if(r.erro){ status(r.erro); falar(r.erro); return; }
+  if(r.erro){ status(r.erro); avisar(r.erro); return; }
   el('entrada-lance').value = '';
   escolher(r.opcoes, falado);
 }
 el('form-lance').addEventListener('submit', function(e){ e.preventDefault(); usarTexto(el('entrada-lance').value, false); });
 var Reconhecer = window.SpeechRecognition || window.webkitSpeechRecognition;
-el('bt-voz').addEventListener('click', function(){
+/* Microfone sempre ligado: depois de ligado, fica ouvindo até a pessoa desligar.
+   Enquanto o jogo fala, o microfone pausa, para não ouvir a própria voz do jogo. */
+var micAtivo = false, micPausado = false, rec = null;
+var BOTOES_MIC = ['bt-mic', 'bt-voz'];
+function atualizarMic(){
+  BOTOES_MIC.forEach(function(id){
+    var b = el(id); if(!b) return;
+    b.classList.toggle('amarelo', micAtivo); b.setAttribute('aria-pressed', micAtivo ? 'true' : 'false');
+    var r = b.querySelector('.rot-mic'); if(r) r.textContent = micAtivo ? 'Microfone ligado' : 'Ligar microfone';
+  });
+}
+function comecarOuvir(){
+  if(!micAtivo || micPausado || !rec) return;
+  try{ rec.start(); }catch(e){ /* já estava ouvindo */ }
+}
+function pausarMic(){ if(!micAtivo || !rec) return; micPausado = true; try{ rec.abort(); }catch(e){} }
+function retomarMic(){ if(!micAtivo) return; micPausado = false; comecarOuvir(); }
+function ligarMic(){
   if(!Reconhecer){ var m = 'Este navegador não reconhece voz. No computador, use o Google Chrome ou o Microsoft Edge; ou escreva o lance.'; status(m); falar(m); return; }
-  var rec = new Reconhecer(); rec.lang = 'pt-BR'; rec.interimResults = false; rec.maxAlternatives = 3;
-  var bt = el('bt-voz'); bt.classList.add('amarelo'); status('Pode falar o lance…');
+  rec = new Reconhecer(); rec.lang = 'pt-BR'; rec.continuous = true; rec.interimResults = false; rec.maxAlternatives = 3;
   rec.onresult = function(e){
-    var alts = [].slice.call(e.results[0]).map(function(a){ return a.transcript; }), usado = null;
-    for(var i = 0; i < alts.length; i++){ if(!interpretar(alts[i]).erro){ usado = alts[i]; break; } }
-    el('entrada-lance').value = usado || alts[0];
-    usarTexto(usado || alts[0], true);
+    var res = e.results[e.results.length - 1]; if(!res.isFinal || micPausado) return;
+    tratarFala([].slice.call(res).map(function(a){ return a.transcript; }));
   };
-  rec.onerror = function(e){ status(e.error === 'not-allowed' ? 'O microfone não foi autorizado.' : 'Não consegui ouvir. Tente de novo ou escreva o lance.'); };
-  rec.onend = function(){ bt.classList.remove('amarelo'); };
-  try{ rec.start(); }catch(e){ bt.classList.remove('amarelo'); }
-});
+  rec.onerror = function(e){
+    if(e.error === 'not-allowed' || e.error === 'service-not-allowed'){ desligarMic(); status('O microfone não foi autorizado. Libere o microfone no navegador e tente de novo.'); }
+  };
+  rec.onend = function(){ if(micAtivo && !micPausado) setTimeout(comecarOuvir, 200); }; // o navegador desliga sozinho depois de um silêncio: religamos
+  micAtivo = true; micPausado = false; atualizarMic(); comecarOuvir();
+  var t = 'Microfone ligado. Fale o lance, por exemplo: cavalo f3. Para confirmar, diga confirmar; para desistir, diga cancelar.';
+  status(t); falar(t);
+}
+function desligarMic(){
+  micAtivo = false; micPausado = false;
+  if(rec){ rec.onend = null; try{ rec.abort(); }catch(e){} rec = null; }
+  atualizarMic(); status('Microfone desligado.');
+}
+function tratarFala(alts){
+  var t = semAcento(alts[0].toLowerCase()).trim();
+  el('entrada-lance').value = alts[0];
+  if(pendente && pendente.lance){
+    if(/\b(confirmar|confirma|confirmo|sim|pode|isso)\b/.test(t)){ el('bt-confirmar').click(); return; }
+    if(/\b(cancelar|cancela|nao|errado)\b/.test(t)){ el('bt-cancelar').click(); return; }
+    var m = 'Diga confirmar ou cancelar.'; status(m); falar(m); return;
+  }
+  if(pendente && pendente.promo){
+    var alvo = Object.keys(PECA).filter(function(w){ return t.indexOf(w) > -1; })[0];
+    var botao = alvo && [].slice.call(el('promo').querySelectorAll('button')).filter(function(b){ return semAcento(b.textContent.toLowerCase()).indexOf(alvo === 'rainha' ? 'dama' : alvo) > -1; })[0];
+    if(botao){ botao.click(); return; }
+    falar('Diga dama, torre, bispo ou cavalo.'); return;
+  }
+  if(/ler (o )?tabuleiro/.test(t)){ lerTabuleiro(); return; }
+  if(/ultimo lance/.test(t)){ el('bt-ultimo').click(); return; }
+  if(/^(desligar|parar)( o)? microfone/.test(t)){ desligarMic(); return; }
+  var usado = null;
+  for(var i = 0; i < alts.length; i++){ if(!interpretar(alts[i]).erro){ usado = alts[i]; break; } }
+  usarTexto(usado || alts[0], true);
+}
+BOTOES_MIC.forEach(function(id){ var b = el(id); if(b) b.addEventListener('click', function(){ micAtivo ? desligarMic() : ligarMic(); }); });
 
 /* ---------- botões e preferências ---------- */
 function novaPartida(){
@@ -306,7 +356,7 @@ function novaPartida(){
   focoSq = virado ? 'e7' : 'e2';
   desenhar(); focar(focoSq);
   var t = modo === 'maquina' ? 'Nova partida contra o computador, nível ' + nivel + '. Você joga com as ' + COR[corHumano] + '.' : 'Nova partida entre duas pessoas. As brancas começam.';
-  status(t + ' ' + textoVez()); falar(t);
+  status(t + ' ' + textoVez()); avisar(t);
   if(modo === 'maquina' && corHumano === 'b') vezDaMaquina();
 }
 el('form-config').addEventListener('submit', function(e){ e.preventDefault(); novaPartida(); });
@@ -317,7 +367,7 @@ el('bt-desfazer').addEventListener('click', function(){
   var volta = modo === 'maquina' && jogo.turn() === corHumano ? 2 : 1;
   for(var i = 0; i < volta; i++) jogo.undo();
   selecionada = null; desenhar(); focar(focoSq);
-  var t = 'Lance desfeito. ' + textoVez(); status(t); if(pref.narrar) falar(t);
+  var t = 'Lance desfeito. ' + textoVez(); status(t); avisar(t);
 });
 el('bt-virar').addEventListener('click', function(){ virado = !virado; desenhar(); focar(focoSq); status('Tabuleiro virado: ' + (virado ? 'pretas' : 'brancas') + ' embaixo.'); });
 el('bt-ler').addEventListener('click', lerTabuleiro);

@@ -97,7 +97,7 @@ body{background:#F7F3FB}
       <h1 id="t-jogo">Jogar xadrez acessível</h1>
       <p class="status" id="status" role="status" aria-live="polite">Carregando…</p>
       <div class="tabuleiro-moldura" id="moldura">
-        <div class="tabuleiro" id="tabuleiro" role="grid" aria-label="Tabuleiro de xadrez. Use as setas para andar pelas casas e Enter para escolher."></div>
+        <div class="tabuleiro" id="tabuleiro" data-cla-silencio role="grid" aria-label="Tabuleiro de xadrez. Use as setas para andar pelas casas e Enter para escolher."></div>
       </div>
       <div class="caixa-confirma" id="confirma" role="dialog" aria-modal="false" aria-labelledby="confirma-texto">
         <p id="confirma-texto"></p>
@@ -108,6 +108,7 @@ body{background:#F7F3FB}
         <div class="promo" id="promo" hidden></div>
       </div>
       <div class="linha-botoes" style="margin-top:14px">
+        <button type="button" class="bt" id="bt-mic" aria-pressed="false" title="Fale os lances sem precisar clicar de novo"><i class="ph ph-microphone" aria-hidden="true"></i> <span class="rot-mic">Ligar microfone</span></button>
         <button type="button" class="bt cheio" id="bt-nova"><i class="ph ph-arrow-clockwise" aria-hidden="true"></i> Nova partida</button>
         <button type="button" class="bt" id="bt-desfazer"><i class="ph ph-arrow-u-up-left" aria-hidden="true"></i> Desfazer</button>
         <button type="button" class="bt" id="bt-virar"><i class="ph ph-arrows-down-up" aria-hidden="true"></i> Virar tabuleiro</button>
@@ -149,7 +150,7 @@ body{background:#F7F3FB}
       <section class="cartao-j" aria-labelledby="t-acess">
         <h2 id="t-acess"><i class="ph ph-person-arms-spread" aria-hidden="true"></i>Acessibilidade do jogo</h2>
         <label class="chave"><input type="checkbox" id="op-narrar"><span><b>Narrar os lances</b><small>Toda vez que uma peça se mexer, a voz diz qual peça foi, de onde para onde, e avisa xeque e capturas.</small></span></label>
-        <label class="chave"><input type="checkbox" id="op-confirmar"><span><b>Confirmar antes de jogar</b><small>Depois de escolher o lance, ele é lido e só vale quando você confirma.</small></span></label>
+        <label class="chave"><input type="checkbox" id="op-confirmar"><span><b>Confirmar antes de jogar</b><small>Depois de escolher o lance, aparece a pergunta e ele só vale quando você confirma. A pergunta é lida em voz alta se a narração ou o microfone estiver ligado.</small></span></label>
         <label class="chave"><input type="checkbox" id="op-casa"><span><b>Falar a casa ao navegar</b><small>Ao andar pelo tabuleiro com as setas, a voz diz a casa e a peça que está nela.</small></span></label>
         <label class="chave"><input type="checkbox" id="op-grandes"><span><b>Peças e coordenadas maiores</b><small>Para quem tem baixa visão.</small></span></label>
         <label class="chave"><input type="checkbox" id="op-contraste"><span><b>Tabuleiro em alto contraste</b><small>Casas branco e cinza, peças com contorno forte.</small></span></label>
@@ -161,9 +162,9 @@ body{background:#F7F3FB}
           <label class="so-leitor" for="entrada-lance">Digite o lance</label>
           <input id="entrada-lance" autocomplete="off" placeholder="Ex.: cavalo f3, e2 e4, Cf3">
           <button type="submit" class="bt cheio" aria-label="Jogar o lance digitado"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
-          <button type="button" class="bt" id="bt-voz" aria-label="Falar o lance com o microfone"><i class="ph ph-microphone" aria-hidden="true"></i></button>
+          <button type="button" class="bt" id="bt-voz" aria-pressed="false" aria-label="Ligar ou desligar o microfone"><i class="ph ph-microphone" aria-hidden="true"></i></button>
         </form>
-        <p class="dica">Escreva ou fale do jeito que preferir: "cavalo f3", "peão e quatro", "e2 e4", "roque pequeno". Lances falados sempre pedem confirmação.</p>
+        <p class="dica">Escreva ou fale do jeito que preferir: "cavalo f3", "peão e quatro", "e2 e4", "roque pequeno". Com o microfone ligado, ele fica ouvindo a partida toda: fale o lance e depois diga "confirmar" ou "cancelar". Também dá para dizer "ler tabuleiro" e "último lance". Funciona no Chrome e no Edge.</p>
       </section>
 
       <section class="cartao-j" aria-labelledby="t-lances">

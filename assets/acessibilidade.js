@@ -324,10 +324,10 @@
   }
   function aoClicarLeitor(e){
     var el = e.target.closest('p,li,h1,h2,h3,h4,dt,dd,figcaption,a,button,img,span,strong,label');
-    if(!el || !foraDoPainel(el)) return;
+    if(!el || !foraDoPainel(el) || el.closest("[data-cla-silencio]")) return; // áreas com narração própria (ex.: tabuleiro do xadrez)
     falar(nomeAcessivel(el), el);
   }
-  function aoFocarLeitor(e){ var el = e.target; if(el && el.nodeType === 1 && foraDoPainel(el)) falar(nomeAcessivel(el), el); }
+  function aoFocarLeitor(e){ var el = e.target; if(el && el.nodeType === 1 && foraDoPainel(el) && !el.closest('[data-cla-silencio]')) falar(nomeAcessivel(el), el); }
   var leitorLigado = false;
   function ligarLeitor(){ if(leitorLigado) return; leitorLigado = true; document.addEventListener('click', aoClicarLeitor, true); document.addEventListener('focusin', aoFocarLeitor); }
   function desligarLeitor(){ if(!leitorLigado) return; leitorLigado = false; document.removeEventListener('click', aoClicarLeitor, true); document.removeEventListener('focusin', aoFocarLeitor); pararFala(); }
